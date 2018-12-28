@@ -6,10 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Si occupa della creazione di una nuova domanda di attività lavorativa
+ * Si occupa della creazione di una nuova domanda di attività lavorativa.
  *
  * @version 0.0.1
  */
+@WebServlet("/gestione-pratiche/creazione-domanda-attivita-lavorativa")
 public class CreazioneDomandaAttivitaLavorativaControl extends HttpServlet {
     /**
      * Si occupa di effettuare il controllo sui campi della form, in caso di successo

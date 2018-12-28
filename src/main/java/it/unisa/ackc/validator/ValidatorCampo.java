@@ -1,4 +1,4 @@
-package it.unisa.ackc;
+package it.unisa.ackc.validator;
 
 /**
  * Definisce la validazione di un singolo campo
@@ -7,16 +7,18 @@ package it.unisa.ackc;
  * @version 0.0.1
  */
 public abstract class ValidatorCampo<T> implements Validator {
-    protected T valore;
+    private String nome;
+    private T valore;
 
     /**
      * Permette di istanziare un oggetto di tipo <code>ValidatorCampo</code>
      *
-     * @param valore del campo
+     * @param aValore del campo
      * @since 0.0.1
      */
-    public ValidatorCampo(T valore) {
-        this.valore = valore;
+    public ValidatorCampo(String aNome, T aValore) {
+        this.valore = aValore;
+        this.nome = aNome;
     }
 
     /**
@@ -32,10 +34,18 @@ public abstract class ValidatorCampo<T> implements Validator {
     /**
      * Permette di impostare il valore di ValidatorCampo
      *
-     * @param valore
+     * @param aValore
      * @since 0.0.1
      */
-    public void setValore(T valore) {
-        this.valore = valore;
+    public void setValore(T aValore) {
+        this.valore = aValore;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

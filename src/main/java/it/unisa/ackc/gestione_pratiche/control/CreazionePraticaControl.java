@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Si occupa della creazione di una nuova pratica
+ * Si occupa della creazione di una nuova pratica.
  *
  * @version 0.0.1
  */
