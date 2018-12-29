@@ -1,0 +1,6 @@
+<footer class="footer bg-light">
+    <div class="container">
+        <br>
+        <span class="text-muted">&copy; 2018 Ack Certificate.</span>
+    </div>
+</footer>

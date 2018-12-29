@@ -1,8 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lorenzo
-  Date: 28/12/2018
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -10,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Registrazione account studente</title>
+    <title>Gestione profilo studente</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -23,15 +18,9 @@
 <body>
 
 <!-- Navbar -->
-<jsp:include page="WEB-INF/jspf/navbarNoUser.jspf"/>
+<jsp:include page="WEB-INF/jspf/navbarStudente.jspf"/>
 
 <div class="container">
-
-    <br>
-    <h1>Registrazione account studente</h1><br>
-
-    <!-- Form profilo studente -->
-    <jsp:include page="WEB-INF/jspf/formProfiloStudente.jspf"/>
 
 </div>
 
@@ -40,6 +29,9 @@
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <jsp:include page="WEB-INF/jspf/bootstapScript.jspf"/>
+
+<!-- JS -->
+<script src="js/gestioneProfiloStudente.js"></script>
 
 </body>
 </html>

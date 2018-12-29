@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand" href="login.jsp">
+        <img src="images/ackc-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Ack Certificate
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarNoUser">
+
+        <ul class="navbar-nav mr-auto"></ul>
+
+    </div>
+</nav>
