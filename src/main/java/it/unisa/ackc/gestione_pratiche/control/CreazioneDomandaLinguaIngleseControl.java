@@ -2,10 +2,7 @@ package it.unisa.ackc.gestione_pratiche.control;
 
 import com.itextpdf.text.DocumentException;
 import it.unisa.ackc.gestione_pratiche.entity.DomandaLinguaInglese;
-import it.unisa.ackc.proposta.Checker;
-import it.unisa.ackc.proposta.Notification;
 import it.unisa.ackc.utils.PdfUtils;
-import it.unisa.ackc.validator.ValidatorGroup;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,18 +19,6 @@ import java.util.HashMap;
  */
 @WebServlet("/gestione-pratiche/creazione-domanda-lingua-inglese")
 public class CreazioneDomandaLinguaIngleseControl extends HttpServlet {
-    /**
-     * Validatore utilizzato per la form.
-     */
-    private ValidatorGroup validatorGroup;
-    /**
-     * Lunghezza massima ente certificatore.
-     */
-    private static final int ENTE_CERTIFICATORE_MAX = 64;
-    /**
-     * Collezione di errori individuati.
-     */
-    private Notification notification;
     /**
      * Ente certificatore dell'attestato.
      */
@@ -70,15 +55,18 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServlet {
         );
         grade = request.getParameter("grade");
         livelloCefr = request.getParameter("livello_cefr");
-        check();
-        DomandaLinguaInglese domandaLinguaInglese = new DomandaLinguaInglese(
+
+        //TODO controllo campi
+
+        DomandaLinguaInglese domanda = new DomandaLinguaInglese(
                 null,
                 numeroCfu,
                 enteCertificatore,
                 grade,
                 livelloCefr
         );
-        request.getSession().setAttribute("domanda", domandaLinguaInglese);
+
+        request.getSession().setAttribute("domanda", domanda);
         String fileName = "DomandaLinguaInglese";
         String fileExt = ".pdf";
         response.setContentType("application/pdf");
@@ -101,75 +89,4 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServlet {
         }
     }
 
-    /**
-     * Verifica la correttezza dei parametri in input.
-     */
-    private void check() {
-        validation();
-        if (notification.hasErrors()) {
-            throw new IllegalArgumentException(notification.errorMessage());
-        }
-    }
-
-    /**
-     * Valida l'insieme di parametri di input.
-     */
-    private void validation() {
-        validateEnteCertificatore();
-        validateNumeroCfu();
-        validateGrade();
-        validateLivelloCefr();
-    }
-
-    /**
-     * Valida l'ente certitificatore.
-     */
-    private void validateEnteCertificatore() {
-        if (enteCertificatore == null || enteCertificatore.length() == 0) {
-            notification.addError(
-                    "L'ente certificatore non è stato indicato"
-            );
-        } else if (enteCertificatore.length() > ENTE_CERTIFICATORE_MAX) {
-            notification.addError(
-                    "l'ente certificatore non può superare i 64 caratteri"
-            );
-        }
-    }
-
-    /**
-     * Valida il numero di cfu.
-     */
-    private void validateNumeroCfu() {
-        if (numeroCfu == null) {
-            notification.addError(
-                    "Il numero cfu non è stato indicato"
-            );
-        } else if (numeroCfu <= 0) {
-            notification.addError(
-                    "Il numero cfu deve essere maggiore di 0"
-            );
-        }
-    }
-
-    /**
-     * Valida il grade.
-     */
-    private void validateGrade() {
-        if (grade == null) {
-            notification.addError(
-                    "Il grade non è stato indicato"
-            );
-        }
-    }
-
-    /**
-     * Valida il grade.
-     */
-    private void validateLivelloCefr() {
-        if (grade == null) {
-            notification.addError(
-                    "Il livello cefr non è stato indicato"
-            );
-        }
-    }
 }
