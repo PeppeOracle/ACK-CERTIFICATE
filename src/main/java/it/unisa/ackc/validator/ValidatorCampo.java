@@ -6,7 +6,7 @@ package it.unisa.ackc.validator;
  * @param <T>
  * @version 0.0.1
  */
-public abstract class ValidatorCampo<T> implements Validator {
+public abstract class ValidatorCampo<T> implements Validatore {
     private String nome;
     private T valore;
 

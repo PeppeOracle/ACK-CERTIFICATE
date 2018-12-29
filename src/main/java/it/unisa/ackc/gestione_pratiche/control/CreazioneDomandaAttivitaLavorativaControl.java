@@ -20,6 +20,6 @@ public class CreazioneDomandaAttivitaLavorativaControl extends HttpServlet {
      * @since 0.0.1
      */
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
     }
 }

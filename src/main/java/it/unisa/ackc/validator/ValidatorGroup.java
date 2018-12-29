@@ -1,5 +1,7 @@
 package it.unisa.ackc.validator;
 
+import it.unisa.ackc.proposta.Notification;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +10,9 @@ import java.util.List;
  *
  * @version 0.0.1
  */
-public class ValidatorGroup implements Validator {
-    private List<Validator> validators;
+public class ValidatorGroup implements Validatore {
+    private Notification notification;
+    private List<Validatore> validatori;
 
     /**
      * Permette di istanziare un oggetto di tipo <code>ValidatorForm</code>.
@@ -17,16 +20,16 @@ public class ValidatorGroup implements Validator {
      * @since 0.0.1
      */
     public ValidatorGroup() {
-        validators = new ArrayList<>();
+        validatori = new ArrayList<>();
     }
 
     /**
-     * Aggiunge un nuovo validator.
+     * Aggiunge un nuovo validatore.
      *
-     * @param validator da aggiungere
+     * @param validatore da aggiungere
      */
-    public void addValidator(final Validator validator) {
-        validators.add(validator);
+    public void aggiungiValidatore(final Validatore validatore) {
+        validatori.add(validatore);
     }
 
     /**
@@ -37,9 +40,15 @@ public class ValidatorGroup implements Validator {
      * @throws RuntimeException
      * @since 0.0.1
      */
-    public void valida() throws RuntimeException {
-        for (Validator validator : validators) {
-            validator.valida();
-        }
+    public boolean valida() throws RuntimeException {
+        boolean risultato = true;
+        for (Validatore validatore : validatori) {
+            boolean valida = validatore.valida();
+            if(!valida) {
+
+            }
+            risultato = risultato & valida;
+       }
+       return risultato;
     }
 }
