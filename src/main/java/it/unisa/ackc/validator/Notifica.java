@@ -1,4 +1,4 @@
-package it.unisa.ackc.proposta;
+package it.unisa.ackc.validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * Permette di collezionare un insieme di errori.
  */
-public class Notification {
+public class Notifica {
     /**
      * Contiene la lista degli errori aggiunti.
      */
@@ -53,6 +53,16 @@ public class Notification {
     }
 
     /**
+     * Aggiunge gli errori contenuti nella notifica
+     * a quella attuale.
+     *
+     * @param aNotifica contenente gli errori da aggiungere
+     */
+    public void addErrors(final Notifica aNotifica) {
+        errors.addAll(aNotifica.errors);
+    }
+
+    /**
      * Incapsula le informazioni riguardante un errore.
      */
     private final class Error {
@@ -66,7 +76,7 @@ public class Notification {
         private Exception cause;
 
         /**
-         * Permette di instanziare un oggetto di tipo <code>Notification</code>.
+         * Permette di instanziare un oggetto di tipo <code>Notifica</code>.
          *
          * @param aMessage messaggio dell'erore
          * @param aCause causa dell'errore
