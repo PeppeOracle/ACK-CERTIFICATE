@@ -1,0 +1,3 @@
+$(function() {
+    $("#gestionePraticheNavItem").addClass("active");
+});

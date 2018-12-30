@@ -1,0 +1,3 @@
+$(function() {
+    $("#gestioneProfiloNavItem").addClass("active");
+});
