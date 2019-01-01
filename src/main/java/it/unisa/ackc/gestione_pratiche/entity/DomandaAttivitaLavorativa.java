@@ -4,50 +4,75 @@ package it.unisa.ackc.gestione_pratiche.entity;
  * Rappresenta la specifica di un attestazione di un'attività lavorativa.
  * Fa parte della pratica {@see it.unisa.ackc.gestione_pratiche.entity.Pratica}
  *
- * @version 0.0.1
+ * @version 0.1.1
  */
 public class DomandaAttivitaLavorativa extends Domanda {
+    /**
+     * Ente certificatore dell'attività lavorativa.
+     */
     private String ente;
+    /**
+     * Indirizzo della sede dell'ente.
+     */
     private String indirizzoSede;
+    /**
+     * Profilo lavorativo dello studente.
+     */
     private String profilo;
+    /**
+     * Tipo di contratto lavorativo dello studente.
+     */
     private String tipoDiContratto;
+    /**
+     * Periodo lavorativo.
+     */
     private String periodo;
+    /**
+     * Numero di ore lavorative svolte.
+     */
     private int oreSvolte;
 
     /**
-     * Permette di istanziare un oggetto di tipo <code>DomandaAttivitaLavorativa</code>
+     * Permette di istanziare
+     * un oggetto di tipo <code>DomandaAttivitaLavorativa</code>.
      *
+     * @param aPath percorso del file
+     * @param aNumeroCfu numero di CFU di cui si richiede il riconoscimento
+     * @param aEnte ente presso il quale si è svolta l'attività lavorativa
+     * @param aIndirizzoSede indirizzo della sede dell'ente
+     * @param aProfilo prfilo inerente all'attività lavorativa svolta
+     * @param aTipoDiContratto tipologia di contratto
+     * @param aPeriodo periodo in cui si è svolta l'attività lavorativa
+     * @param aOreSvolte numero di ore svolte
      * @since 0.0.1
+     */
+    public DomandaAttivitaLavorativa(
+            final String aPath,
+            final int aNumeroCfu,
+            final String aEnte,
+            final String aIndirizzoSede,
+            final String aProfilo,
+            final String aTipoDiContratto,
+            final String aPeriodo,
+            final int aOreSvolte) {
+        super(aPath,
+                aNumeroCfu);
+        this.ente = aEnte;
+        this.indirizzoSede = aIndirizzoSede;
+        this.profilo = aProfilo;
+        this.tipoDiContratto = aTipoDiContratto;
+        this.periodo = aPeriodo;
+        this.oreSvolte = aOreSvolte;
+    }
+
+    /**
+     * Costruttore di default.
      */
     public DomandaAttivitaLavorativa() {
-        super();
     }
-
     /**
-     * Permette di istanziare un oggetto di tipo <code>DomandaAttivitaLavorativa</code>
-     *
-     * @param path            percorso del file
-     * @param numeroCfu       numero di CFU di cui si richiede il riconoscimento
-     * @param ente            ente presso il quale si è svolta l'attività lavorativa
-     * @param indirizzoSede   indirizzo della sede dell'ente
-     * @param profilo         prfilo inerente all'attività lavorativa svolta
-     * @param tipoDiContratto tipologia di contratto
-     * @param periodo         periodo in cui si è svolta l'attività lavorativa
-     * @param oreSvolte       numero di ore svolte
-     * @since 0.0.1
-     */
-    public DomandaAttivitaLavorativa(String path, int numeroCfu, String ente, String indirizzoSede, String profilo, String tipoDiContratto, String periodo, int oreSvolte) {
-        super(path, numeroCfu);
-        this.ente = ente;
-        this.indirizzoSede = indirizzoSede;
-        this.profilo = profilo;
-        this.tipoDiContratto = tipoDiContratto;
-        this.periodo = periodo;
-        this.oreSvolte = oreSvolte;
-    }
-
-    /**
-     * Restituisce l'ente presso il quale si è svolta l'attività lavorativa
+     * Restituisce
+     * l'ente presso il quale si è svolta l'attività lavorativa.
      *
      * @return ente
      * @since 0.0.1
@@ -57,17 +82,19 @@ public class DomandaAttivitaLavorativa extends Domanda {
     }
 
     /**
-     * Permette di impostare l'ente presso il quale si è svolta l'attività lavorativa
+     * Permette di impostare
+     * l'ente presso il quale si è svolta l'attività lavorativa.
      *
-     * @param ente
+     * @param aEnte nuovo ente
      * @since 0.0.1
      */
-    public void setEnte(String ente) {
-        this.ente = ente;
+    public void setEnte(final String aEnte) {
+        this.ente = aEnte;
     }
 
     /**
-     * Restituisce l'indirizzo della sede presso la quale si è svolta l'attività lavorativa
+     * Restituisce
+     * l'indirizzo della sede dove si è svolta l'attività lavorativa.
      *
      * @return indirizzoSede
      * @since 0.0.1
@@ -77,19 +104,21 @@ public class DomandaAttivitaLavorativa extends Domanda {
     }
 
     /**
-     * Permette di impostare l'indirizzo della sede presso la quale si è svolta l'attività lavorativa
+     * Permette di impostare
+     * l'indirizzo della sede dove si è svolta l'attività lavorativa.
      *
-     * @param indirizzoSede
+     * @param aIndirizzoSede nuovo indirizzo della sede
      * @since 0.0.1
      */
-    public void setIndirizzoSede(String indirizzoSede) {
-        this.indirizzoSede = indirizzoSede;
+    public void setIndirizzoSede(final String aIndirizzoSede) {
+        this.indirizzoSede = aIndirizzoSede;
     }
 
     /**
-     * Restituisce il profilo lavorativo inerente all'attività lavorativa
+     * Restituisce
+     * il profilo lavorativo inerente all'attività lavorativa.
      *
-     * @return profilo
+     * @return aProfilo
      * @since 0.0.1
      */
     public String getProfilo() {
@@ -97,17 +126,19 @@ public class DomandaAttivitaLavorativa extends Domanda {
     }
 
     /**
-     * Permette di impostare il profilo lavorativo inerente all'attività lavorativa
+     * Permette di impostare
+     * il profilo lavorativo inerente all'attività lavorativa.
      *
-     * @param profilo
+     * @param aProfilo nuovo profilo
      * @since 0.0.1
      */
-    public void setProfilo(String profilo) {
-        this.profilo = profilo;
+    public void setProfilo(final String aProfilo) {
+        this.profilo = aProfilo;
     }
 
     /**
-     * Restituisce il tipo di contratto lavorativo
+     * Restituisce
+     * il tipo di contratto lavorativo.
      *
      * @return tipoDiContratto
      * @since 0.0.1
@@ -117,17 +148,19 @@ public class DomandaAttivitaLavorativa extends Domanda {
     }
 
     /**
-     * Permette di impostare il tipo di contratto lavorativo
+     * Permette di impostare
+     * il tipo di contratto lavorativo.
      *
-     * @param tipoDiContratto
+     * @param aTipoDiContratto nuovo tipo di contratto
      * @since 0.0.1
      */
-    public void setTipoDiContratto(String tipoDiContratto) {
-        this.tipoDiContratto = tipoDiContratto;
+    public void setTipoDiContratto(final String aTipoDiContratto) {
+        this.tipoDiContratto = aTipoDiContratto;
     }
 
     /**
-     * Restituisce il periodo lavorativo
+     * Restituisce
+     * il periodo lavorativo.
      *
      * @return periodo
      * @since 0.0.1
@@ -137,17 +170,19 @@ public class DomandaAttivitaLavorativa extends Domanda {
     }
 
     /**
-     * Permette di impostare il periodo lavorativo
+     * Permette di impostare
+     * il periodo lavorativo.
      *
-     * @param periodo
+     * @param aPeriodo nuovo periodo
      * @since 0.0.1
      */
-    public void setPeriodo(String periodo) {
-        this.periodo = periodo;
+    public void setPeriodo(final String aPeriodo) {
+        this.periodo = aPeriodo;
     }
 
     /**
-     * Restituisce le ore lavorative svolte durante all'attività lavorativa
+     * Restituisce
+     * le ore lavorative svolte durante all'attività lavorativa.
      *
      * @return oreSvolte
      * @since 0.0.1
@@ -157,12 +192,31 @@ public class DomandaAttivitaLavorativa extends Domanda {
     }
 
     /**
-     * Permette di impostare le ore lavorative svolte durante all'attività lavorativa
+     * Permette di impostare
+     * le ore lavorative svolte durante all'attività lavorativa.
      *
-     * @param oreSvolte
+     * @param aOreSvolte nuove ore svolte
      * @since 0.0.1
      */
-    public void setOreSvolte(int oreSvolte) {
-        this.oreSvolte = oreSvolte;
+    public void setOreSvolte(final int aOreSvolte) {
+        this.oreSvolte = aOreSvolte;
+    }
+
+    /**
+     * Permette di rimpiazzare i campi di una domanda di lingua inglese.
+     * @param aDomanda da cui prendere i campi
+     * @since 0.1.1
+     */
+    @Override
+    public void replace(final Domanda aDomanda) {
+        super.replace(aDomanda);
+        DomandaAttivitaLavorativa aDomandaAttivitaLavorativa =
+                (DomandaAttivitaLavorativa) aDomanda;
+        ente = aDomandaAttivitaLavorativa.getEnte();
+        indirizzoSede = aDomandaAttivitaLavorativa.getIndirizzoSede();
+        periodo = aDomandaAttivitaLavorativa.getPeriodo();
+        profilo = aDomandaAttivitaLavorativa.getProfilo();
+        tipoDiContratto = aDomandaAttivitaLavorativa.getTipoDiContratto();
+        oreSvolte = aDomandaAttivitaLavorativa.getOreSvolte();
     }
 }

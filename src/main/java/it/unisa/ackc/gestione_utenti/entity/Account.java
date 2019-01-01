@@ -1,11 +1,39 @@
 package it.unisa.ackc.gestione_utenti.entity;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 /**
  * Rappresenta il concetto di account.
  *
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class Account {
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "findAllAccount",
+                query = "SELECT a FROM Account a"),
+        @NamedQuery(name = "findAccountById",
+                query = "SELECT a FROM Account a WHERE a.id= :id"),
+        @NamedQuery(name = "findAccountByEmail",
+                query = "SELECT a FROM Account a WHERE a.email= :email"),
+        @NamedQuery(name = "findAccountByRuolo",
+                query = "SELECT a FROM Account a WHERE a.ruolo=:ruolo")
+})
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Account implements Serializable {
+    /**
+     * Id della pratica.
+     */
+    @Id
+    @GeneratedValue
+    private Long id;
     /**
      * Email dell'account.
      */
@@ -29,43 +57,60 @@ public class Account {
     /**
      * Ruolo dell'account.
      */
+    @Enumerated(EnumType.STRING)
     private Ruolo ruolo;
     /**
      * Sesso della persona che possiede l'account.
      */
+    @Enumerated(EnumType.STRING)
     private Sesso sesso;
 
     /**
      * Permette di instanziare un oggetto di tipo <code>Account</code>.
      *
-     * @param pEmail    dell'account studente
-     * @param pPassword dell'account studente
-     * @param pTelefono numero di telefono relativo all'Account
-     * @param pNome     dello studente
-     * @param pCognome  dello studente
-     * @param pRuolo    il tipo di responsabilità associata
-     *                  all'Account all'interno del sistema
-     * @param pSesso    dello studente
+     * @param aEmail dell'account studente
+     * @param aPassword dell'account studente
+     * @param aTelefono numero di telefono relativo all'Account
+     * @param aNome dello studente
+     * @param aCognome dello studente
+     * @param aRuolo il tipo di responsabilità associata
+     *               all'Account all'interno del sistema
+     * @param aSesso dello studente
      * @since 0.0.1
      */
-    public Account(final String pEmail,
-                   final String pPassword,
-                   final String pTelefono,
-                   final String pNome,
-                   final String pCognome,
-                   final Ruolo pRuolo,
-                   final Sesso pSesso) {
-        this.email = pEmail;
-        this.password = pPassword;
-        this.telefono = pTelefono;
-        this.nome = pNome;
-        this.cognome = pCognome;
-        this.ruolo = pRuolo;
-        this.sesso = pSesso;
+    public Account(final String aEmail,
+                   final String aPassword,
+                   final String aTelefono,
+                   final String aNome,
+                   final String aCognome,
+                   final Ruolo aRuolo,
+                   final Sesso aSesso) {
+        this();
+        this.email = aEmail;
+        this.password = aPassword;
+        this.telefono = aTelefono;
+        this.nome = aNome;
+        this.cognome = aCognome;
+        this.ruolo = aRuolo;
+        this.sesso = aSesso;
     }
 
     /**
-     * Restituisce l'email dell'Account.
+     * Costruttore di default.
+     */
+    public Account() {
+    }
+    /**
+     * Restituisce
+     * l'id dell'attestato.
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+    /**
+     * Restituisce
+     * l'email dell'Account.
      *
      * @return email
      * @since 0.0.1
@@ -75,17 +120,19 @@ public class Account {
     }
 
     /**
-     * Permette di impostare l'email dell'Account.
+     * Permette di impostare
+     * l'email dell'Account.
      *
-     * @param pEmail nuova email
+     * @param aEmail nuova email
      * @since 0.0.1
      */
-    public void setEmail(final String pEmail) {
-        this.email = pEmail;
+    public void setEmail(final String aEmail) {
+        this.email = aEmail;
     }
 
     /**
-     * Restituisce la password dell'Account.
+     * Restituisce
+     * la password dell'Account.
      *
      * @return password
      * @since 0.0.1
@@ -95,13 +142,14 @@ public class Account {
     }
 
     /**
-     * Permette di impostare la password dell'Account.
+     * Permette di impostare
+     * la password dell'Account.
      *
-     * @param pPassword nuova password
+     * @param aPassword nuova password
      * @since 0.0.1
      */
-    public void setPassword(final String pPassword) {
-        this.password = pPassword;
+    public void setPassword(final String aPassword) {
+        this.password = aPassword;
     }
 
     /**
@@ -117,11 +165,11 @@ public class Account {
     /**
      * Permette di impostare il numero di telefono dell'Account.
      *
-     * @param pTelefono nuovo telefono
+     * @param aTelefono nuovo telefono
      * @since 0.0.1
      */
-    public void setTelefono(final String pTelefono) {
-        this.telefono = pTelefono;
+    public void setTelefono(final String aTelefono) {
+        this.telefono = aTelefono;
     }
 
     /**
@@ -137,11 +185,11 @@ public class Account {
     /**
      * Permette di impostare il nome dell'Account.
      *
-     * @param pNome nuovo nome
+     * @param aNome nuovo nome
      * @since 0.0.1
      */
-    public void setNome(final String pNome) {
-        this.nome = pNome;
+    public void setNome(final String aNome) {
+        this.nome = aNome;
     }
 
     /**
@@ -157,11 +205,11 @@ public class Account {
     /**
      * Permette di impostare il cognome dell'Account.
      *
-     * @param pCognome nuovo cognome
+     * @param aCognome nuovo cognome
      * @since 0.0.1
      */
-    public void setCognome(final String pCognome) {
-        this.cognome = pCognome;
+    public void setCognome(final String aCognome) {
+        this.cognome = aCognome;
     }
 
     /**
@@ -177,11 +225,11 @@ public class Account {
     /**
      * Permette di impostare il ruolo dell'Account.
      *
-     * @param pRuolo nuovo ruolo
+     * @param aRuolo nuovo ruolo
      * @since 0.0.1
      */
-    public void setRuolo(final Ruolo pRuolo) {
-        this.ruolo = pRuolo;
+    public void setRuolo(final Ruolo aRuolo) {
+        this.ruolo = aRuolo;
     }
 
     /**
@@ -197,11 +245,11 @@ public class Account {
     /**
      * Permette di impostare il sesso dell'Account.
      *
-     * @param pSesso sesso da impostare.
+     * @param aSesso sesso da impostare.
      * @since 0.0.1
      */
-    public void setSesso(final Sesso pSesso) {
-        this.sesso = pSesso;
+    public void setSesso(final Sesso aSesso) {
+        this.sesso = aSesso;
     }
 
     /**

@@ -1,20 +1,48 @@
 package it.unisa.ackc.gestione_pratiche.entity;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 /**
- * Rappresenta un documento che attesta l'attività svolte e le conoscenze acquisite.
- * Fa parte della pratica {@see it.unisa.ackc.gestione_pratiche.entity.Pratica}
+ * Rappresenta un documento che attesta
+ * le attività svolte e le conoscenze acquisite
+ * Fa parte della pratica {@see it.unisa.ackc.gestione_pratiche.entity.Pratica}.
  *
- * @version 0.0.1
+ * @version 0.0.3
  */
-public class Attestato {
+@Entity
+public class Attestato implements Serializable {
+    /**
+     * Id della pratica.
+     */
+    @Id
+    @GeneratedValue
+    private Long id;
+    /**
+     * Path del file dell'attestato.
+     */
     private String path;
+    /**
+     * Data di creazione dell'attestato.
+     */
     private Date dataCreazione;
+    /**
+     * Data di aggiornamento dell'attestato.
+     */
     private Date dataAggiornamento;
 
     /**
-     * Permette di istanziare un oggetto di tipo <code>Attestato</code>
+     * Pratica che contiene l'attestato.
+     */
+    @OneToOne(mappedBy = "attestato")
+    private Pratica pratica;
+    /**
+     * Permette di istanziare
+     * un oggetto di tipo <code>Attestato</code>.
      *
      * @since 0.0.1
      */
@@ -24,18 +52,28 @@ public class Attestato {
     }
 
     /**
-     * Permette di istanziare un oggetto di tipo <code>Attestato</code>
+     * Permette di istanziare
+     * un oggetto di tipo <code>Attestato</code>.
      *
-     * @param path percorso del file
+     * @param aPath percorso del file
      * @since 0.0.1
      */
-    public Attestato(String path) {
+    public Attestato(final String aPath) {
         this();
-        this.path = path;
+        this.path = aPath;
     }
 
     /**
-     * Restituisce il path dell'attestato
+     * Restituisce
+     * l'id dell'attestato.
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+    /**
+     * Restituisce
+     * il path dell'attestato.
      *
      * @return path
      * @since 0.0.1
@@ -45,17 +83,19 @@ public class Attestato {
     }
 
     /**
-     * Permette di impostare il path dell'attestato
+     * Permette di impostare
+     * il path dell'attestato.
      *
-     * @param path
+     * @param aPath nuovo path
      * @since 0.0.1
      */
-    public void setPath(String path) {
-        this.path = path;
+    public void setPath(final String aPath) {
+        this.path = aPath;
     }
 
     /**
-     * Restituisce la data di creazione dell'attestato
+     * Restituisce
+     * la data di creazione dell'attestato.
      *
      * @return dataCreazione
      * @since 0.0.1
@@ -65,17 +105,19 @@ public class Attestato {
     }
 
     /**
-     * Permette di impostare la data di creazione dell'attestato
+     * Permette di impostare
+     * la data di creazione dell'attestato.
      *
-     * @param dataCreazione
+     * @param aDataCreazione uova data di creazione
      * @since 0.0.1
      */
-    public void setDataCreazione(Date dataCreazione) {
-        this.dataCreazione = dataCreazione;
+    public void setDataCreazione(final Date aDataCreazione) {
+        this.dataCreazione = aDataCreazione;
     }
 
     /**
-     * Restituisce la data di aggiornamento dell'attestato
+     * Restituisce
+     * la data di aggiornamento dell'attestato.
      *
      * @return dataAggiornamento
      * @since 0.0.1
@@ -85,12 +127,13 @@ public class Attestato {
     }
 
     /**
-     * Permette di impostare la data di aggiornamento dell'attestato
+     * Permette di impostare
+     * la data di aggiornamento dell'attestato.
      *
-     * @param dataAggiornamento
+     * @param aDataAggiornamento nuova data di aggiornamento
      * @since 0.0.1
      */
-    public void setDataAggiornamento(Date dataAggiornamento) {
-        this.dataAggiornamento = dataAggiornamento;
+    public void setDataAggiornamento(final Date aDataAggiornamento) {
+        this.dataAggiornamento = aDataAggiornamento;
     }
 }
