@@ -1,11 +1,10 @@
 package it.unisa.ackc.gestione_utenti.control;
 
-
+import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,11 +13,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Si occupa della modifica del profilo di uno studente
+ * Si occupa della modifica del profilo di uno studente.
  *
  * @version 0.0.1
  */
-public class ModificaProfiloStudenteControl extends HttpServlet {
+public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
     /**
      * Macro del parametro matricola.
      */
@@ -63,7 +62,6 @@ public class ModificaProfiloStudenteControl extends HttpServlet {
      * Macro del parametro anno di immatricolazione.
      */
     private static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO = "anno_di_immatricolazione";
-
     /**
      * Macro della jsp della modifica del profilo.
      */
@@ -85,11 +83,10 @@ public class ModificaProfiloStudenteControl extends HttpServlet {
      */
     @Override
     public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-        Account account = (Account) request.getSession().getAttribute("account");
-        AccountStudente studente = null;
-        //TODO studente = ACKStorageFacade.getStudenteById(account.getId());
-
-        request.setAttribute("studente", studente);
+        request.setAttribute(
+                "studente",
+                request.getSession().getAttribute("account")
+        );
         request.getRequestDispatcher(MODIFICA_JSP).forward(request, response);
     }
 
@@ -101,7 +98,8 @@ public class ModificaProfiloStudenteControl extends HttpServlet {
      */
     @Override
     public void doPost(final HttpServletRequest request,final HttpServletResponse response) throws ServletException, IOException {
-        Account account = (Account) request.getSession().getAttribute("account");
+        Account account = (Account)
+                request.getSession().getAttribute("account");
 
         String email = request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
         String password = request.getParameter(AccountConvalida.PASSWORD_PARAMETRO);

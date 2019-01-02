@@ -3,9 +3,8 @@ package it.unisa.ackc.gestione_pratiche.control;
 import com.itextpdf.text.DocumentException;
 import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.DomandaAttivitaLavorativa;
-import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
-import it.unisa.ackc.utils.PdfUtils;
+import it.unisa.ackc.gestione_pratiche.PdfUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -133,7 +132,7 @@ public class CreazioneDomandaAttivitaLavorativaControl
         try {
             PdfUtils.compilePdf(
                     getClass().getClassLoader().getResourceAsStream(
-                            "domanda-attivita-lavorativa.pdf"
+                            "DomandaAttivitaLavorativa.pdf"
                     ),
                     out,
                     documentMap

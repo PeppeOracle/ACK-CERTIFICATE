@@ -3,7 +3,7 @@ package it.unisa.ackc.gestione_pratiche.control;
 import com.itextpdf.text.DocumentException;
 import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.DomandaLinguaInglese;
-import it.unisa.ackc.utils.PdfUtils;
+import it.unisa.ackc.gestione_pratiche.PdfUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

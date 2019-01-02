@@ -1,12 +1,16 @@
 package it.unisa.ackc.gestione_utenti.control;
 
+import it.unisa.ackc.HttpServletWithCheck;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
+import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,94 +21,68 @@ import java.util.Date;
  * @version 0.1.1
  */
 @WebServlet("/gestione-utente/registrazione-account-studente")
-public class RegistrazioneAccountStudenteControl extends HttpServlet {
+public class RegistrazioneAccountStudenteControl extends HttpServletWithCheck {
+    /**
+     * Macro del parametro matricola.
+     */
     private static final String MATRICOLA_PARAMETRO = "matricola";
+    /**
+     * Macro del parametro data di nascita.
+     */
     private static final String DATA_DI_NASCITA_PARAMETRO = "data_di_nascita";
+    /**
+     * Macro del parametro luogo di nascita.
+     */
     private static final String LUOGO_DI_NASCITA_PARAMETRO = "luogo_di_nascita";
-    private static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO = "indirizzo_di_residenza";
+    /**
+     * Macro del parametro indirizzo di residenza.
+     */
+    private static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO =
+            "indirizzo_di_residenza";
+    /**
+     * Macro del parametro numero civico.
+     */
     private static final String NUMERO_CIVICO_PARAMETRO = "numero_civico";
+    /**
+     * Macro del parametro cap.
+     */
     private static final String CAP_PARAMETRO = "cap";
+    /**
+     * Macro del parametro citta.
+     */
     private static final String CITTA_PARAMETRO = "citta";
+    /**
+     * Macro del parametro paese.
+     */
     private static final String PAESE_PARAMETRO = "paese";
-    private static final String TIPOLOGIA_DI_LAUREA_PARAMETRO = "tipologia_di_laurea";
+    /**
+     * Macro del parametro tipologia di laurea.
+     */
+    private static final String TIPOLOGIA_DI_LAUREA_PARAMETRO =
+            "tipologia_di_laurea";
+    /**
+     * Macro del parametro corso di laurea.
+     */
     private static final String CORSO_DI_LAUREA_PARAMETRO = "corso_di_laurea";
-    private static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO = "anno_di_immatricolazione";
-
+    /**
+     * Macro del parametro anno di immatricolazione.
+     */
+    private static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO =
+            "anno_di_immatricolazione";
+    /**
+     * Macro della jsp di successo della registrazione studente.
+     */
     private static final String SUCCESSFUL_JSP = "";
+    /**
+     * Macro del messaggio di successo della registrazione studente.
+     */
     private static final String SUCCESSFUL_MESSAGE = "";
 
     /**
-     * Email dell'account.
+     * Istanza dello storage facade.
      */
-    private String email;
-    /**
-     * Password dell'account.
-     */
-    private String password;
-    /**
-     * Telefono della persona che possiede l'account.
-     */
-    private String telefono;
-    /**
-     * Nome della persona che possiede l'account.
-     */
-    private String nome;
-    /**
-     * Cognome della persona che possiede l'account.
-     */
-    private String cognome;
-    /**
-     * Ruolo dell'account.
-     */
-    private Account.Ruolo ruolo;
-    /**
-     * Sesso della persona che possiede l'account.
-     */
-    private Account.Sesso sesso;
-    /**
-     * Matricola della persona che possiede l'account.
-     */
-    private String matricola;
-    /**
-     * Data di nascita della persona che possiede l'account.
-     */
-    private Date dataDiNascita;
-    /**
-     * Luogo di nascita della persona che possiede l'account.
-     */
-    private String luogoDiNascita;
-    /**
-     * Indirizzo di residenza della persona che possiede l'account.
-     */
-    private String indirizzoDiResidenza;
-    /**
-     * Numero civico della persona che possiede l'account.
-     */
-    private int numeroCivico;
-    /**
-     * Cap della persona che possiede l'account.
-     */
-    private String cap;
-    /**
-     * Citt&agrave; della persona che possiede l'account.
-     */
-    private String citta;
-    /**
-     * Paese della persona che possiede l'account.
-     */
-    private String paese;
-    /**
-     * Tipologia di laurea della persona che possiede l'account.
-     */
-    private String tipologiaDiLaurea;
-    /**
-     * Corso di laurea della persona che possiede l'account.
-     */
-    private String corsoDiLaurea;
-    /**
-     * Anno di immatricolazione della persona che possiede l'account.
-     */
-    private String annoDiImmatricolazione;
+    @Inject
+    private ACKStorageFacadeEJB ackStorage;
 
     /**
      * Si occupa di effettuare il controllo sui campi della form,
@@ -113,37 +91,56 @@ public class RegistrazioneAccountStudenteControl extends HttpServlet {
      *
      * @since 0.0.1
      */
+    @Override
     public void doPost(final HttpServletRequest request,
                        final HttpServletResponse response
-    ) {
-        email = request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
-        password = request.getParameter(AccountConvalida.PASSWORD_PARAMETRO);
-        telefono = request.getParameter(AccountConvalida.TELEFONO_PARAMETRO);
-        nome = request.getParameter(AccountConvalida.NOME_PARAMETRO);
-        cognome = request.getParameter(AccountConvalida.COGNOME_PARAMETRO);
-        ruolo = Account.Ruolo.valueOf(request.getParameter(AccountConvalida.RUOLO_PARAMETRO));
-        sesso = Account.Sesso.valueOf(request.getParameter(AccountConvalida.SESSO_PARAMETRO));
-
-        matricola = request.getParameter(MATRICOLA_PARAMETRO);
+    ) throws ServletException, IOException {
+        valida(request);
+        String email = request.getParameter(
+                AccountConvalida.EMAIL_PARAMETRO
+        );
+        String password = request.getParameter(
+                AccountConvalida.PASSWORD_PARAMETRO
+        );
+        String telefono = request.getParameter(
+                AccountConvalida.TELEFONO_PARAMETRO
+        );
+        String nome = request.getParameter(AccountConvalida.NOME_PARAMETRO);
+        String cognome = request.getParameter(
+                AccountConvalida.COGNOME_PARAMETRO
+        );
+        Account.Ruolo ruolo = Account.Ruolo.valueOf(request.getParameter(
+                AccountConvalida.RUOLO_PARAMETRO
+        ));
+        Account.Sesso sesso = Account.Sesso.valueOf(request.getParameter(
+                AccountConvalida.SESSO_PARAMETRO
+        ));
+        String matricola = request.getParameter(MATRICOLA_PARAMETRO);
+        Date dataDiNascita = null;
         try {
-            dataDiNascita = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter(DATA_DI_NASCITA_PARAMETRO));
-        } catch (ParseException e) {
-            //TODO gestisci errore
-        }
-        luogoDiNascita = request.getParameter(LUOGO_DI_NASCITA_PARAMETRO);
-        indirizzoDiResidenza = request.getParameter(INDIRIZZO_DI_RESIDENZA_PARAMETRO);
-        numeroCivico = Integer.parseInt(
+            dataDiNascita = new SimpleDateFormat("dd/MM/yyyy").parse(
+                    request.getParameter(DATA_DI_NASCITA_PARAMETRO)
+            );
+        } catch (ParseException e) { }
+        String luogoDiNascita = request.getParameter(
+                LUOGO_DI_NASCITA_PARAMETRO
+        );
+        String indirizzoDiResidenza = request.getParameter(
+                INDIRIZZO_DI_RESIDENZA_PARAMETRO
+        );
+        Integer numeroCivico = Integer.parseInt(
                 request.getParameter(NUMERO_CIVICO_PARAMETRO)
         );
-        cap = request.getParameter(CAP_PARAMETRO);
-        citta = request.getParameter(CITTA_PARAMETRO);
-        paese = request.getParameter(PAESE_PARAMETRO);
-        tipologiaDiLaurea = request.getParameter(TIPOLOGIA_DI_LAUREA_PARAMETRO);
-        corsoDiLaurea = request.getParameter(CORSO_DI_LAUREA_PARAMETRO);
-        annoDiImmatricolazione = request.getParameter(ANNO_DI_IMMATRICOLAZIONE_PARAMETRO);
-
-        //TODO controllo campi
-
+        String cap = request.getParameter(CAP_PARAMETRO);
+        String citta = request.getParameter(CITTA_PARAMETRO);
+        String paese = request.getParameter(PAESE_PARAMETRO);
+        String tipologiaDiLaurea = request.getParameter(
+                TIPOLOGIA_DI_LAUREA_PARAMETRO
+        );
+        String corsoDiLaurea = request.getParameter(CORSO_DI_LAUREA_PARAMETRO);
+        String annoDiImmatricolazione = request.getParameter(
+                ANNO_DI_IMMATRICOLAZIONE_PARAMETRO
+        );
         AccountStudente account = new AccountStudente(
                 email,
                 password,
@@ -164,10 +161,21 @@ public class RegistrazioneAccountStudenteControl extends HttpServlet {
                 corsoDiLaurea,
                 annoDiImmatricolazione
         );
-
-        //TODO ACKStorageFacade.salvaAccountStudente(studente)
-
+        ackStorage.createAccount(account);
         request.setAttribute("successful", SUCCESSFUL_MESSAGE);
         request.getRequestDispatcher(SUCCESSFUL_JSP).forward(request, response);
     }
+
+    /**
+     * Valida i parametri della richiesta.
+     *
+     * @param request contenente i parametri da validare
+     * @since 0.1.1
+     */
+    @Override
+    public void valida(final HttpServletRequest request) {
+        //TODO aggiungi convalida
+        super.valida(request);
+    }
 }
+

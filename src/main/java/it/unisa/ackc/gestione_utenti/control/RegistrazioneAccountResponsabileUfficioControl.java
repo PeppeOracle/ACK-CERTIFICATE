@@ -1,13 +1,17 @@
 package it.unisa.ackc.gestione_utenti.control;
 
+import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 
+import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -16,55 +20,48 @@ import java.util.ArrayList;
  * @version @version 0.1.1
  */
 @WebServlet("/gestione-utente/registrazione-account-responsabile-ufficio")
-public class RegistrazioneAccountResponsabileUfficioControl extends HttpServlet {
+public class RegistrazioneAccountResponsabileUfficioControl
+        extends HttpServletWithCheck {
+    /**
+     * Macro del parametro campus.
+     */
     private static final String CAMPUS_PARAMETRO = "campus";
+    /**
+     * Macro del parametro edificio.
+     */
     private static final String EDIFICIO_PARAMETRO = "edificio";
+    /**
+     * Macro del parametro piano.
+     */
     private static final String PIANO_PARAMETRO = "piano";
+    /**
+     * Macro del parametro numero stanza.
+     */
     private static final String NUMERO_STANZA_PARAMETRO = "numero_stanza";
-    private static final String TIPOLOGIA_PRATICHE_PARAMETRO = "tipologia_pratiche";
-
+    /**
+     * Macro del parametro tipologia pratiche.
+     */
+    private static final String TIPOLOGIA_PRATICHE_PARAMETRO =
+            "tipologia_pratiche";
+    /**
+     * Macro della jsp di successo della registrazione responsabile ufficio.
+     */
     private static final String SUCCESSFUL_JSP = "";
+    /**
+     * Macro del messaggio di successo della registrazione responsabile ufficio.
+     */
     private static final String SUCCESSFUL_MESSAGE = "";
 
     /**
-     * Email dell'account.
+     * Istanza dello storage facade.
      */
-    private String email;
-    /**
-     * Password dell'account.
-     */
-    private String password;
-    /**
-     * Telefono della persona che possiede l'account.
-     */
-    private String telefono;
-    /**
-     * Nome della persona che possiede l'account.
-     */
-    private String nome;
-    /**
-     * Cognome della persona che possiede l'account.
-     */
-    private String cognome;
-    /**
-     * Ruolo dell'account.
-     */
-    private Account.Ruolo ruolo;
-    /**
-     * Sesso della persona che possiede l'account.
-     */
-    private Account.Sesso sesso;
-
-    private String campus;
-    private String edificio;
-    private int piano;
-    private int numeroStanza;
-    private ArrayList<Pratica.Tipo> eTipologiaPraticaDaGestire;
-    private String[] tipologiaPraticaDaGestire;
+    @Inject
+    private ACKStorageFacadeEJB ackStorage;
 
     /**
-     * Si occupa di effettuare il controllo sui campi della form, in caso di successo
-     * salverà l'account e rendirizzerà alla homepage del sito.
+     * Si occupa di effettuare il controllo sui campi della form,
+     * in caso di successo salverà l'account e rendirizzerà alla
+     * homepage del sito.
      *
      * @since 0.0.1
      */
@@ -72,35 +69,42 @@ public class RegistrazioneAccountResponsabileUfficioControl extends HttpServlet 
     public void doPost(
             final HttpServletRequest request,
             final HttpServletResponse response
-    ) {
-        email = request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
-        password = request.getParameter(AccountConvalida.PASSWORD_PARAMETRO);
-        telefono = request.getParameter(AccountConvalida.TELEFONO_PARAMETRO);
-        nome = request.getParameter(AccountConvalida.NOME_PARAMETRO);
-        cognome = request.getParameter(AccountConvalida.COGNOME_PARAMETRO);
-        ruolo = Account.Ruolo.valueOf(request.getParameter(AccountConvalida.RUOLO_PARAMETRO));
-        sesso = Account.Sesso.valueOf(request.getParameter(AccountConvalida.SESSO_PARAMETRO));
-
-        campus = request.getParameter(CAMPUS_PARAMETRO);
-        edificio = request.getParameter(EDIFICIO_PARAMETRO);
-        piano = Integer.parseInt(
+    ) throws ServletException, IOException {
+        valida(request);
+        String email = request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
+        String password = request.getParameter(
+                AccountConvalida.PASSWORD_PARAMETRO
+        );
+        String telefono = request.getParameter(
+                AccountConvalida.TELEFONO_PARAMETRO
+        );
+        String nome = request.getParameter(AccountConvalida.NOME_PARAMETRO);
+        String cognome = request.getParameter(
+                AccountConvalida.COGNOME_PARAMETRO
+        );
+        Account.Ruolo ruolo = Account.Ruolo.valueOf(
+                request.getParameter(AccountConvalida.RUOLO_PARAMETRO)
+        );
+        Account.Sesso sesso = Account.Sesso.valueOf(
+                request.getParameter(AccountConvalida.SESSO_PARAMETRO)
+        );
+        String campus = request.getParameter(CAMPUS_PARAMETRO);
+        String edificio = request.getParameter(EDIFICIO_PARAMETRO);
+        Integer piano = Integer.parseInt(
                 request.getParameter(PIANO_PARAMETRO)
         );
-        numeroStanza = Integer.parseInt(
+        Integer numeroStanza = Integer.parseInt(
                 request.getParameter(NUMERO_STANZA_PARAMETRO)
         );
-
-        tipologiaPraticaDaGestire = request.getParameterValues(TIPOLOGIA_PRATICHE_PARAMETRO);
-
-        //TODO controllo campi
-
-        eTipologiaPraticaDaGestire = new ArrayList<>();
+        String[] tipologiaPraticaDaGestire = request.getParameterValues(
+                TIPOLOGIA_PRATICHE_PARAMETRO
+        );
+        ArrayList<Pratica.Tipo> eTipologiaPraticaDaGestire = new ArrayList<>();
         for (String tipologia : tipologiaPraticaDaGestire) {
             eTipologiaPraticaDaGestire.add(
                     Pratica.Tipo.valueOf(tipologia)
             );
         }
-
         AccountResponsabileUfficio account = new AccountResponsabileUfficio(
                 email,
                 password,
@@ -115,10 +119,20 @@ public class RegistrazioneAccountResponsabileUfficioControl extends HttpServlet 
                 numeroStanza,
                 eTipologiaPraticaDaGestire
         );
-
-        //TODO ACKStorageFacade.salvaAccountResponsabileUfficio(responsabileUfficio)
-
+        ackStorage.createAccount(account);
         request.setAttribute("successful", SUCCESSFUL_MESSAGE);
         request.getRequestDispatcher(SUCCESSFUL_JSP).forward(request, response);
+    }
+
+    /**
+     * Valida i parametri della richiesta.
+     *
+     * @param request contenente i parametri da validare
+     * @since 0.1.1
+     */
+    @Override
+    public void valida(final HttpServletRequest request) {
+        //TODO aggiungi convalida
+        super.valida(request);
     }
 }

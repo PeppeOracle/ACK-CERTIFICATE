@@ -1,4 +1,4 @@
-package it.unisa.ackc.utils;
+package it.unisa.ackc.gestione_pratiche;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.AcroFields;
@@ -19,13 +19,16 @@ public final class PdfUtils {
      */
     private PdfUtils() {
     }
+
     /**
      * Fornisce la logica per la compilazione di un file pdf.
      *
-     * @param is
-     * @param os
-     * @param formData
-     * @throws Exception
+     * @param is input stream
+     * @param os output stream
+     * @param formData mappa contenente le corrispondenze tra nome del campo
+     *                 del pdf e valore da inserire
+     * @throws IOException
+     * @throws DocumentException
      */
     public static void compilePdf(
             final InputStream is,

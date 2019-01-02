@@ -19,6 +19,19 @@ import java.io.IOException;
 @WebServlet("/gestione-utenti/autenticazione-utente")
 public class AutenticazioneUtenteControl extends HttpServletWithCheck {
     /**
+     * Macro della jsp di successo della modifica.
+     */
+    private static final String HOME_JSP = "";
+    /**
+     * Macro della del messaggio di errore dell'autenticazione.
+     */
+    private static final String ERROR_MESSAGE = "";
+    /**
+     * Macro della jsp di errore dell'autenticazione.
+     */
+    private static final String ERROR_JSP = "";
+
+    /**
      * Istanza dello storage facade.
      */
     @Inject
@@ -37,8 +50,8 @@ public class AutenticazioneUtenteControl extends HttpServletWithCheck {
             final HttpServletResponse response
     ) throws ServletException, IOException {
         valida(request);
-        String email = request.getParameter(EMAIL_PARAMETRO);
-        String password = request.getParameter(PASSWORD_PARAMETRO);
+        String email = request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
+        String password = request.getParameter(AccountConvalida.PASSWORD_PARAMETRO);
         Account account = ackStorage.findAccountByEmail(email);
         if (account != null && account.getPassword().equals(password)) {
             request.getSession(true).setAttribute("account", account);
