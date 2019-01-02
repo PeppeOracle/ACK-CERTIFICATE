@@ -43,14 +43,12 @@ public class AccountConvalida {
      *
      * @since 0.0.1
      */
-    private AccountConvalida() {
-
-    }
+    private AccountConvalida() { }
 
     /**
      * Convalida del nome.
      *
-     * @since 0.0.1
+     * @since asz0.0.1
      */
     public static final CondizioneConvalida VALIDA_NOME =
             request -> {
@@ -65,248 +63,103 @@ public class AccountConvalida {
             };
 
     /**
-     * Convalida dell'email.
+     * Convalida del cognome.
      *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_EMAIL =
+    public static final CondizioneConvalida VALIDA_COGNOME =
             request -> {
                 Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
+                String cognome = request.getParameter(
+                        AccountConvalida.COGNOME_PARAMETRO
                 );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
+                if (cognome != null) {
+                    //Controlli validazione
                 }
                 return  notifica;
             };
 
     /**
-     * Convalida dell'email.
+     * Convalida del email.
      *
      * @since 0.0.1
      */
     public static final CondizioneConvalida VALIDA_EMAIL =
             request -> {
                 Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
+                String email = request.getParameter(
                         AccountConvalida.EMAIL_PARAMETRO
                 );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
+                if (email != null) {
+                    //Controlli validazione
                 }
                 return  notifica;
             };
 
     /**
-     * Convalida dell'email.
+     * Convalida del password.
      *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_EMAIL =
+    public static final CondizioneConvalida VALIDA_PASSWORD =
             request -> {
                 Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
+                String password = request.getParameter(
+                        AccountConvalida.PASSWORD_PARAMETRO
                 );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
+                if (password != null) {
+                    //Controlli validazione
                 }
                 return  notifica;
             };
 
     /**
-     * Convalida dell'email.
+     * Convalida del telefono.
      *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_EMAIL =
+    public static final CondizioneConvalida VALIDA_TELEFONO =
             request -> {
                 Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
+                String telefono = request.getParameter(
+                        AccountConvalida.TELEFONO_PARAMETRO
                 );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
+                if (telefono != null) {
+                    //Controlli validazione
                 }
                 return  notifica;
             };
 
     /**
-     * Convalida dell'email.
+     * Convalida del ruolo.
      *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_EMAIL =
+    public static final CondizioneConvalida VALIDA_RUOLO =
             request -> {
                 Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
+                String ruolo = request.getParameter(
+                        AccountConvalida.RUOLO_PARAMETRO
                 );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
+                if (ruolo != null) {
+                    //Controlli validazione
                 }
                 return  notifica;
             };
 
     /**
-     * Convalida dell'email.
+     * Convalida del sesso.
      *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_EMAIL =
+    public static final CondizioneConvalida VALIDA_SESSO =
             request -> {
                 Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
+                String sesso = request.getParameter(
+                        AccountConvalida.SESSO_PARAMETRO
                 );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida dell'email.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_EMAIL =
-            request -> {
-                Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
-                );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida dell'email.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_EMAIL =
-            request -> {
-                Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
-                );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida dell'email.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_EMAIL =
-            request -> {
-                Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
-                );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida dell'email.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_EMAIL =
-            request -> {
-                Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
-                );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida dell'email.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_EMAIL =
-            request -> {
-                Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
-                );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida dell'email.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_EMAIL =
-            request -> {
-                Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
-                );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida dell'email.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_EMAIL =
-            request -> {
-                Notifica notifica = new Notifica();
-                String tipoDiDomanda = request.getParameter(
-                        AccountConvalida.EMAIL_PARAMETRO
-                );
-                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
-                    notifica.addError(
-                            "Il tipo di domanda non è stato indicato"
-                    );
+                if (sesso != null) {
+                    //Controlli validazione
                 }
                 return  notifica;
             };
