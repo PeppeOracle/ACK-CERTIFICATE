@@ -14,8 +14,7 @@ final class MostraPraticaConvalida {
      *
      * @since 0.0.1
      */
-    private MostraPraticaConvalida() {
-    }
+    private MostraPraticaConvalida() { }
 
     /**
      * Convalida il tipo di visualizzazione.

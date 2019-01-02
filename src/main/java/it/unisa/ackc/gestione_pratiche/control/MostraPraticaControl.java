@@ -1,6 +1,8 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.HttpServletWithCheck;
+import it.unisa.ackc.gestione_pratiche.GestionePraticheConvalida;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -101,7 +103,7 @@ public class MostraPraticaControl extends HttpServletWithCheck {
     @Override
     public void valida(final HttpServletRequest request) {
         addCondizione(
-                PraticaConvalida.VALIDA_PRATICA
+                GestionePraticheConvalida.VALIDA_PRATICA
         );
         addCondizione(
                 MostraPraticaConvalida.VALIDA_TIPO

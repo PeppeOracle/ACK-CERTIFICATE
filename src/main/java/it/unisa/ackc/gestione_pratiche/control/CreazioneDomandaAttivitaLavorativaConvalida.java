@@ -14,14 +14,6 @@ import java.text.SimpleDateFormat;
  */
 final class CreazioneDomandaAttivitaLavorativaConvalida {
     /**
-     * Costruttore di default.
-     *
-     * @since 0.0.1
-     */
-    private CreazioneDomandaAttivitaLavorativaConvalida() {
-    }
-
-    /**
      * Lunghezza massima ente.
      */
     private static final int ENTE_MAX = 64;
@@ -57,6 +49,13 @@ final class CreazioneDomandaAttivitaLavorativaConvalida {
     private static final int MAX_NUMBER_TRE_CIFRE = 999;
 
     /**
+     * Costruttore di default.
+     *
+     * @since 0.0.1
+     */
+    private CreazioneDomandaAttivitaLavorativaConvalida() { }
+
+    /**
      * Convalida dell'ente.
      *
      * @since 0.0.1
@@ -73,32 +72,6 @@ final class CreazioneDomandaAttivitaLavorativaConvalida {
         } else if (ente.length() > ENTE_MAX) {
             notifica.addError(
                     "L'ente non può superare i 64 caratteri"
-            );
-        }
-        return  notifica;
-    };
-
-    /**
-     * Convalida del numero di cfu.
-     *
-     * @since 0.0.1
-     */
-    static final CondizioneConvalida VALIDA_NUMERO_CFU = request -> {
-        Notifica notifica = new Notifica();
-        try {
-            Integer numeroCfu = Integer.parseInt(request.getParameter(
-                    CreazioneDomandaAttivitaLavorativaControl.
-                            NUMERO_CFU_PARAMETRO
-            ));
-            if (!isNumeroUnaDueCifre(numeroCfu)) {
-                notifica.addError(
-                        "Il numero di cfu deve essere maggiore di 0 e "
-                                + "può essere al più un numero a due cifre"
-                );
-            }
-        } catch (NumberFormatException e) {
-            notifica.addError(
-                    "Il numero di cfu deve essere un numero", e
             );
         }
         return  notifica;

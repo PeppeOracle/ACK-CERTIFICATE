@@ -20,8 +20,7 @@ final class ValutazionePraticaConvalida {
      *
      * @since 0.0.1
      */
-    private ValutazionePraticaConvalida() {
-    }
+    private ValutazionePraticaConvalida() { }
 
     /**
      * Convalida il messaggio del responsabile ufficio.

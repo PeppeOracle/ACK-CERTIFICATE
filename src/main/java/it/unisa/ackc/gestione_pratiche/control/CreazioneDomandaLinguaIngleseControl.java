@@ -2,8 +2,10 @@ package it.unisa.ackc.gestione_pratiche.control;
 
 import com.itextpdf.text.DocumentException;
 import it.unisa.ackc.HttpServletWithCheck;
+import it.unisa.ackc.gestione_pratiche.GestionePraticheConvalida;
 import it.unisa.ackc.gestione_pratiche.entity.DomandaLinguaInglese;
 import it.unisa.ackc.gestione_pratiche.PdfUtils;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +26,6 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
      */
     static final String ENTE_PARAMETRO =
             "ente";
-    /**
-     * Macro del parametro numero_cfu.
-     */
-    static final String NUMERO_CFU_PARAMETRO =
-            "numero_cfu";
     /**
      * Macro del parametro grade.
      */
@@ -54,9 +51,13 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
             final HttpServletResponse response
     ) throws IOException {
         valida(request);
+        AccountStudente account = (AccountStudente)
+                request.getSession().getAttribute("account");
         String enteCertificatore = request.getParameter(ENTE_PARAMETRO);
         Integer numeroCfu = Integer.parseInt(
-                request.getParameter(NUMERO_CFU_PARAMETRO)
+                request.getParameter(
+                        GestionePraticheConvalida.NUMERO_CFU_PARAMETRO
+                )
         );
         String grade = request.getParameter(GRADE_PARAMETRO);
         String livelloCefr = request.getParameter(LIVELLO_CEFR_PARAMETRO);
@@ -69,7 +70,18 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
         );
         request.getSession().setAttribute("domanda", domanda);
         HashMap<String, String> documentMap = new HashMap<>();
-
+        documentMap.put("name", account.getNome() + " " + account.getCognome());
+        documentMap.put("year", account.getAnnoDiImmatricolazione());
+        documentMap.put("serial", account.getMatricola());
+        documentMap.put("authority", enteCertificatore);
+        if (account.getTipologiaDiLaurea().equals("magistrale")) {
+            documentMap.put("c1", "X");
+        } else if (account.getTipologiaDiLaurea().equals("triennale")) {
+            documentMap.put("c2", "X");
+        }
+        documentMap.put("grade", grade);
+        documentMap.put("cefr", livelloCefr);
+        documentMap.put("cfu", numeroCfu + "");
         String fileName = "DomandaLinguaInglese";
         String fileExt = ".pdf";
         response.setContentType("application/pdf");
@@ -81,7 +93,7 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
         try {
             PdfUtils.compilePdf(
                     getClass().getClassLoader().getResourceAsStream(
-                            "domanda-lingua-inglese.pdf"
+                            "DomandaLinguaInglese.pdf"
                     ),
                     out,
                     documentMap
@@ -110,7 +122,7 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
                 CreazioneDomandaLinguaIngleseConvalida.VALIDA_LIVELLO_CEFR
         );
         addCondizione(
-                CreazioneDomandaLinguaIngleseConvalida.VALIDA_NUMERO_CFU
+                GestionePraticheConvalida.VALIDA_NUMERO_CFU
         );
         super.valida(request);
     }

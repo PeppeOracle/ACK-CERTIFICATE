@@ -23,8 +23,7 @@ final class CreazionePraticaConvalida {
      *
      * @since 0.0.1
      */
-    private CreazionePraticaConvalida() {
-    }
+    private CreazionePraticaConvalida() { }
 
     /**
      * Convalida il messaggio dello studente.

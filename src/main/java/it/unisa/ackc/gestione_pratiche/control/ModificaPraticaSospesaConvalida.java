@@ -23,8 +23,7 @@ final class ModificaPraticaSospesaConvalida {
      *
      * @since 0.0.1
      */
-    private ModificaPraticaSospesaConvalida() {
-    }
+    private ModificaPraticaSospesaConvalida() { }
 
     /**
      * Convalida il messaggio dello studente.

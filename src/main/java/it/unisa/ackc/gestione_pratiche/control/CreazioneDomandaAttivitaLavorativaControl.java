@@ -2,6 +2,7 @@ package it.unisa.ackc.gestione_pratiche.control;
 
 import com.itextpdf.text.DocumentException;
 import it.unisa.ackc.HttpServletWithCheck;
+import it.unisa.ackc.gestione_pratiche.GestionePraticheConvalida;
 import it.unisa.ackc.gestione_pratiche.entity.DomandaAttivitaLavorativa;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.gestione_pratiche.PdfUtils;
@@ -76,7 +77,8 @@ public class CreazioneDomandaAttivitaLavorativaControl
             final HttpServletResponse response
     ) throws IOException {
         valida(request);
-        AccountStudente account = (AccountStudente) request.getSession().getAttribute("account");
+        AccountStudente account = (AccountStudente)
+                request.getSession().getAttribute("account");
         String ente = request.getParameter(ENTE_PARAMETRO);
         Integer numeroCfu = Integer.parseInt(
                 request.getParameter(NUMERO_CFU_PARAMETRO)
@@ -156,7 +158,7 @@ public class CreazioneDomandaAttivitaLavorativaControl
                         VALIDA_ENTE
         );
         addCondizione(
-                CreazioneDomandaAttivitaLavorativaConvalida.
+                GestionePraticheConvalida.
                         VALIDA_NUMERO_CFU
         );
         addCondizione(

@@ -19,8 +19,7 @@ final class DownloadFileConvalida {
      *
      * @since 0.0.1
      */
-    private DownloadFileConvalida() {
-    }
+    private DownloadFileConvalida() { }
 
     /**
      * Convalida il file.

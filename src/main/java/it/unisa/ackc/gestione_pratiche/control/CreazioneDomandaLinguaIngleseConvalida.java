@@ -1,5 +1,6 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
+import it.unisa.ackc.gestione_pratiche.GestionePraticheConvalida;
 import it.unisa.ackc.validator.CondizioneConvalida;
 import it.unisa.ackc.validator.Notifica;
 
@@ -9,14 +10,6 @@ import it.unisa.ackc.validator.Notifica;
  * @version 0.0.1
  */
 final class CreazioneDomandaLinguaIngleseConvalida {
-    /**
-     * Costruttore di default.
-     *
-     * @since 0.0.1
-     */
-    private CreazioneDomandaLinguaIngleseConvalida() {
-    }
-
     /**
      * Lunghezza massima ente certificatore.
      */
@@ -28,9 +21,11 @@ final class CreazioneDomandaLinguaIngleseConvalida {
     private static final int LIVELLO_CEFR_MAX = 6;
 
     /**
-     * Lunghezza massima di un numero a due cifre positivo.
+     * Costruttore di default.
+     *
+     * @since 0.0.1
      */
-    private static final int MAX_NUMBER_DUE_CIFRE = 99;
+    private CreazioneDomandaLinguaIngleseConvalida() { }
 
     /**
      * Convalida dell'ente certificatore.
@@ -57,31 +52,6 @@ final class CreazioneDomandaLinguaIngleseConvalida {
         };
 
     /**
-     * Convalida del numero di cfu.
-     *
-     * @since 0.0.1
-     */
-    static final CondizioneConvalida VALIDA_NUMERO_CFU = request -> {
-        Notifica notifica = new Notifica();
-        try {
-            Integer numeroCfu = Integer.parseInt(request.getParameter(
-                    CreazioneDomandaLinguaIngleseControl.NUMERO_CFU_PARAMETRO
-            ));
-            if (!isNumeroUnaDueCifre(numeroCfu)) {
-                notifica.addError(
-                        "Il numero di cfu deve essere maggiore di 0 e "
-                                + "può essere al più un numero a due cifre"
-                );
-            }
-        } catch (NumberFormatException e) {
-            notifica.addError(
-                    "Il numero di cfu deve essere un numero"
-            );
-        }
-        return  notifica;
-    };
-
-    /**
      * Convalida del grade.
      *
      * @since 0.0.1
@@ -92,7 +62,7 @@ final class CreazioneDomandaLinguaIngleseConvalida {
             Integer grade = Integer.parseInt(request.getParameter(
                     CreazioneDomandaLinguaIngleseControl.GRADE_PARAMETRO
             ));
-            if (!isNumeroUnaDueCifre(grade)) {
+            if (!GestionePraticheConvalida.isNumeroUnaDueCifre(grade)) {
                 notifica.addError(
                         "Il grade deve essere maggiore di 0 e "
                                 + "può essere al più un numero a due cifre"
@@ -127,15 +97,4 @@ final class CreazioneDomandaLinguaIngleseConvalida {
         }
         return  notifica;
     };
-
-    /**
-     * Controlla se un numero è positivo e al più di due cifre.
-     *
-     * @param number che si vuole controllare
-     * @return true se number è positivo a due cifre, false altrimenti
-     * @since 0.0.1
-     */
-    private static boolean isNumeroUnaDueCifre(final Integer number) {
-        return number <= MAX_NUMBER_DUE_CIFRE && number > 0;
-    }
 }

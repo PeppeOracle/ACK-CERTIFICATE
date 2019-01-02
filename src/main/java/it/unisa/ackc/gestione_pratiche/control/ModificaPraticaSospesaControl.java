@@ -1,6 +1,7 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.HttpServletWithCheck;
+import it.unisa.ackc.gestione_pratiche.GestionePraticheConvalida;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_pratiche.entity.Domanda;
 import it.unisa.ackc.gestione_pratiche.entity.Attestato;
@@ -131,7 +132,7 @@ public class ModificaPraticaSospesaControl extends HttpServletWithCheck {
     @Override
     public void valida(final HttpServletRequest request) {
         addCondizione(
-                PraticaConvalida.VALIDA_PRATICA
+                GestionePraticheConvalida.VALIDA_PRATICA
         );
         addCondizione(
                 ModificaPraticaSospesaConvalida.VALIDA_ATTESTATO

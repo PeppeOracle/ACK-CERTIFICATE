@@ -22,7 +22,7 @@ final class CreazioneDomandaConvalida {
      *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_TIPO_DI_DOMANDA =
+    static final CondizioneConvalida VALIDA_TIPO_DI_DOMANDA =
         request -> {
             Notifica notifica = new Notifica();
             String tipoDiDomanda = request.getParameter(
