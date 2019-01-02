@@ -1,58 +1,67 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
 import com.itextpdf.text.DocumentException;
+import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.DomandaAttivitaLavorativa;
+import it.unisa.ackc.gestione_utenti.entity.Account;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.utils.PdfUtils;
 
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 /**
  * Si occupa della creazione di una nuova domanda di attività lavorativa.
  *
- * @version 0.0.1
+ * @version 0.1.1
  */
 @WebServlet("/gestione-pratiche/creazione-domanda-attivita-lavorativa")
-public class CreazioneDomandaAttivitaLavorativaControl extends HttpServlet {
+public class CreazioneDomandaAttivitaLavorativaControl
+        extends HttpServletWithCheck {
     /**
-     * Ente certificatore dell'attestato.
+     * Macro del parametro ente.
      */
-    private String ente;
-
+    static final String ENTE_PARAMETRO =
+            "ente";
     /**
-     * Numero di cfu di cui si vuole la convalida.
+     * Macro del parametro numero_cfu.
      */
-    private Integer numeroCfu;
-
+    static final String NUMERO_CFU_PARAMETRO = "numero_cfu";
     /**
-     * Indirizzo sede dell'Ente certificatore dell'attestato.
+     * Macro del parametro indirizzo_sede.
      */
-    private String indirizzoSede;
-
+    static final String INDIRIZZO_SEDE_PARAMETRO = "indirizzo_sede";
     /**
-     * Profilo lavorativo durante l'attivit&agrave; lavorativa.
+     * Macro del parametro profilo.
      */
-    private String profilo;
-
+    static final String PROFILO_PARAMETRO =
+            "profilo";
     /**
-     * Tipo di contratto dell'attestato.
+     * Macro del parametro tipo_di_contratto.
      */
-    private String tipoDiContratto;
-
+    static final String TIPO_CONTRATTO_PARAMETRO =
+            "tipo_di_contratto";
     /**
-     * Periodo dell'attivit&agrave;.
+     * Macro del parametro periodo.
      */
-    private String periodo;
-
+    static final String PERIODO_PARAMETRO =
+            "periodo";
     /**
-     * Numero ore dell'attivit&agrave; lavorativa.
+     * Macro del parametro ore svolte.
      */
-    private int oreSvolte;
+    static final String ORE_SVOLTE_PARAMETRO =
+            "ore_svolte";
+    /**
+     * Istanza di date format per ottenere la data in formato stringa.
+     */
+    private static final DateFormat DATE_FORMAT =
+            new SimpleDateFormat("yyyy-mm-dd");
 
     /**
      * Si occupa di effettuare il controllo sui campi della form,
@@ -67,20 +76,21 @@ public class CreazioneDomandaAttivitaLavorativaControl extends HttpServlet {
             final HttpServletRequest request,
             final HttpServletResponse response
     ) throws IOException {
-        ente = request.getParameter("ente");
-        numeroCfu = Integer.parseInt(
-                request.getParameter("numero_cfu")
+        valida(request);
+        AccountStudente account = (AccountStudente) request.getSession().getAttribute("account");
+        String ente = request.getParameter(ENTE_PARAMETRO);
+        Integer numeroCfu = Integer.parseInt(
+                request.getParameter(NUMERO_CFU_PARAMETRO)
         );
-        indirizzoSede = request.getParameter("indirizzo_sede");
-        profilo = request.getParameter("profilo");
-        tipoDiContratto = request.getParameter("tipo_di_contratto");
-        periodo = request.getParameter("periodo");
-        oreSvolte = Integer.parseInt(
-                request.getParameter("oreSvolte")
+        String indirizzoSede = request.getParameter(INDIRIZZO_SEDE_PARAMETRO);
+        String profilo = request.getParameter(PROFILO_PARAMETRO);
+        String tipoDiContratto = request.getParameter(
+                TIPO_CONTRATTO_PARAMETRO
         );
-
-        //TODO controllo campi
-
+        String periodo = request.getParameter(PERIODO_PARAMETRO);
+        int oreSvolte = Integer.parseInt(
+                request.getParameter(ORE_SVOLTE_PARAMETRO)
+        );
         DomandaAttivitaLavorativa domanda = new DomandaAttivitaLavorativa(
                 null,
                 numeroCfu,
@@ -91,8 +101,27 @@ public class CreazioneDomandaAttivitaLavorativaControl extends HttpServlet {
                 periodo,
                 oreSvolte
         );
-
         request.getSession().setAttribute("domanda", domanda);
+        HashMap<String, String> documentMap = new HashMap<>();
+        documentMap.put("name", account.getNome() + " " + account.getCognome());
+        documentMap.put("born_place", account.getLuogoDiNascita());
+        documentMap.put("born_date", DATE_FORMAT.format(
+                account.getDataDiNascita()
+        ));
+        documentMap.put("residence_city", account.getCitta());
+        documentMap.put("province", account.getPaese());
+        documentMap.put("residence_street", account.getIndirizzoDiResidenza());
+        documentMap.put("phone", account.getTelefono());
+        documentMap.put("mail", account.getEmail());
+        documentMap.put("degree", account.getCorsoDiLaurea());
+        documentMap.put("serial", account.getMatricola());
+        documentMap.put("society", ente);
+        documentMap.put("society_address", indirizzoSede);
+        documentMap.put("profile", profilo);
+        documentMap.put("contract_type", tipoDiContratto);
+        documentMap.put("init_end_date", periodo);
+        documentMap.put("hours", oreSvolte + "");
+        documentMap.put("cfu", numeroCfu + "");
         String fileName = "DomandaAttivitaLavorativa";
         String fileExt = ".pdf";
         response.setContentType("application/pdf");
@@ -107,11 +136,50 @@ public class CreazioneDomandaAttivitaLavorativaControl extends HttpServlet {
                             "domanda-attivita-lavorativa.pdf"
                     ),
                     out,
-                    new HashMap<String, String>()
+                    documentMap
             );
             out.flush();
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Valida i parametri della richiesta.
+     *
+     * @param request contenente i parametri da validare
+     * @since 0.1.1
+     */
+    @Override
+    public void valida(final HttpServletRequest request) {
+        addCondizione(
+                CreazioneDomandaAttivitaLavorativaConvalida.
+                        VALIDA_ENTE
+        );
+        addCondizione(
+                CreazioneDomandaAttivitaLavorativaConvalida.
+                        VALIDA_NUMERO_CFU
+        );
+        addCondizione(
+                CreazioneDomandaAttivitaLavorativaConvalida.
+                        VALIDA_INDIRIZZO_SEDE
+        );
+        addCondizione(
+                CreazioneDomandaAttivitaLavorativaConvalida.
+                        VALIDA_PROFILO
+        );
+        addCondizione(
+                CreazioneDomandaAttivitaLavorativaConvalida.
+                        VALIDA_TIPO_CONTRATTO
+        );
+        addCondizione(
+                CreazioneDomandaAttivitaLavorativaConvalida.
+                        VALIDA_PERIODO
+        );
+        addCondizione(
+                CreazioneDomandaAttivitaLavorativaConvalida.
+                        VALIDA_ORE_SVOLTE
+        );
+        super.valida(request);
     }
 }

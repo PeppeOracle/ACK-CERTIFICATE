@@ -4,8 +4,6 @@ import com.itextpdf.text.DocumentException;
 import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.DomandaLinguaInglese;
 import it.unisa.ackc.utils.PdfUtils;
-import it.unisa.ackc.validator.CondizioneConvalida;
-import it.unisa.ackc.validator.Notifica;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,27 +19,26 @@ import java.util.HashMap;
  */
 @WebServlet("/gestione-pratiche/creazione-domanda-lingua-inglese")
 public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
-    protected static final String ENTE_PARAMETRO = "ente";
-    protected static final String NUMERO_CFU_PARAMETRO = "numero_cfu";
-    protected static final String GRADE_PARAMETRO = "grade";
-    protected static final String LIVELLO_CEFR_PARAMETRO = "livello_cefr";
-
     /**
-     * Ente certificatore dell'attestato.
+     * Macro del parametro ente.
      */
-    private String enteCertificatore;
+    static final String ENTE_PARAMETRO =
+            "ente";
     /**
-     * Numero di cfu di cui si vuole la convalida.
+     * Macro del parametro numero_cfu.
      */
-    private Integer numeroCfu;
+    static final String NUMERO_CFU_PARAMETRO =
+            "numero_cfu";
     /**
-     * Grade dell'attestato.
+     * Macro del parametro grade.
      */
-    private String grade;
+    static final String GRADE_PARAMETRO =
+            "grade";
     /**
-     * Livello cefr dell'attestato.
+     * Macro del parametro livello_cefr.
      */
-    private String livelloCefr;
+    static final String LIVELLO_CEFR_PARAMETRO =
+            "livello_cefr";
 
     /**
      * Si occupa di effettuare il controllo sui campi della form,
@@ -57,12 +54,12 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
             final HttpServletResponse response
     ) throws IOException {
         valida(request);
-        enteCertificatore = request.getParameter(ENTE_PARAMETRO);
-        numeroCfu = Integer.parseInt(
+        String enteCertificatore = request.getParameter(ENTE_PARAMETRO);
+        Integer numeroCfu = Integer.parseInt(
                 request.getParameter(NUMERO_CFU_PARAMETRO)
         );
-        grade = request.getParameter(GRADE_PARAMETRO);
-        livelloCefr = request.getParameter(LIVELLO_CEFR_PARAMETRO);
+        String grade = request.getParameter(GRADE_PARAMETRO);
+        String livelloCefr = request.getParameter(LIVELLO_CEFR_PARAMETRO);
         DomandaLinguaInglese domanda = new DomandaLinguaInglese(
                 null,
                 numeroCfu,
@@ -71,6 +68,8 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
                 livelloCefr
         );
         request.getSession().setAttribute("domanda", domanda);
+        HashMap<String, String> documentMap = new HashMap<>();
+
         String fileName = "DomandaLinguaInglese";
         String fileExt = ".pdf";
         response.setContentType("application/pdf");
@@ -85,7 +84,7 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
                             "domanda-lingua-inglese.pdf"
                     ),
                     out,
-                    new HashMap<String, String>()
+                    documentMap
             );
             out.flush();
         } catch (DocumentException e) {
@@ -93,6 +92,12 @@ public class CreazioneDomandaLinguaIngleseControl extends HttpServletWithCheck {
         }
     }
 
+    /**
+     * Valida i parametri della richiesta.
+     *
+     * @param request contenente i parametri da validare
+     * @since 0.1.1
+     */
     @Override
     public void valida(final HttpServletRequest request) {
         addCondizione(

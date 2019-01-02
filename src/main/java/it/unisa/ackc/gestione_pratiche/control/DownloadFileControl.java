@@ -2,6 +2,7 @@ package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.HttpServletWithCheck;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -14,6 +15,7 @@ import java.io.OutputStream;
  *
  * @version 0.1.1
  */
+@WebServlet("/gestione-pratiche/download-file")
 public class DownloadFileControl  extends HttpServletWithCheck {
     /**
      * Macro del parametro file_name.
@@ -22,11 +24,11 @@ public class DownloadFileControl  extends HttpServletWithCheck {
     /**
      * Macro del parametro files-studenti.
      */
-    static final String STUDENTI_PATH = "files-studenti";
+    private static final String STUDENTI_PATH = "files-studenti";
     /**
      * Macro della size del buffer.
      */
-    static final int BUFFER_SIZE = 4096;
+    private static final int BUFFER_SIZE = 4096;
 
     /**
      * Si occupa del download di un file.
@@ -40,7 +42,6 @@ public class DownloadFileControl  extends HttpServletWithCheck {
     ) throws IOException {
         valida(request);
         String fileName = request.getParameter(FILE_PARAMETRO);
-
         String fileExt = ".pdf";
         response.setContentType("application/pdf");
         response.setHeader(
@@ -65,8 +66,10 @@ public class DownloadFileControl  extends HttpServletWithCheck {
             throw new IllegalArgumentException("Il file indicato non esiste");
         }
     }
+
     /**
      * Valida i parametri della richiesta.
+     *
      * @param request contenente i parametri da validare
      * @since 0.0.1
      */

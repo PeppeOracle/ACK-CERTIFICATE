@@ -183,7 +183,7 @@ final class CreazioneDomandaAttivitaLavorativaConvalida {
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String periodo = request.getParameter(
                 CreazioneDomandaAttivitaLavorativaControl.
-                        PROFILO_PARAMETRO
+                        PERIODO_PARAMETRO
         );
         if (periodo == null || periodo.trim().equals("")) {
             notifica.addError(
@@ -219,7 +219,7 @@ final class CreazioneDomandaAttivitaLavorativaConvalida {
         try {
             Integer numeroOreSvolte = Integer.parseInt(request.getParameter(
                     CreazioneDomandaAttivitaLavorativaControl.
-                            NUMERO_CFU_PARAMETRO
+                            ORE_SVOLTE_PARAMETRO
             ));
             if (!isNumeroDueTreCifre(numeroOreSvolte)) {
                 notifica.addError(
