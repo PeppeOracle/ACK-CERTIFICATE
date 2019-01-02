@@ -1,6 +1,5 @@
 package it.unisa.ackc.gestione_utenti.control;
 
-import it.unisa.ackc.gestione_pratiche.control.CreazioneDomandaControl;
 import it.unisa.ackc.validator.CondizioneConvalida;
 import it.unisa.ackc.validator.Notifica;
 
@@ -49,15 +48,260 @@ public class AccountConvalida {
     }
 
     /**
-     * Convalida del tipo di domanda.
+     * Convalida del nome.
      *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_TIPO_DI_DOMANDA =
+    public static final CondizioneConvalida VALIDA_NOME =
+            request -> {
+                Notifica notifica = new Notifica();
+                String nome = request.getParameter(
+                        AccountConvalida.NOME_PARAMETRO
+                );
+                if (nome != null) {
+                    //Controlli validazione
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
             request -> {
                 Notifica notifica = new Notifica();
                 String tipoDiDomanda = request.getParameter(
-                        CreazioneDomandaControl.TIPO_DI_DOMANDA_PARAMETRO
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo di domanda non è stato indicato"
+                    );
+                }
+                return  notifica;
+            };
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipoDiDomanda = request.getParameter(
+                        AccountConvalida.EMAIL_PARAMETRO
                 );
                 if (tipoDiDomanda == null || tipoDiDomanda.trim().equals("")) {
                     notifica.addError(
