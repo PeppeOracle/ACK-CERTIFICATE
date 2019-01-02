@@ -23,27 +23,6 @@ import java.util.ArrayList;
 public class RegistrazioneAccountResponsabileUfficioControl
         extends HttpServletWithCheck {
     /**
-     * Macro del parametro campus.
-     */
-    private static final String CAMPUS_PARAMETRO = "campus";
-    /**
-     * Macro del parametro edificio.
-     */
-    private static final String EDIFICIO_PARAMETRO = "edificio";
-    /**
-     * Macro del parametro piano.
-     */
-    private static final String PIANO_PARAMETRO = "piano";
-    /**
-     * Macro del parametro numero stanza.
-     */
-    private static final String NUMERO_STANZA_PARAMETRO = "numero_stanza";
-    /**
-     * Macro del parametro tipologia pratiche.
-     */
-    private static final String TIPOLOGIA_PRATICHE_PARAMETRO =
-            "tipologia_pratiche";
-    /**
      * Macro della jsp di successo della registrazione responsabile ufficio.
      */
     private static final String SUCCESSFUL_JSP = "";
@@ -88,16 +67,16 @@ public class RegistrazioneAccountResponsabileUfficioControl
         Account.Sesso sesso = Account.Sesso.valueOf(
                 request.getParameter(AccountConvalida.SESSO_PARAMETRO)
         );
-        String campus = request.getParameter(CAMPUS_PARAMETRO);
-        String edificio = request.getParameter(EDIFICIO_PARAMETRO);
+        String campus = request.getParameter(AccountResponsabileUfficioConvalida.CAMPUS_PARAMETRO);
+        String edificio = request.getParameter(AccountResponsabileUfficioConvalida.EDIFICIO_PARAMETRO);
         Integer piano = Integer.parseInt(
-                request.getParameter(PIANO_PARAMETRO)
+                request.getParameter(AccountResponsabileUfficioConvalida.PIANO_PARAMETRO)
         );
         Integer numeroStanza = Integer.parseInt(
-                request.getParameter(NUMERO_STANZA_PARAMETRO)
+                request.getParameter(AccountResponsabileUfficioConvalida.NUMERO_STANZA_PARAMETRO)
         );
         String[] tipologiaPraticaDaGestire = request.getParameterValues(
-                TIPOLOGIA_PRATICHE_PARAMETRO
+                AccountResponsabileUfficioConvalida.TIPOLOGIA_PRATICHE_PARAMETRO
         );
         ArrayList<Pratica.Tipo> eTipologiaPraticaDaGestire = new ArrayList<>();
         for (String tipologia : tipologiaPraticaDaGestire) {

@@ -1,7 +1,10 @@
 package it.unisa.ackc.gestione_utenti.control;
 
+import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.validator.CondizioneConvalida;
 import it.unisa.ackc.validator.Notifica;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Si occupa della convalida dell'account.
@@ -48,18 +51,11 @@ public class AccountConvalida {
     /**
      * Convalida del nome.
      *
-     * @since asz0.0.1
+     * @since 0.0.1
      */
     public static final CondizioneConvalida VALIDA_NOME =
             request -> {
-                Notifica notifica = new Notifica();
-                String nome = request.getParameter(
-                        AccountConvalida.NOME_PARAMETRO
-                );
-                if (nome != null) {
-                    //Controlli validazione
-                }
-                return  notifica;
+                return validaNome(request, AccountConvalida.NOME_PARAMETRO);
             };
 
     /**
@@ -69,14 +65,7 @@ public class AccountConvalida {
      */
     public static final CondizioneConvalida VALIDA_COGNOME =
             request -> {
-                Notifica notifica = new Notifica();
-                String cognome = request.getParameter(
-                        AccountConvalida.COGNOME_PARAMETRO
-                );
-                if (cognome != null) {
-                    //Controlli validazione
-                }
-                return  notifica;
+                return validaNome(request, AccountConvalida.COGNOME_PARAMETRO);
             };
 
     /**
@@ -91,7 +80,14 @@ public class AccountConvalida {
                         AccountConvalida.EMAIL_PARAMETRO
                 );
                 if (email != null) {
-                    //Controlli validazione
+                    if (email.matches("[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {
+                        notifica.addError("Il formato dell'email " +
+                                "non è stato rispettato");
+                    }
+                    if (email.matches("^[A-Z,a-z,0-9,-,.,_ ]{1,64}+[@studenti.unisa.it]+")) {
+                        notifica.addError("La lunghezza dell'email " +
+                                "deve compresa tra 1 e 64");
+                    }
                 }
                 return  notifica;
             };
@@ -108,7 +104,14 @@ public class AccountConvalida {
                         AccountConvalida.PASSWORD_PARAMETRO
                 );
                 if (password != null) {
-                    //Controlli validazione
+                    if (password.matches("\\w{1,64}$")) {
+                        notifica.addError("La lunghezza della password " +
+                                "deve compresa tra 1 e 64");
+                    }
+                    if (password.matches("[A-Z, a-z,']+")) {
+                        notifica.addError("Il formato della password " +
+                                "non è stato rispettato");
+                    }
                 }
                 return  notifica;
             };
@@ -125,7 +128,14 @@ public class AccountConvalida {
                         AccountConvalida.TELEFONO_PARAMETRO
                 );
                 if (telefono != null) {
-                    //Controlli validazione
+                    if (telefono.matches("\\w{9,10}$")) {
+                        notifica.addError("La lunghezza del telefono " +
+                                "deve compresa tra 9 e 10");
+                    }
+                    if (telefono.matches("[0-9]+")) {
+                        notifica.addError("Il formato del telefono " +
+                                "non è stato rispettato");
+                    }
                 }
                 return  notifica;
             };
@@ -159,8 +169,41 @@ public class AccountConvalida {
                         AccountConvalida.SESSO_PARAMETRO
                 );
                 if (sesso != null) {
-                    //Controlli validazione
+                    boolean found = false;
+                    for (Account.Sesso sessoAccount : Account.Sesso.values()) {
+                        if (sessoAccount.name().equals(sesso)) {
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        notifica.addError(
+                                "Il formato del sesso non è valido"
+                        );
+                    }
                 }
                 return  notifica;
             };
+
+    /**
+     *
+     * @param request
+     * @param nome
+     * @return
+     */
+    private static Notifica validaNome(
+            final HttpServletRequest request, final String nome
+    ) {
+        Notifica notifica = new Notifica();
+        String val = request.getParameter(nome);
+        if (val != null) {
+            if (val.matches("\\w{1,64}$")) {
+                notifica.addError("La lunghezza del " + nome +
+                        " deve compresa tra 1 e 64");
+            }
+            if (val.matches("[A-Z, a-z,']+")) {
+                notifica.addError("Il formato del " + nome +
+                        " non è stato rispettato");
+            }
+        }
+    }
 }
