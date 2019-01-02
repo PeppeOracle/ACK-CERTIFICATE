@@ -1,9 +1,11 @@
 package it.unisa.ackc.gestione_utenti.control;
 
 import it.unisa.ackc.HttpServletWithCheck;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +35,8 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
     /**
      * Macro del parametro indirizzo di residenza.
      */
-    private static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO = "indirizzo_di_residenza";
+    private static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO =
+            "indirizzo_di_residenza";
     /**
      * Macro del parametro numero civico.
      */
@@ -53,7 +56,8 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
     /**
      * Macro del parametro tipologia di laurea.
      */
-    private static final String TIPOLOGIA_DI_LAUREA_PARAMETRO = "tipologia_di_laurea";
+    private static final String TIPOLOGIA_DI_LAUREA_PARAMETRO =
+            "tipologia_di_laurea";
     /**
      * Macro del parametro corso di laurea.
      */
@@ -61,7 +65,8 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
     /**
      * Macro del parametro anno di immatricolazione.
      */
-    private static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO = "anno_di_immatricolazione";
+    private static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO =
+            "anno_di_immatricolazione";
     /**
      * Macro della jsp della modifica del profilo.
      */
@@ -76,13 +81,22 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
     private static final String SUCCESSFUL_MESSAGE = "";
 
     /**
-     * Recupera le informazioni dell'utente e delega la presentazione alla componente jsp
-     * del profilo dello studente.
+     * Istanza dello storage facade.
+     */
+    @Inject
+    private ACKStorageFacadeEJB ackStorage;
+
+    /**
+     * Recupera le informazioni dell'utente e delega la
+     * presentazione alla componente jsp Del profilo dello
+     * studente.
      *
      * @since 0.0.1
      */
     @Override
-    public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(final HttpServletRequest request,
+                      final HttpServletResponse response
+    ) throws ServletException, IOException {
         request.setAttribute(
                 "studente",
                 request.getSession().getAttribute("account")
@@ -91,49 +105,65 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
     }
 
     /**
-     * Si occupa di effettuare il controllo sui campi della form, in caso di successo
-     * aggiornerà l'account dello studente e rendirizzerà alla componente jsp del profilo dello studente.
+     * Si occupa di effettuare il controllo sui campi della form,
+     * in caso di successo aggiornerà l'account dello studente e
+     * rendirizzerà alla componente jsp del profilo dello studente.
      *
      * @since 0.0.1
      */
     @Override
-    public void doPost(final HttpServletRequest request,final HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(final HttpServletRequest request,
+                       final HttpServletResponse response
+    ) throws ServletException, IOException {
+        valida(request);
         Account account = (Account)
                 request.getSession().getAttribute("account");
-
         String email = request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
-        String password = request.getParameter(AccountConvalida.PASSWORD_PARAMETRO);
-        String telefono = request.getParameter(AccountConvalida.TELEFONO_PARAMETRO);
+        String password = request.getParameter(
+                AccountConvalida.PASSWORD_PARAMETRO
+        );
+        String telefono = request.getParameter(
+                AccountConvalida.TELEFONO_PARAMETRO
+        );
         String nome = request.getParameter(AccountConvalida.NOME_PARAMETRO);
-        String cognome = request.getParameter(AccountConvalida.COGNOME_PARAMETRO);
-        Account.Ruolo ruolo = Account.Ruolo.valueOf(request.getParameter(AccountConvalida.RUOLO_PARAMETRO));
-        Account.Sesso sesso = Account.Sesso.valueOf(request.getParameter(AccountConvalida.SESSO_PARAMETRO));
-
+        String cognome = request.getParameter(
+                AccountConvalida.COGNOME_PARAMETRO
+        );
+        Account.Ruolo ruolo = Account.Ruolo.valueOf(
+                request.getParameter(AccountConvalida.RUOLO_PARAMETRO)
+        );
+        Account.Sesso sesso = Account.Sesso.valueOf(
+                request.getParameter(AccountConvalida.SESSO_PARAMETRO)
+        );
         String matricola = request.getParameter(MATRICOLA_PARAMETRO);
-
         Date dataDiNascita = null;
         try {
-            dataDiNascita = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter(DATA_DI_NASCITA_PARAMETRO));
-        } catch (ParseException e) {
-            //TODO gestisci errore
-        }
-        String luogoDiNascita = request.getParameter(LUOGO_DI_NASCITA_PARAMETRO);
-        String indirizzoDiResidenza = request.getParameter(INDIRIZZO_DI_RESIDENZA_PARAMETRO);
+            dataDiNascita = new SimpleDateFormat("dd/MM/yyyy").parse(
+                    request.getParameter(DATA_DI_NASCITA_PARAMETRO)
+            );
+        } catch (ParseException e) { }
+        String luogoDiNascita = request.getParameter(
+                LUOGO_DI_NASCITA_PARAMETRO
+        );
+        String indirizzoDiResidenza = request.getParameter(
+                INDIRIZZO_DI_RESIDENZA_PARAMETRO
+        );
         Integer numeroCivico = Integer.parseInt(
                 request.getParameter(NUMERO_CIVICO_PARAMETRO)
         );
         String cap = request.getParameter(CAP_PARAMETRO);
         String citta = request.getParameter(CITTA_PARAMETRO);
         String paese = request.getParameter(PAESE_PARAMETRO);
-        String tipologiaDiLaurea = request.getParameter(TIPOLOGIA_DI_LAUREA_PARAMETRO);
+        String tipologiaDiLaurea = request.getParameter(
+                TIPOLOGIA_DI_LAUREA_PARAMETRO
+        );
         String corsoDiLaurea = request.getParameter(CORSO_DI_LAUREA_PARAMETRO);
-        String annoDiImmatricolazione = request.getParameter(ANNO_DI_IMMATRICOLAZIONE_PARAMETRO);
-
-        //TODO controllo campi
-
-        AccountStudente studente = null;
-        //TODO studente = ACKStorageFacade.getStudenteById(account.getId());
-
+        String annoDiImmatricolazione = request.getParameter(
+                ANNO_DI_IMMATRICOLAZIONE_PARAMETRO
+        );
+        AccountStudente studente = (AccountStudente) ackStorage.findAccountById(
+                account.getId()
+        );
         if (email != null) {
             studente.setEmail(email);
         }
@@ -173,6 +203,9 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
         if (citta != null) {
             studente.setCitta(citta);
         }
+        if (cap != null) {
+            studente.setCap(cap);
+        }
         if (paese != null) {
             studente.setPaese(paese);
         }
@@ -185,9 +218,7 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
         if (annoDiImmatricolazione != null) {
             studente.setAnnoDiImmatricolazione(annoDiImmatricolazione);
         }
-
-        //TODO ACKStorageFacade.aggiornaStudente(studente);
-
+        ackStorage.updateAccount(studente);
         request.setAttribute("successful", SUCCESSFUL_MESSAGE);
         request.getRequestDispatcher(SUCCESSFUL_JSP).forward(request, response);
     }

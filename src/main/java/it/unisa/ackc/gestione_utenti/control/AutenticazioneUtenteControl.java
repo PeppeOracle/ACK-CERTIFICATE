@@ -61,4 +61,16 @@ public class AutenticazioneUtenteControl extends HttpServletWithCheck {
             request.getRequestDispatcher(ERROR_JSP).forward(request, response);
         }
     }
+
+    /**
+     * Valida i parametri della richiesta.
+     *
+     * @param request contenente i parametri da validare
+     * @since 0.1.1
+     */
+    @Override
+    public void valida(final HttpServletRequest request) {
+        //TODO aggiungi convalida
+        super.valida(request);
+    }
 }
