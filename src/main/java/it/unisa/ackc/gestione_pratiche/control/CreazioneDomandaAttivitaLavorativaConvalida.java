@@ -9,11 +9,13 @@ import java.text.SimpleDateFormat;
 
 /**
  * Si occupa della convalida della domanda di attivita lavorativa.
+ *
  * @version 0.0.1
  */
-public final class CreazioneDomandaAttivitaLavorativaConvalida {
+final class CreazioneDomandaAttivitaLavorativaConvalida {
     /**
      * Costruttore di default.
+     *
      * @since 0.0.1
      */
     private CreazioneDomandaAttivitaLavorativaConvalida() {
@@ -56,9 +58,10 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Convalida dell'ente.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_ENTE = request -> {
+    static final CondizioneConvalida VALIDA_ENTE = request -> {
         Notifica notifica = new Notifica();
         String ente = request.getParameter(
                 CreazioneDomandaAttivitaLavorativaControl.ENTE_PARAMETRO
@@ -77,9 +80,10 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Convalida del numero di cfu.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_NUMERO_CFU = request -> {
+    static final CondizioneConvalida VALIDA_NUMERO_CFU = request -> {
         Notifica notifica = new Notifica();
         try {
             Integer numeroCfu = Integer.parseInt(request.getParameter(
@@ -94,7 +98,7 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
             }
         } catch (NumberFormatException e) {
             notifica.addError(
-                    "Il numero di cfu deve essere un numero"
+                    "Il numero di cfu deve essere un numero", e
             );
         }
         return  notifica;
@@ -102,9 +106,10 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Convalida dell'indirizzo della sede.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_INDIRIZZO_SEDE = request -> {
+    static final CondizioneConvalida VALIDA_INDIRIZZO_SEDE = request -> {
         Notifica notifica = new Notifica();
         String indirizzoSede = request.getParameter(
                 CreazioneDomandaAttivitaLavorativaControl.
@@ -124,13 +129,13 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Convalida del profilo.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_PROFILO = request -> {
+    static final CondizioneConvalida VALIDA_PROFILO = request -> {
         Notifica notifica = new Notifica();
         String profilo = request.getParameter(
-                CreazioneDomandaAttivitaLavorativaControl.
-                        PROFILO_PARAMETRO
+                CreazioneDomandaAttivitaLavorativaControl.PROFILO_PARAMETRO
         );
         if (profilo == null || profilo.trim().equals("")) {
             notifica.addError(
@@ -146,9 +151,10 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Convalida del tipo di ocntratto.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_TIPO_CONTRATTO =
+    static final CondizioneConvalida VALIDA_TIPO_CONTRATTO =
         request -> {
             Notifica notifica = new Notifica();
             String tipoDiContratto = request.getParameter(
@@ -169,9 +175,10 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Convalida del periodo.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_PERIODO = request -> {
+    static final CondizioneConvalida VALIDA_PERIODO = request -> {
         Notifica notifica = new Notifica();
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String periodo = request.getParameter(
@@ -190,7 +197,7 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
             } catch (ParseException e) {
                 notifica.addError(
                         "Il periodo non è nel giusto formato"
-                                + "[dd-mm-yyyy/dd-mm-yyyy]"
+                                + "[dd-mm-yyyy/dd-mm-yyyy]", e
                 );
             }
         } else {
@@ -204,9 +211,10 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Convalida del numero di ore svolte.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_ORE_SVOLTE = request -> {
+    static final CondizioneConvalida VALIDA_ORE_SVOLTE = request -> {
         Notifica notifica = new Notifica();
         try {
             Integer numeroOreSvolte = Integer.parseInt(request.getParameter(
@@ -222,7 +230,7 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
             }
         } catch (NumberFormatException e) {
             notifica.addError(
-                    "Il numero di ore svolte deve essere un numero"
+                    "Il numero di ore svolte deve essere un numero", e
             );
         }
         return  notifica;
@@ -230,6 +238,7 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
 
     /**
      * Controlla se un numero è positivo e al più di due cifre.
+     *
      * @param number che si vuole controllare
      * @return true se number è positivo a due cifre, false altrimenti
      * @since 0.0.1
@@ -241,6 +250,7 @@ public final class CreazioneDomandaAttivitaLavorativaConvalida {
     /**
      * Controlla se un numero è positivo e
      * almeno di due e al più di tre cifre.
+     *
      * @param number che si vuole controllare
      * @return true se number è positivo
      * e almeno di due e al più di tre cifre,

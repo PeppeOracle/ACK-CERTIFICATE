@@ -9,15 +9,18 @@ import java.io.IOException;
 
 /**
  * Si occupa della convalida della creazione della pratica.
+ *
  * @version 0.0.1
  */
-public final class CreazionePraticaConvalida {
+final class CreazionePraticaConvalida {
     /**
      * Lunghezza massima del messaggio dello studente.
      */
     private static final int MESSAGGIO_MAX = 512;
+
     /**
      * Costruttore di default.
+     *
      * @since 0.0.1
      */
     private CreazionePraticaConvalida() {
@@ -25,9 +28,10 @@ public final class CreazionePraticaConvalida {
 
     /**
      * Convalida il messaggio dello studente.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_MESSAGGIO =
+    static final CondizioneConvalida VALIDA_MESSAGGIO =
         request -> {
             Notifica notifica = new Notifica();
             String messaggio = request.getParameter(
@@ -43,17 +47,19 @@ public final class CreazionePraticaConvalida {
             }
             return  notifica;
         };
+
     /**
      * Convalida la domanda.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_DOMANDA =
+    static final CondizioneConvalida VALIDA_DOMANDA =
         request -> {
             Notifica notifica = new Notifica();
             Part domanda;
             try {
                 domanda = request.getPart(
-                        CreazionePraticaControl.ATTESTATO_PARAMETRO
+                        CreazionePraticaControl.DOMANDA_PARAMETRO
                 );
                 String[] splitDomanda =
                         domanda.getSubmittedFileName().split(".");
@@ -63,11 +69,7 @@ public final class CreazionePraticaConvalida {
                             "Il formato della domanda non è corretto [pdf]"
                     );
                 }
-            } catch (IOException e) {
-                notifica.addError(
-                        "La domanda non è stata caricata con successo"
-                );
-            } catch (ServletException e) {
+            } catch (IOException | ServletException e) {
                 notifica.addError(
                         "La domanda non è stata caricata con successo"
                 );
@@ -78,9 +80,10 @@ public final class CreazionePraticaConvalida {
 
     /**
      * Convalida l'attestato.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_ATTESTATO =
+    static final CondizioneConvalida VALIDA_ATTESTATO =
         request -> {
             Notifica notifica = new Notifica();
             Part attestato;
@@ -96,11 +99,7 @@ public final class CreazionePraticaConvalida {
                             "Il formato dell'attestato non è corretto [pdf]"
                     );
                 }
-            } catch (IOException e) {
-                notifica.addError(
-                        "L'attestato non è stato caricato con successo"
-                );
-            } catch (ServletException e) {
+            } catch (IOException | ServletException e) {
                 notifica.addError(
                         "L'attestato non è stato caricato con successo"
                 );

@@ -5,11 +5,13 @@ import it.unisa.ackc.validator.Notifica;
 
 /**
  * Si occupa della convalida della domanda di lingua inglese.
+ *
  * @version 0.0.1
  */
-public final class CreazioneDomandaLinguaIngleseConvalida {
+final class CreazioneDomandaLinguaIngleseConvalida {
     /**
      * Costruttore di default.
+     *
      * @since 0.0.1
      */
     private CreazioneDomandaLinguaIngleseConvalida() {
@@ -32,15 +34,17 @@ public final class CreazioneDomandaLinguaIngleseConvalida {
 
     /**
      * Convalida dell'ente certificatore.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_ENTE_CERTIFICATORE =
+    static final CondizioneConvalida VALIDA_ENTE_CERTIFICATORE =
         request -> {
             Notifica notifica = new Notifica();
             String enteCertificatore = request.getParameter(
                     CreazioneDomandaLinguaIngleseControl.ENTE_PARAMETRO
             );
-            if (enteCertificatore == null || enteCertificatore.trim().equals("")) {
+            if (enteCertificatore == null
+                    || enteCertificatore.trim().equals("")) {
                 notifica.addError(
                         "L'ente certificatore non è stato indicato"
                 );
@@ -54,9 +58,10 @@ public final class CreazioneDomandaLinguaIngleseConvalida {
 
     /**
      * Convalida del numero di cfu.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_NUMERO_CFU = request -> {
+    static final CondizioneConvalida VALIDA_NUMERO_CFU = request -> {
         Notifica notifica = new Notifica();
         try {
             Integer numeroCfu = Integer.parseInt(request.getParameter(
@@ -78,9 +83,10 @@ public final class CreazioneDomandaLinguaIngleseConvalida {
 
     /**
      * Convalida del grade.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_GRADE = request -> {
+    static final CondizioneConvalida VALIDA_GRADE = request -> {
         Notifica notifica = new Notifica();
         try {
             Integer grade = Integer.parseInt(request.getParameter(
@@ -102,9 +108,10 @@ public final class CreazioneDomandaLinguaIngleseConvalida {
 
     /**
      * Convalida del livello cefr.
+     *
      * @since 0.0.1
      */
-    public static final CondizioneConvalida VALIDA_LIVELLO_CEFR = request -> {
+    static final CondizioneConvalida VALIDA_LIVELLO_CEFR = request -> {
         Notifica notifica = new Notifica();
         String livelloCefr = request.getParameter(
                 CreazioneDomandaLinguaIngleseControl.LIVELLO_CEFR_PARAMETRO
@@ -123,6 +130,7 @@ public final class CreazioneDomandaLinguaIngleseConvalida {
 
     /**
      * Controlla se un numero è positivo e al più di due cifre.
+     *
      * @param number che si vuole controllare
      * @return true se number è positivo a due cifre, false altrimenti
      * @since 0.0.1

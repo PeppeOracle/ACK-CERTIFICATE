@@ -5,11 +5,13 @@ import it.unisa.ackc.validator.Notifica;
 
 /**
  * Si occupa della convalida del tipo di domanda.
+ *
  * @version 0.0.1
  */
-public final class CreazioneDomandaConvalida {
+final class CreazioneDomandaConvalida {
     /**
      * Costruttore di default.
+     *
      * @since 0.0.1
      */
     private CreazioneDomandaConvalida() {
@@ -17,6 +19,7 @@ public final class CreazioneDomandaConvalida {
 
     /**
      * Convalida del tipo di domanda.
+     *
      * @since 0.0.1
      */
     public static final CondizioneConvalida VALIDA_TIPO_DI_DOMANDA =
