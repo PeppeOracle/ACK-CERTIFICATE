@@ -30,10 +30,6 @@ public class CreazioneDomandaAttivitaLavorativaControl
     static final String ENTE_PARAMETRO =
             "ente";
     /**
-     * Macro del parametro numero_cfu.
-     */
-    static final String NUMERO_CFU_PARAMETRO = "numero_cfu";
-    /**
      * Macro del parametro indirizzo_sede.
      */
     static final String INDIRIZZO_SEDE_PARAMETRO = "indirizzo_sede";
@@ -81,7 +77,9 @@ public class CreazioneDomandaAttivitaLavorativaControl
                 request.getSession().getAttribute("account");
         String ente = request.getParameter(ENTE_PARAMETRO);
         Integer numeroCfu = Integer.parseInt(
-                request.getParameter(NUMERO_CFU_PARAMETRO)
+                request.getParameter(
+                        GestionePraticheConvalida.NUMERO_CFU_PARAMETRO
+                )
         );
         String indirizzoSede = request.getParameter(INDIRIZZO_SEDE_PARAMETRO);
         String profilo = request.getParameter(PROFILO_PARAMETRO);
