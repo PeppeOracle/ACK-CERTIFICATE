@@ -15,9 +15,18 @@ import java.io.OutputStream;
  * @version 0.1.1
  */
 public class DownloadFileControl  extends HttpServletWithCheck {
-    private static final String FILE_PARAMETRO = "file_name";
-    private static final String STUDENTI_PATH = "files-studenti";
-    private static final int BUFFER_SIZE = 4096;
+    /**
+     * Macro del parametro file_name.
+     */
+    static final String FILE_PARAMETRO = "file_name";
+    /**
+     * Macro del parametro files-studenti.
+     */
+    static final String STUDENTI_PATH = "files-studenti";
+    /**
+     * Macro della size del buffer.
+     */
+    static final int BUFFER_SIZE = 4096;
 
     /**
      * Si occupa del download di un file.
@@ -56,7 +65,6 @@ public class DownloadFileControl  extends HttpServletWithCheck {
             throw new IllegalArgumentException("Il file indicato non esiste");
         }
     }
-    
     /**
      * Valida i parametri della richiesta.
      * @param request contenente i parametri da validare
@@ -64,7 +72,9 @@ public class DownloadFileControl  extends HttpServletWithCheck {
      */
     @Override
     public void valida(final HttpServletRequest request) {
-        //TODO aggiungi convalida file estensione
+        addCondizione(
+                DownloadFileConvalida.VALIDA_FILE
+        );
         super.valida(request);
     }
 }
