@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * EJB per l'accesso al database ACK_Storage.
- * @version 0.0.1
+ * @version 0.1.1
  */
 @Stateless
 @LocalBean
@@ -49,6 +49,17 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
         return praticaEJB.updatePratica(pratica);
     }
 
+    /**
+     * Restituisce la pratica con un dato id.
+     *
+     * @param id della pratica
+     * @return pratica
+     * @since 0.1.1
+     */
+    @Override
+    public Pratica findPraticaById(final Long id) {
+        return praticaEJB.findById(id);
+    }
     /**
      * Restituisce tutte le pratiche nell'ACK_STORAGE.
      *
@@ -132,7 +143,7 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     /**
      * Restituisce l'account con una data email.
      *
-     * @param email dell'account che voglio ottenere
+     * @param email dell'account
      * @return account
      * @since 0.0.1
      */
@@ -142,9 +153,9 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     }
 
     /**
-     * Restituisce l'account con un  dato id.
+     * Restituisce l'account con un dato id.
      *
-     * @param id dell'account che voglio ottenere
+     * @param id dell'account
      * @return account
      * @since 0.0.1
      */

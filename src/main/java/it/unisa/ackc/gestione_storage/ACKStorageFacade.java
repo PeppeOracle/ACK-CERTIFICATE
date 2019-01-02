@@ -24,6 +24,14 @@ public interface ACKStorageFacade {
     Pratica updatePratica(Pratica pratica);
 
     /**
+     * Restituisce la pratica con un dato id.
+     *
+     * @param id della pratica
+     * @return pratica
+     * @since 0.1.1
+     */
+    Pratica findPraticaById(Long id);
+    /**
      * Restituisce tutte le pratiche nell'ACK_STORAGE.
      *
      * @return lista di tutte le pratiche
