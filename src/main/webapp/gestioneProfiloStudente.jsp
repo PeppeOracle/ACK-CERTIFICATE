@@ -17,10 +17,144 @@
 </head>
 <body>
 
+<%@ page import="it.unisa.ackc.gestione_utenti.entity.AccountStudente" %>
+<%@ page import="java.util.Date" %>
+<%
+    /* STUB ****************************************/
+    AccountStudente accountBean = new AccountStudente();
+    accountBean.setNome("Mario");
+    accountBean.setCognome("Rossi");
+    accountBean.setMatricola("1245345");
+    accountBean.setAnnoDiImmatricolazione("2014");
+    accountBean.setCap("6732");
+    accountBean.setCitta("Roma");
+    accountBean.setCorsoDiLaurea("Informatica");
+    accountBean.setDataDiNascita(new Date());
+    accountBean.setIndirizzoDiResidenza("via xxx");
+    accountBean.setLuogoDiNascita("Roma");
+    accountBean.setNumeroCivico(3);
+    accountBean.setEmail("esempio@email.it");
+    accountBean.setPaese("Italia");
+    accountBean.setTelefono("3338908976");
+    accountBean.setTipologiaDiLaurea("Triennale");
+    /* ****************************************/
+
+%>
+
 <!-- Navbar -->
 <jsp:include page="WEB-INF/jspf/navbarStudente.jspf"/>
 
 <div class="container">
+
+    <br>
+    <form action="" method="post" id="modificaProfiloForm">
+
+        <div class="form-group">
+            <label for="inputNome">Nome</label>
+            <input name="nome" type="text" class="form-control" id="inputNome"
+                   value="<%= accountBean.getNome() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputCognome">Cognome</label>
+            <input name="cognome" type="text" class="form-control" id="inputCognome"
+                   value="<%= accountBean.getCognome() %>" required disabled>
+        </div>
+
+        <!--       <div class="form-group">
+            <label for="inputLuogoNascita">Luogo di nascita</label>
+            <input name="luogoNascita" type="text" class="form-control" id="inputLuogoNascita"
+                   value="<%= accountBean.getLuogoDiNascita() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputDataNascita">Data di nascita *</label>
+            <input name="dataNascita" type="date" class="form-control" id="inputDataNascita"
+                   value="<%= accountBean.getDataDiNascita() %>" required disabled>
+        </div>-->
+
+        <div class="form-group">
+            <label for="inputTelefono">Recapito telefonico</label>
+            <input name="telefono" type="tel" class="form-control" id="inputTelefono"
+                   value="<%= accountBean.getTelefono() %>" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input name="email" type="email" class="form-control" id="inputEmail"
+                   value="<%= accountBean.getEmail() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input name="password" type="password" class="form-control" id="inputPassword"
+                   value="<%= accountBean.getPassword() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputCitta">Citt&agrave;</label>
+            <input name="citta" type="text" class="form-control" id="inputCitta"
+                   value="<%= accountBean.getCitta() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputIndirizzo">Indirizzo</label>
+            <input name="indirizzo" type="text" class="form-control" id="inputIndirizzo"
+                   value="<%= accountBean.getIndirizzoDiResidenza() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputNumeroCivico">Numero civico</label>
+            <input name="numeroCivico" type="text" class="form-control" id="inputNumeroCivico"
+                   value="<%= accountBean.getNumeroCivico() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputCap">CAP</label>
+            <input name="cap" type="number" class="form-control" id="inputCap"
+                   value="<%= accountBean.getCap() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPaese">Paese</label>
+            <input name="paese" type="text" class="form-control" id="inputPaese"
+                   value="<%= accountBean.getPaese() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputMatricola">Matricola</label>
+            <input name="matricola" type="number" class="form-control" id="inputMatricola"
+                   value="<%= accountBean.getMatricola() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputCorsoLaurea">Corso di laurea</label>
+            <input name="corsoLaurea" type="text" class="form-control" id="inputCorsoLaurea"
+                   value="<%= accountBean.getCorsoDiLaurea() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputTipologiaLaurea">Tipologia laurea</label>
+            <input name="tipologiaLaurea" type="text" class="form-control" id="inputTipologiaLaurea"
+                   value="<%= accountBean.getTipologiaDiLaurea() %>" required disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="inputAnnoImmatricolazione">Anno di immatricolazione</label>
+            <input name="annoImmatricolazione" type="text" class="form-control" id="inputAnnoImmatricolazione"
+                   value="<%= accountBean.getAnnoDiImmatricolazione() %>" required disabled>
+        </div>
+
+        <br><br>
+        <a href="#">
+            <button type="button" class="btn btn-primary" id="modificaButton">Modifica</button>
+        </a>
+        <a href="#">
+            <button type="button" class="btn btn-danger" id="annullaButton">Annulla modifica</button>
+        </a>
+        <button type="submit" class="btn btn-success" id="confermaModificaButton">Conferma modifica</button>
+
+    </form>
 
 </div>
 
