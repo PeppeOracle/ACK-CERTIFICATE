@@ -16,25 +16,50 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 
-
 /**
  * Rappresenta l'insieme dei documenti necessari
  * per richiedere l'approvazione del riconoscimento dei CFU.
  * La pratica ha uno stato
  * {@see it.unisa.ackc.gestione_pratiche.entity.Pratica.Stato}.
  *
- * @version 0.1.1
+ * @version 0.2.1
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "findAllPratiche",
-                query = "SELECT p FROM Pratica p"),
+        @NamedQuery(name = "findAllPraticheByTipi",
+                query = "SELECT p FROM Pratica p"
+                        + " WHERE p.tipo IN :listaTipi"),
+        @NamedQuery(name = "countAllPraticheByTipi",
+                query = "SELECT COUNT (p) FROM Pratica p"
+                        + " WHERE p.tipo IN :listaTipi"),
         @NamedQuery(name = "findPraticaById",
-                query = "SELECT p FROM Pratica p WHERE p.id= :id"),
+                query = "SELECT p FROM Pratica p WHERE p.id = :id"),
         @NamedQuery(name = "findPraticheByTipo",
-                query = "SELECT p FROM Pratica p WHERE p.tipo=:tipo"),
+                query = "SELECT p FROM Pratica p WHERE p.tipo = :tipo"),
         @NamedQuery(name = "findPraticheByStato",
-                query = "SELECT p FROM Pratica p WHERE p.stato=:stato")
+                query = "SELECT p FROM Pratica p WHERE p.stato = :stato"),
+        @NamedQuery(name = "findPraticheByStatoByTipi",
+                query = "SELECT p FROM Pratica p"
+                        + " WHERE p.tipo IN :listaTipi"
+                        + " AND p.stato = :stato"),
+        @NamedQuery(name = "countPraticheByStatoByTipi",
+                query = "SELECT COUNT (p) FROM Pratica p"
+                        + " WHERE p.tipo IN :listaTipi"
+                        + " AND p.stato = :stato"),
+        @NamedQuery(name = "findPraticheByStatiByTipi",
+                query = "SELECT p FROM Pratica p"
+                        + " WHERE p.tipo IN :listaTipi "
+                        + "AND p.stato IN :listaStati"),
+        @NamedQuery(name = "countPraticheByStatiByTipi",
+                query = "SELECT COUNT (p) FROM Pratica p"
+                        + " WHERE p.tipo IN :listaTipi"
+                        + " AND p.stato IN :listaStati"),
+        @NamedQuery(name = "findAllPraticheByStudente",
+                query = "SELECT p FROM Pratica p"
+                        + " WHERE p.accountStudente = :account"),
+        @NamedQuery(name = "countAllPraticheByStudente",
+                query = "SELECT COUNT (p) FROM Pratica p"
+                        + " WHERE p.accountStudente = :account")
 })
 public class Pratica implements Serializable {
     /**
@@ -66,7 +91,7 @@ public class Pratica implements Serializable {
     @JoinColumn
     private Attestato attestato;
     /**
-     * Account studente che ha aperto la pratica.
+     * Account studente associato alla pratica.
      */
     @ManyToOne
     @JoinColumn
@@ -104,17 +129,20 @@ public class Pratica implements Serializable {
      * @param aDomanda domanda da allegare alla pratica
      * @param aAttestato attestato da allegare alla pratica
      * @param aMessaggioStudente messaggio dello studente associto alla pratica
+     * @param aTipo tipo di pratica
      * @since 0.0.1
      */
     public Pratica(final Domanda aDomanda,
                    final Attestato aAttestato,
-                   final String aMessaggioStudente) {
+                   final String aMessaggioStudente,
+                   final Tipo aTipo) {
         this.dataCreazione = new Date();
         this.dataAggiornamento = new Date();
         this.stato = Stato.IN_ATTESA;
         this.domanda = aDomanda;
         this.attestato = aAttestato;
         this.messaggioStudente = aMessaggioStudente;
+        this.tipo = aTipo;
     }
 
     /**
@@ -306,7 +334,7 @@ public class Pratica implements Serializable {
      * Permette di associare
      * una pratica ad un account studente.
      *
-     * @param aAccountStudente che ha aperto la pratica
+     * @param aAccountStudente nuovo studente a cui associare la pratica
      * @since 0.1.1
      */
     public void setAccountStudente(final AccountStudente aAccountStudente) {
@@ -381,4 +409,20 @@ public class Pratica implements Serializable {
         ATTIVITA_LAVORATIVA
     }
 
+    @Override
+    public final String toString() {
+        return "Pratica{"
+                + "id=" + id
+                + ", stato=" + stato
+                + ", tipo=" + tipo
+                + ", domanda=" + domanda
+                + ", attestato=" + attestato
+                + ", accountStudente=" + accountStudente
+                + ", messaggioStudente=" + messaggioStudente
+                + ", messaggioResponsabileUfficio="
+                + messaggioResponsabileUfficio
+                + ", dataCreazione=" + dataCreazione
+                + ", dataAggiornamento=" + dataAggiornamento
+                + '}';
+    }
 }

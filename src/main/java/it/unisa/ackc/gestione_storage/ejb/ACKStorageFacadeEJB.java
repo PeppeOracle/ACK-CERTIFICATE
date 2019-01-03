@@ -1,19 +1,22 @@
 package it.unisa.ackc.gestione_storage.ejb;
 
-import it.unisa.ackc.gestione_storage.ACKStorageFacade;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica.Stato;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica.Tipo;
+import it.unisa.ackc.gestione_storage.ACKStorageFacade;
 import it.unisa.ackc.gestione_utenti.entity.Account;
+import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import java.util.List;
 
 /**
  * EJB per l'accesso al database ACK_Storage.
- * @version 0.1.1
+ * @version 0.2.1
  */
 @Stateless
 @LocalBean
@@ -22,12 +25,12 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     /**
      * EJB per le transazioni relative alla pratica.
      */
-    @Inject
+    @EJB
     private PraticaEJB praticaEJB;
     /**
      * EJB per le transazioni relative all'account.
      */
-    @Inject
+    @EJB
     private AccountEJB accountEJB;
 
     /**
@@ -38,78 +41,210 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     }
 
     /**
-     * Aggiorna una pratica nell'ACK_STORAGE.
+     * Aggiorna una pratica nel database.
      *
-     * @param pratica da aggiornare
+     * @param aPratica da aggiornare
      * @return pratica aggiornata
      * @since 0.0.1
      */
     @Override
-    public Pratica updatePratica(final Pratica pratica) {
-        return praticaEJB.updatePratica(pratica);
+    public Pratica updatePratica(final Pratica aPratica) {
+        return praticaEJB.updatePratica(aPratica);
     }
 
     /**
-     * Restituisce la pratica con un dato id.
+     * Restituisce tutte le pratiche
+     * per un responsabile ufficio.
      *
-     * @param id della pratica
-     * @return pratica
-     * @since 0.1.1
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
      */
     @Override
-    public Pratica findPraticaById(final Long id) {
-        return praticaEJB.findById(id);
-    }
-    /**
-     * Restituisce tutte le pratiche nell'ACK_STORAGE.
-     *
-     * @return lista di tutte le pratiche
-     * @since 0.0.1
-     */
-    @Override
-    public List<Pratica> findAllPratiche() {
-        return praticaEJB.findAll();
-    }
-
-    /**
-     * Restituisce le pratiche sospese nell'ACK_STORAGE.
-     *
-     * @return lista delle pratiche con lo stato "SOSPESA"
-     * @since 0.0.1
-     */
-    @Override
-    public List<Pratica> findPraticheSospese() {
-        return praticaEJB.findByStato(Pratica.Stato.SOSPESA);
+    public List<Pratica> findAllPraticheForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount,
+            final int aLimit,
+            final int aOffset) {
+        return praticaEJB.findAllByTipi(
+                aAccount.getTipologiaPraticaDaGestire(),
+                aLimit,
+                aOffset);
     }
 
     /**
-     * Restituisce le pratiche da valutare (in attesa) nell'ACK_STORAGE.
+     * Conta tutte le pratiche
+     * per un responsabile ufficio.
      *
-     * @return lista delle pratiche con lo stato "IN_ATTESA"
-     * @since 0.0.1
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
      */
     @Override
-    public List<Pratica> findPraticheDaValutare() {
-        return praticaEJB.findByStato(Stato.IN_ATTESA);
+    public Long countAllPraticheForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount) {
+        return praticaEJB.countAllByTipi(
+                aAccount.getTipologiaPraticaDaGestire());
     }
 
     /**
-     * Restituisce le pratiche chiuse (approvate o bocciate) nell'ACK_STORAGE.
+     * Restituisce le pratiche sospese
+     * per un responsabile ufficio.
      *
-     * @return lista delle pratiche con lo stato "APPROVATA" o "BOCCIATA"
-     * @since 0.0.1
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
      */
     @Override
-    public List<Pratica> findPraticheChiuse() {
-        List<Pratica> praticheChiuse = praticaEJB.findByStato(Stato.APPROVATA);
-        praticheChiuse.addAll(praticaEJB.findByStato(Stato.BOCCIATA));
-        return praticheChiuse;
+    public List<Pratica> findPraticheSospeseForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount,
+            final int aLimit,
+            final int aOffset) {
+        return praticaEJB.findByStatoByTipi(
+                Stato.SOSPESA,
+                aAccount.getTipologiaPraticaDaGestire(),
+                aLimit,
+                aOffset);
+    }
+
+    /**
+     * Conta le pratiche sospese
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
+     */
+    @Override
+    public Long countPraticheSospeseForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount) {
+        return praticaEJB.countByStatoByTipi(
+                Pratica.Stato.SOSPESA,
+                aAccount.getTipologiaPraticaDaGestire());
+    }
+
+    /**
+     * Restituisce le pratiche da valutare (in attesa)
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
+     */
+    @Override
+    public List<Pratica> findPraticheDaValutareForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount,
+            final int aLimit,
+            final int aOffset) {
+        return praticaEJB.findByStatoByTipi(
+                Stato.IN_ATTESA,
+                aAccount.getTipologiaPraticaDaGestire(),
+                aLimit,
+                aOffset);
+    }
+
+    /**
+     * Conta le pratiche da valutare (in attesa)
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
+     */
+    @Override
+    public Long countPraticheDaValutareForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount) {
+        return praticaEJB.countByStatoByTipi(
+                Stato.IN_ATTESA,
+                aAccount.getTipologiaPraticaDaGestire());
+    }
+
+    /**
+     * Restituisce le pratiche chiuse (approvate o bocciate)
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
+     */
+    @Override
+    public List<Pratica> findPraticheChiuseForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount,
+            final int aLimit,
+            final int aOffset) {
+        ArrayList<Stato> stati = new ArrayList<>();
+        stati.add(Stato.BOCCIATA);
+        stati.add(Stato.APPROVATA);
+        return praticaEJB.findByStatiByTipi(
+                stati,
+                aAccount.getTipologiaPraticaDaGestire(),
+                aLimit,
+                aOffset);
+    }
+
+    /**
+     * Conta le pratiche chiuse (approvate o bocciate)
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
+     */
+    @Override
+    public Long countPraticheChiuseForResponsabileUfficio(
+            final AccountResponsabileUfficio aAccount) {
+        ArrayList<Stato> stati = new ArrayList<>();
+        stati.add(Stato.BOCCIATA);
+        stati.add(Stato.APPROVATA);
+        return praticaEJB.countByStatiByTipi(
+                stati,
+                aAccount.getTipologiaPraticaDaGestire());
+    }
+
+    /**
+     * Restituisce tutte le pratiche nel database di uno studente.
+     *
+     * @param aAccount dello studente
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.2.1
+     */
+    @Override
+    public List<Pratica> findAllPraticheForStudente(
+            final AccountStudente aAccount,
+            final int aLimit,
+            final int aOffset) {
+        return praticaEJB.findAllForStudente(
+                aAccount,
+                aLimit,
+                aOffset);
+    }
+    /**
+     * Conta tutte le pratiche nel database di uno studente.
+     *
+     * @param aAccount dello studente
+     * @return numero delle pratiche
+     * @since 0.2.1
+     */
+    @Override
+    public Long countAllPraticheForStudente(
+            final AccountStudente aAccount) {
+        return praticaEJB.countAllForStudente(
+                aAccount);
     }
 
     /**
      * Restituisce le pratiche di un'attestazione di attività lavorativa.
      *
-     * @return lista delle pratiche di attività lavorativa
+     * @return lista delle pratiche
      * @since 0.0.1
      */
     @Override
@@ -120,7 +255,7 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     /**
      * Restituisce le pratiche di un'attestazione di lingua inglese.
      *
-     * @return lista delle pratiche di lingua inglese
+     * @return lista delle pratiche
      * @since 0.0.1
      */
     @Override
@@ -131,71 +266,71 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     /**
      * Controlla la presenza di un account nell'ACK_STORAGE.
      *
-     * @param email dell'account di cui voglio controllare la presenza
+     * @param aEmail dell'account di cui voglio controllare la presenza
      * @return true se l'account è presente, false altrimenti
      * @since 0.0.1
      */
     @Override
-    public boolean containsAccount(final String email) {
-        return accountEJB.findByEmail(email)!=null;
+    public boolean containsAccount(final String aEmail) {
+        return accountEJB.findByEmail(aEmail) != null;
     }
 
     /**
      * Restituisce l'account con una data email.
      *
-     * @param email dell'account
+     * @param aEmail dell'account che voglio ottenere
      * @return account
      * @since 0.0.1
      */
     @Override
-    public Account findAccountByEmail(final String email) {
-        return accountEJB.findByEmail(email);
+    public Account findAccountByEmail(final String aEmail) {
+        return accountEJB.findByEmail(aEmail);
     }
 
     /**
-     * Restituisce l'account con un dato id.
+     * Restituisce l'account con un  dato id.
      *
-     * @param id dell'account
+     * @param aId dell'account che voglio ottenere
      * @return account
      * @since 0.0.1
      */
     @Override
-    public Account findAccountById(final Long id) {
-        return accountEJB.findById(id);
+    public Account findAccountById(final Long aId) {
+        return accountEJB.findById(aId);
     }
 
     /**
      * Crea un account nell'ACK_STORAGE.
      *
-     * @param account da creare
+     * @param aAccount da creare
      * @return account creato
      * @since 0.0.1
      */
     @Override
-    public Account createAccount(final Account account) {
-        return accountEJB.createAccount(account);
+    public Account createAccount(final Account aAccount) {
+        return accountEJB.createAccount(aAccount);
     }
 
     /**
      * Aggiorna un account nell'ACK_Storage.
      *
-     * @param account da aggiornare
+     * @param aAccount da aggiornare
      * @return account aggiornato
      * @since 0.0.1
      */
     @Override
-    public Account updateAccount(final Account account) {
-        return accountEJB.updateAccount(account);
+    public Account updateAccount(final Account aAccount) {
+        return accountEJB.updateAccount(aAccount);
     }
 
     /**
      * Elimina un account nell'ACK_STORAGE.
      *
-     * @param account da eliminare
+     * @param aAccount da eliminare
      * @since 0.0.1
      */
     @Override
-    public void deleteAccount(final Account account) {
-        accountEJB.deleteAccount(account);
+    public void deleteAccount(final Account aAccount) {
+        accountEJB.deleteAccount(aAccount);
     }
 }

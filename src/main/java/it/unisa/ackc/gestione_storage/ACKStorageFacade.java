@@ -2,6 +2,8 @@ package it.unisa.ackc.gestione_storage;
 
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_utenti.entity.Account;
+import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -9,13 +11,13 @@ import java.util.List;
 /**
  * Rappresenta un'interfaccia per l'accesso al database ACK_Storage.
  *
- * @version 0.1.1
+ * @version 0.2.1
  */
 @Local
 public interface ACKStorageFacade {
 
     /**
-     * Aggiorna una pratica nell'ACK_STORAGE.
+     * Aggiorna una pratica nel database.
      *
      * @param pratica da aggiornare
      * @return pratica aggiornata
@@ -24,49 +26,132 @@ public interface ACKStorageFacade {
     Pratica updatePratica(Pratica pratica);
 
     /**
-     * Restituisce la pratica con un dato id.
+     * Restituisce tutte le pratiche
+     * per un responsabile ufficio.
      *
-     * @param id della pratica
-     * @return pratica
-     * @since 0.1.1
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
      */
-    Pratica findPraticaById(Long id);
-    /**
-     * Restituisce tutte le pratiche nell'ACK_STORAGE.
-     *
-     * @return lista di tutte le pratiche
-     * @since 0.0.1
-     */
-    List<Pratica> findAllPratiche();
+    List<Pratica> findAllPraticheForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount,
+            int aLimit,
+            int aOffset);
 
     /**
-     * Restituisce le pratiche sospese nell'ACK_STORAGE.
+     * Conta tutte le pratiche
+     * per un responsabile ufficio.
      *
-     * @return lista delle pratiche con lo stato "SOSPESA"
-     * @since 0.0.1
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
      */
-    List<Pratica> findPraticheSospese();
+    Long countAllPraticheForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount);
+    /**
+     * Restituisce le pratiche sospese
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
+     */
+    List<Pratica> findPraticheSospeseForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount,
+            int aLimit,
+            int aOffset);
 
     /**
-     * Restituisce le pratiche da valutare (in attesa) nell'ACK_STORAGE.
+     * Conta le pratiche sospese
+     * per un responsabile ufficio.
      *
-     * @return lista delle pratiche con lo stato "IN_ATTESA"
-     * @since 0.0.1
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
      */
-    List<Pratica> findPraticheDaValutare();
+    Long countPraticheSospeseForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount);
+    /**
+     * Restituisce le pratiche da valutare (in attesa)
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
+     */
+    List<Pratica> findPraticheDaValutareForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount,
+            int aLimit,
+            int aOffset);
 
     /**
-     * Restituisce le pratiche chiuse (approvate o bocciate) nell'ACK_STORAGE.
+     * Conta le pratiche da valutare (in attesa)
+     * per un responsabile ufficio.
      *
-     * @return lista delle pratiche con lo stato "APPROVATA" o "BOCCIATA"
-     * @since 0.0.1
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
      */
-    List<Pratica> findPraticheChiuse();
+    Long countPraticheDaValutareForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount);
+    /**
+     * Restituisce le pratiche chiuse (approvate o bocciate)
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.1.2
+     */
+    List<Pratica> findPraticheChiuseForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount,
+            int aLimit,
+            int aOffset);
 
+    /**
+     * Restituisce le pratiche chiuse (approvate o bocciate)
+     * per un responsabile ufficio.
+     *
+     * @param aAccount del responsabile ufficio
+     * @return numero delle pratiche
+     * @since 0.2.1
+     */
+    Long countPraticheChiuseForResponsabileUfficio(
+            AccountResponsabileUfficio aAccount);
+
+    /**
+     * Restituisce tutte le pratiche nel database di uno studente.
+     *
+     * @param aAccount dello studente
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche
+     * @since 0.2.1
+     */
+    List<Pratica> findAllPraticheForStudente(
+            AccountStudente aAccount,
+            int aLimit,
+            int aOffset);
+    /**
+     * Conta tutte le pratiche nel database di uno studente.
+     *
+     * @param aAccount dello studente
+     * @return numero delle pratiche
+     * @since 0.2.1
+     */
+    Long countAllPraticheForStudente(
+            AccountStudente aAccount);
     /**
      * Restituisce le pratiche di un'attestazione di attività lavorativa.
      *
-     * @return lista delle pratiche di attività lavorativa
+     * @return lista delle pratiche
      * @since 0.0.1
      */
     List<Pratica> findPraticheAttivitaLavorativa();
@@ -74,7 +159,7 @@ public interface ACKStorageFacade {
     /**
      * Restituisce le pratiche di un'attestazione di lingua inglese.
      *
-     * @return lista delle pratiche di lingua inglese
+     * @return lista delle pratiche
      * @since 0.0.1
      */
     List<Pratica> findPraticheLinguaInglese();

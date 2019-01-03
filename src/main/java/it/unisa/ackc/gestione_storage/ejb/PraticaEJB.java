@@ -1,8 +1,9 @@
 package it.unisa.ackc.gestione_storage.ejb;
 
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
-import it.unisa.ackc.gestione_pratiche.entity.Pratica.Tipo;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica.Stato;
+import it.unisa.ackc.gestione_pratiche.entity.Pratica.Tipo;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -13,7 +14,7 @@ import java.util.List;
 
 /**
  * EJB relativo alla pratica.
- * @version 0.1.1
+ * @version 0.2.1
  */
 @Stateless
 @LocalBean
@@ -72,7 +73,7 @@ public class PraticaEJB {
     }
     /**
      * Trova tutte le pratica nel database di un tipo.
-     * @param  aTipo delle pratiche da trovare
+     * @param aTipo delle pratiche da trovare
      * @return lista delle pratiche trovate
      * @since 0.0.1
      */
@@ -83,8 +84,8 @@ public class PraticaEJB {
         return query.getResultList();
     }
     /**
-     * Trova tutte le pratica nel database di un tipo.
-     * @param  aStato delle pratiche da trovare
+     * Trova tutte le pratica nel database in uno stato.
+     * @param aStato delle pratiche da trovare
      * @return lista delle pratiche trovate
      * @since 0.1.1
      */
@@ -95,13 +96,142 @@ public class PraticaEJB {
         return query.getResultList();
     }
     /**
-     * Trova tutte le pratiche nel database.
-     * @return lista di tutte le pratiche
-     * @since 0.0.1
+     * Trova tutte le pratica nel database con dei tipi e in uno stato.
+     * @param aStato delle pratiche da trovare
+     * @param aTipi delle pratiche da trovare
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche trovate
+     * @since 0.1.1
      */
-    public List<Pratica> findAll() {
+    public List<Pratica> findByStatoByTipi(
+            final Stato aStato,
+            final List<Tipo> aTipi,
+            final int aLimit,
+            final int aOffset) {
         TypedQuery<Pratica> query =
-                em.createNamedQuery("findAllPratiche", Pratica.class);
+                em.createNamedQuery("findPraticheByStatoByTipi", Pratica.class);
+        query.setParameter("stato", aStato);
+        query.setParameter("listaTipi", aTipi);
+        query.setFirstResult(aOffset);
+        query.setMaxResults(aLimit);
         return query.getResultList();
+    }
+    /**
+     * Conta tutte le pratica nel database con dei tipi e in uno stato.
+     * @param aStato delle pratiche da contare
+     * @param aTipi delle pratiche da contare
+     * @return lista di tutte le pratiche
+     * @since 0.2.1
+     */
+    public Long countByStatoByTipi(
+            final Stato aStato,
+            final List<Tipo> aTipi) {
+        TypedQuery<Long> query =
+                em.createNamedQuery("countPraticheByStatoByTipi", Long.class);
+        query.setParameter("listaStati", aStato);
+        query.setParameter("listaTipi", aTipi);
+        return query.getSingleResult();
+    }
+    /**
+     * Trova tutte le pratica nel database con dei tipi e in degli stati.
+     * @param aStati delle pratiche da trovare
+     * @param aTipi delle pratiche da trovare
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista delle pratiche trovate
+     * @since 0.1.1
+     */
+    public List<Pratica> findByStatiByTipi(
+            final List<Stato> aStati,
+            final List<Tipo> aTipi,
+            final int aLimit,
+            final int aOffset) {
+        TypedQuery<Pratica> query =
+                em.createNamedQuery("findPraticheByStatiByTipi", Pratica.class);
+        query.setParameter("listaStati", aStati);
+        query.setParameter("listaTipi", aTipi);
+        query.setFirstResult(aOffset);
+        query.setMaxResults(aLimit);
+        return query.getResultList();
+    }
+    /**
+     * Conta tutte le pratica nel database con dei tipi e in degli stati.
+     * @param aStati delle pratiche da contare
+     * @param aTipi delle pratiche da contare
+     * @return lista di tutte le pratiche
+     * @since 0.2.1
+     */
+    public Long countByStatiByTipi(
+            final List<Stato> aStati,
+            final List<Tipo> aTipi) {
+        TypedQuery<Long> query =
+                em.createNamedQuery("countPraticheByStatiByTipi", Long.class);
+        query.setParameter("listaStati", aStati);
+        query.setParameter("listaTipi", aTipi);
+        return query.getSingleResult();
+    }
+    /**
+     * Trova tutte le pratiche nel database con dei tipi.
+     * @param aTipi delle pratiche da trovare
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista di tutte le pratiche
+     * @since 0.1.1
+     */
+    public List<Pratica> findAllByTipi(
+            final List<Tipo> aTipi,
+            final int aLimit,
+            final int aOffset) {
+        TypedQuery<Pratica> query =
+                em.createNamedQuery("findAllPraticheByTipi", Pratica.class);
+        query.setParameter("listaTipi", aTipi);
+        query.setFirstResult(aOffset);
+        query.setMaxResults(aLimit);
+        return query.getResultList();
+    }
+    /**
+     * Conta tutte le pratiche nel database con dei tipi.
+     * @param aTipi delle pratiche da contare
+     * @return lista di tutte le pratiche
+     * @since 0.2.1
+     */
+    public Long countAllByTipi(final List<Tipo> aTipi) {
+        TypedQuery<Long> query =
+                em.createNamedQuery("countAllPraticheByTipi", Long.class);
+        query.setParameter("listaTipi", aTipi);
+        return query.getSingleResult();
+    }
+    /**
+     * Trova tutte le pratiche nel database di uno studente.
+     * @param aAccount dello studente
+     * @param aLimit limite elementi per la pagina restituita
+     * @param aOffset offset di elementi della pagina restituita
+     * @return lista di tutte le pratiche
+     * @since 0.2.1
+     */
+    public List<Pratica> findAllForStudente(
+            final AccountStudente aAccount,
+            final int aLimit,
+            final int aOffset) {
+        TypedQuery<Pratica> query =
+                em.createNamedQuery("findAllPraticheByStudente", Pratica.class);
+        query.setParameter("account", aAccount);
+        query.setFirstResult(aOffset);
+        query.setMaxResults(aLimit);
+        return query.getResultList();
+    }
+    /**
+     * Conta tutte le pratiche nel database di uno studente.
+     * @param aAccount dello studente
+     * @return lista di tutte le pratiche
+     * @since 0.2.1
+     */
+    public Long countAllForStudente(
+            final AccountStudente aAccount) {
+        TypedQuery<Long> query =
+                em.createNamedQuery("countAllPraticheByStudente", Long.class);
+        query.setParameter("account", aAccount);
+        return query.getSingleResult();
     }
 }
