@@ -222,4 +222,66 @@ public class ModificaProfiloStudenteControl extends HttpServletWithCheck {
         request.setAttribute("successful", SUCCESSFUL_MESSAGE);
         request.getRequestDispatcher(SUCCESSFUL_JSP).forward(request, response);
     }
+
+    /**
+     * Valida i parametri della richiesta.
+     *
+     * @param request contenente i parametri da validare
+     * @since 0.0.1
+     */
+    @Override
+    public void valida(final HttpServletRequest request) {
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_EMAIL
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_COGNOME
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_NOME
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_PASSWORD
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_SESSO
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_TELEFONO
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_LUOGO_DI_NASCITA
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_DATA_DI_NASCITA
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_INDIRIZZO_DI_RESIDENZA
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_NUMERO_CIVICO
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_CAP
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_CITTA
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_PAESE
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_MATRICOLA
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_TIPOLOGIA_DI_LAUREA
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_CORSO_DI_LAUREA
+        );
+        addCondizione(
+                ModificaProfiloStudenteConvalida.VALIDA_ANNO_DI_IMMATRICOLAZIONE
+        );
+        super.valida(request);
+    }
 }

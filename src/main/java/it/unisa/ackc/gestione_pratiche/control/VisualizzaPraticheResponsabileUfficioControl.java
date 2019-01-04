@@ -3,12 +3,11 @@ package it.unisa.ackc.gestione_pratiche.control;
 import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
-import it.unisa.ackc.gestione_utenti.entity.Account;
+import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,17 +16,42 @@ import java.util.List;
 /**
  * Si occupa della visualizzazione e filtraggio delle pratiche per un responsabile ufficio.
  *
- * @version 0.0.1
+ * @version 0.0.2
  */
 @WebServlet("/gestione-pratiche/visualizza-pratiche-responsabile-ufficio")
 public class VisualizzaPraticheResponsabileUfficioControl extends HttpServletWithCheck {
-    private static final String FILTRO_PARAMETRO = "filtro";
-    private static final String PAGINA_PARAMETRO = "pagina";
+    /**
+     * Macro del parametro filtro.
+     */
+    static final String FILTRO_PARAMETRO = "filtro";
+    /**
+     * Macro del parametro pagina.
+     */
+    static final String PAGINA_PARAMETRO = "pagina";
+    /**
+     * Macro della jsp della lista di pratiche.
+     */
     private static final String PRATICHE_JSP = "";
-    private static final int NESSUN_FILTRO = 0;
-    private static final int PRATICHE_DA_VALUTARE = 1;
-    private static final int PRATICHE_SOSPESE = 2;
-    private static final int PRATICHE_CHIUSE = 3;
+    /**
+     * Macro del filtro nessun_filtro.
+     */
+    static final int NESSUN_FILTRO = 0;
+    /**
+     * Macro del filtro pratiche_da_valutare.
+     */
+    static final int PRATICHE_DA_VALUTARE = 1;
+    /**
+     * Macro del filtro pratiche_sospese.
+     */
+    static final int PRATICHE_SOSPESE = 2;
+    /**
+     * Macro del filtro pratiche_chiuse.
+     */
+    static final int PRATICHE_CHIUSE = 3;
+    /**
+     * Macro del limite di pratiche in una pagina.
+     */
+    static final int LIMITE_PAGINA = 10;
 
     /**
      * Istanza dello storage facade.
@@ -47,24 +71,40 @@ public class VisualizzaPraticheResponsabileUfficioControl extends HttpServletWit
             final HttpServletResponse response
     ) throws ServletException, IOException {
         valida(request);
-        Account account = (Account)
+        AccountResponsabileUfficio account = (AccountResponsabileUfficio)
                 request.getSession().getAttribute("account");
         int filtro = Integer.parseInt(request.getParameter(FILTRO_PARAMETRO));
         int pagina = Integer.parseInt(request.getParameter(PAGINA_PARAMETRO));
-        List<Pratica> praticheResponsabileUfficio = null;
+        List<Pratica> praticheResponsabileUfficio;
         switch (filtro) {
             case PRATICHE_SOSPESE:
-                //TODO praticheStudente = ACKStorageFacade.getPraticheByResponsabileUfficioSospese(account, pagina)
+                praticheResponsabileUfficio =
+                        ackStorage.findPraticheSospeseForResponsabileUfficio(
+                                account,
+                                LIMITE_PAGINA,
+                                (pagina - 1) * LIMITE_PAGINA);
                 break;
             case PRATICHE_DA_VALUTARE:
-                //TODO praticheStudente = ACKStorageFacade.getPraticheByResponsabileUfficioDaValutare(account, pagina)
+                praticheResponsabileUfficio =
+                        ackStorage.findPraticheDaValutareForResponsabileUfficio(
+                                account,
+                                LIMITE_PAGINA,
+                                (pagina - 1) * LIMITE_PAGINA);
                 break;
             case PRATICHE_CHIUSE:
-                //TODO praticheStudente = ACKStorageFacade.getPraticheByResponsabileUfficioChiuse(account, pagina)
+                praticheResponsabileUfficio =
+                        ackStorage.findPraticheChiuseForResponsabileUfficio(
+                                account,
+                                LIMITE_PAGINA,
+                                (pagina - 1) * LIMITE_PAGINA);
                 break;
             case NESSUN_FILTRO:
             default:
-                //TODO praticheStudente = ACKStorageFacade.getPraticheByResponsabileUfficio(account, pagina)
+                praticheResponsabileUfficio =
+                        ackStorage.findAllPraticheForResponsabileUfficio(
+                                account,
+                                LIMITE_PAGINA,
+                                (pagina - 1) * LIMITE_PAGINA);
         }
         request.setAttribute("pratiche", praticheResponsabileUfficio);
         request.getRequestDispatcher(PRATICHE_JSP).forward(request, response);
@@ -78,7 +118,12 @@ public class VisualizzaPraticheResponsabileUfficioControl extends HttpServletWit
      */
     @Override
     public void valida(final HttpServletRequest request) {
-        //TODO aggiungi convalida
+        addCondizione(
+                VisualizzaPraticheResponsabileUfficioConvalida.VALIDA_FILTRO
+        );
+        addCondizione(
+                VisualizzaPraticheResponsabileUfficioConvalida.VALIDA_PAGINA
+        );
         super.valida(request);
     }
 }

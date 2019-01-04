@@ -3,7 +3,7 @@ package it.unisa.ackc.gestione_pratiche.control;
 import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
-import it.unisa.ackc.gestione_utenti.entity.Account;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -20,8 +20,18 @@ import java.util.List;
  */
 @WebServlet("/gestione-pratiche/visualizza-pratiche-studente")
 public class VisualizzaPraticheStudenteControl extends HttpServletWithCheck {
+    /**
+     * Macro della jsp della lista di pratiche.
+     */
     private static final String PRATICHE_JSP = "";
-    private static final String PAGINA_PARAMETRO = "pagina";
+    /**
+     * Macro del parametro pagina.
+     */
+    static final String PAGINA_PARAMETRO = "pagina";
+    /**
+     * Macro del limite di pratiche in una pagina.
+     */
+    static final int LIMITE_PAGINA = 10;
 
     /**
      * Istanza dello storage facade.
@@ -30,7 +40,8 @@ public class VisualizzaPraticheStudenteControl extends HttpServletWithCheck {
     private ACKStorageFacadeEJB ackStorage;
 
     /**
-     * Recupera le informazioni relative alla lista di pratiche per uno studente.
+     * Recupera
+     * le informazioni relative alla lista di pratiche per uno studente.
      *
      * @since 0.0.1
      */
@@ -39,12 +50,15 @@ public class VisualizzaPraticheStudenteControl extends HttpServletWithCheck {
             final HttpServletRequest request,
             final HttpServletResponse response
     ) throws ServletException, IOException {
-        Account account = (Account)
+        AccountStudente account = (AccountStudente)
                 request.getSession().getAttribute("account");
         int pagina = Integer.parseInt(request.getParameter(PAGINA_PARAMETRO));
-        //TODO controllo sui dati
+        valida(request);
         List<Pratica> praticheStudente = null;
-        //TODO praticheStudente = ACKStorageFacade.getPraticheByStudente(account, pagina)
+        praticheStudente = ackStorage.findAllPraticheForStudente(
+                account,
+                LIMITE_PAGINA,
+                (pagina - 1) * LIMITE_PAGINA);
         request.setAttribute("pratiche", praticheStudente);
         request.getRequestDispatcher(PRATICHE_JSP).forward(request, response);
     }
@@ -57,7 +71,9 @@ public class VisualizzaPraticheStudenteControl extends HttpServletWithCheck {
      */
     @Override
     public void valida(final HttpServletRequest request) {
-        //TODO aggiungi convalida
+        addCondizione(
+                VisualizzaPraticheStudenteConvalida.VALIDA_PAGINA
+        );
         super.valida(request);
     }
 }

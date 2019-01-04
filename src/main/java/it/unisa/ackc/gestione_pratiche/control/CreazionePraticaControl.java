@@ -4,6 +4,7 @@ import it.unisa.ackc.HttpServletWithCheck;
 import it.unisa.ackc.gestione_pratiche.entity.Attestato;
 import it.unisa.ackc.gestione_pratiche.entity.Domanda;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
+import it.unisa.ackc.gestione_pratiche.entity.Pratica.Tipo;
 import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
@@ -39,6 +40,11 @@ public class CreazionePraticaControl extends HttpServletWithCheck {
      */
     static final String ATTESTATO_PARAMETRO =
             "attestato";
+    /**
+     * Macro del tipo della pratica.
+     */
+    static final String TIPO_PARAMETRO =
+            "tipo";
     /**
      * Macro della jsp di successo della creazione.
      */
@@ -78,6 +84,7 @@ public class CreazionePraticaControl extends HttpServletWithCheck {
         Account account = (Account)
                 request.getSession().getAttribute("account");
         String messaggio = request.getParameter(MESSAGGIO_PARAMETRO);
+        String tipo = request.getParameter(TIPO_PARAMETRO);
         Part domandaPart = request.getPart(DOMANDA_PARAMETRO);
         Part attestatoPart = request.getPart(ATTESTATO_PARAMETRO);
         String uploadPath = getServletContext().getRealPath("")
@@ -106,7 +113,8 @@ public class CreazionePraticaControl extends HttpServletWithCheck {
         Pratica pratica = new Pratica(
                 domanda,
                 attestato,
-                messaggio
+                messaggio,
+                Tipo.valueOf(tipo)
         );
         ((AccountStudente) account).addPratica(pratica);
         ackStorage.updateAccount(account);

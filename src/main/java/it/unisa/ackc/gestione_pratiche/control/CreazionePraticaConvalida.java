@@ -1,5 +1,6 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
+import it.unisa.ackc.gestione_pratiche.entity.Pratica.Tipo;
 import it.unisa.ackc.validator.CondizioneConvalida;
 import it.unisa.ackc.validator.Notifica;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
 /**
  * Si occupa della convalida della creazione della pratica.
  *
- * @version 0.0.1
+ * @version 0.1.1
  */
 final class CreazionePraticaConvalida {
     /**
@@ -46,7 +47,6 @@ final class CreazionePraticaConvalida {
             }
             return  notifica;
         };
-
     /**
      * Convalida la domanda.
      *
@@ -105,4 +105,32 @@ final class CreazionePraticaConvalida {
             }
             return  notifica;
         };
+    /**
+     * Convalida il tipo della pratica.
+     *
+     * @since 0.1.1
+     */
+    static final CondizioneConvalida VALIDA_TIPO =
+            request -> {
+                Notifica notifica = new Notifica();
+                String tipo = request.getParameter(
+                        CreazionePraticaControl.TIPO_PARAMETRO
+                );
+                if (tipo == null || tipo.trim().equals("")) {
+                    notifica.addError(
+                            "Il tipo non è stato indicato"
+                    );
+                } else {
+                    try {
+                        Tipo.valueOf(tipo);
+                    } catch (IllegalArgumentException e) {
+                        notifica.addError(
+                                "Il tipo della pratica indicato"
+                                        + "non è corretto"
+                        );
+                    }
+                }
+                return  notifica;
+            };
+
 }

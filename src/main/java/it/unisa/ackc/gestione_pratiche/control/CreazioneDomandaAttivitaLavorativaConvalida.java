@@ -213,7 +213,8 @@ final class CreazioneDomandaAttivitaLavorativaConvalida {
      * Controlla se un numero è positivo e al più di due cifre.
      *
      * @param number che si vuole controllare
-     * @return true se number è positivo a due cifre, false altrimenti
+     * @return true se number è positivo con al più due cifre,
+     * false altrimenti
      * @since 0.0.1
      */
     private static boolean isNumeroUnaDueCifre(final Integer number) {

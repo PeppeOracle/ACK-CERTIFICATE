@@ -50,8 +50,10 @@ public class AutenticazioneUtenteControl extends HttpServletWithCheck {
             final HttpServletResponse response
     ) throws ServletException, IOException {
         valida(request);
-        String email = request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
-        String password = request.getParameter(AccountConvalida.PASSWORD_PARAMETRO);
+        String email =
+                request.getParameter(AccountConvalida.EMAIL_PARAMETRO);
+        String password =
+                request.getParameter(AccountConvalida.PASSWORD_PARAMETRO);
         Account account = ackStorage.findAccountByEmail(email);
         if (account != null && account.getPassword().equals(password)) {
             request.getSession(true).setAttribute("account", account);
@@ -66,11 +68,16 @@ public class AutenticazioneUtenteControl extends HttpServletWithCheck {
      * Valida i parametri della richiesta.
      *
      * @param request contenente i parametri da validare
-     * @since 0.1.1
+     * @since 0.0.1
      */
     @Override
     public void valida(final HttpServletRequest request) {
-        //TODO aggiungi convalida
+        addCondizione(
+                AccountConvalida.VALIDA_EMAIL
+        );
+        addCondizione(
+                AccountConvalida.VALIDA_PASSWORD
+        );
         super.valida(request);
     }
 }

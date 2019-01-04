@@ -1,7 +1,7 @@
 package it.unisa.ackc.gestione_utenti.control;
 
-import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.validator.CondizioneConvalida;
+import it.unisa.ackc.gestione_utenti.entity.Account.Sesso;
 import it.unisa.ackc.validator.Notifica;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Si occupa della convalida dell'account.
  *
- * @version 0.0.1
+ * @version 0.1.1
  */
-public class AccountConvalida {
+final class AccountConvalida {
     /**
      * Macro del parametro email.
      */
@@ -69,7 +69,7 @@ public class AccountConvalida {
             };
 
     /**
-     * Convalida del email.
+     * Convalida dell'email.
      *
      * @since 0.0.1
      */
@@ -79,21 +79,26 @@ public class AccountConvalida {
                 String email = request.getParameter(
                         AccountConvalida.EMAIL_PARAMETRO
                 );
-                if (email != null) {
-                    if (email.matches("[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {
-                        notifica.addError("Il formato dell'email " +
-                                "non è stato rispettato");
+                if (email == null || email.trim().equals("")) {
+                    notifica.addError(
+                            "Il sesso non è stato indicato"
+                    );
+                } else {
+                    if (!email.matches("\\w{18,64}$")) {
+                        notifica.addError("La lunghezza dell'email "
+                                + "deve compresa tra 18 e 64");
                     }
-                    if (email.matches("^[A-Z,a-z,0-9,-,.,_ ]{1,64}+[@studenti.unisa.it]+")) {
-                        notifica.addError("La lunghezza dell'email " +
-                                "deve compresa tra 1 e 64");
+                    if (!email.matches(
+                            "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {
+                        notifica.addError("Il formato dell'email "
+                                + "non è stato rispettato");
                     }
                 }
                 return  notifica;
             };
 
     /**
-     * Convalida del password.
+     * Convalida della password.
      *
      * @since 0.0.1
      */
@@ -103,14 +108,22 @@ public class AccountConvalida {
                 String password = request.getParameter(
                         AccountConvalida.PASSWORD_PARAMETRO
                 );
-                if (password != null) {
-                    if (password.matches("\\w{1,64}$")) {
-                        notifica.addError("La lunghezza della password " +
-                                "deve compresa tra 1 e 64");
+                if (password == null || password.trim().equals("")) {
+                    notifica.addError(
+                            "Il sesso non è stato indicato"
+                    );
+                } else {
+                    if (!password.matches("\\w{2,8}$")) {
+                        notifica.addError("La lunghezza della password "
+                                + "deve compresa tra 2 e 8");
                     }
-                    if (password.matches("[A-Z, a-z,']+")) {
-                        notifica.addError("Il formato della password " +
-                                "non è stato rispettato");
+                    if (!password.matches("[A-Z, a-z,0-9]+")) {
+                        notifica.addError("Il formato della password "
+                                + "non è stato rispettato");
+                    }
+                    if (containsLetteraENumero(password)) {
+                        notifica.addError("La password deve contenere almeno "
+                                + "una lettera e un numero");
                     }
                 }
                 return  notifica;
@@ -127,32 +140,19 @@ public class AccountConvalida {
                 String telefono = request.getParameter(
                         AccountConvalida.TELEFONO_PARAMETRO
                 );
-                if (telefono != null) {
-                    if (telefono.matches("\\w{9,10}$")) {
-                        notifica.addError("La lunghezza del telefono " +
-                                "deve compresa tra 9 e 10");
+                if (telefono == null || telefono.trim().equals("")) {
+                    notifica.addError(
+                            "Il sesso non è stato indicato"
+                    );
+                } else {
+                    if (!telefono.matches("\\w{9,10}$")) {
+                        notifica.addError("La lunghezza del telefono "
+                                + "deve compresa tra 9 e 10");
                     }
-                    if (telefono.matches("[0-9]+")) {
-                        notifica.addError("Il formato del telefono " +
-                                "non è stato rispettato");
+                    if (!telefono.matches("[0-9]+")) {
+                        notifica.addError("Il formato del telefono "
+                                + "non è stato rispettato");
                     }
-                }
-                return  notifica;
-            };
-
-    /**
-     * Convalida del ruolo.
-     *
-     * @since 0.0.1
-     */
-    public static final CondizioneConvalida VALIDA_RUOLO =
-            request -> {
-                Notifica notifica = new Notifica();
-                String ruolo = request.getParameter(
-                        AccountConvalida.RUOLO_PARAMETRO
-                );
-                if (ruolo != null) {
-                    //Controlli validazione
                 }
                 return  notifica;
             };
@@ -168,16 +168,17 @@ public class AccountConvalida {
                 String sesso = request.getParameter(
                         AccountConvalida.SESSO_PARAMETRO
                 );
-                if (sesso != null) {
-                    boolean found = false;
-                    for (Account.Sesso sessoAccount : Account.Sesso.values()) {
-                        if (sessoAccount.name().equals(sesso)) {
-                            found = true;
-                        }
-                    }
-                    if (!found) {
+                if (sesso == null || sesso.trim().equals("")) {
+                    notifica.addError(
+                            "Il sesso non è stato indicato"
+                    );
+                } else {
+                    try {
+                        Sesso.valueOf(sesso);
+                    } catch (IllegalArgumentException e) {
                         notifica.addError(
-                                "Il formato del sesso non è valido"
+                                "Il sesso indicato"
+                                        + "non è corretto"
                         );
                     }
                 }
@@ -185,25 +186,52 @@ public class AccountConvalida {
             };
 
     /**
-     *
-     * @param request
-     * @param nome
-     * @return
+     * Restituisce la notifica degli errori su una convalida del nome.
+     * @param request da cui prendere il parametro
+     * @param nome del parametro
+     * @return notifica
+     * @since 0.0.1
      */
-    private static Notifica validaNome(
+    static Notifica validaNome(
             final HttpServletRequest request, final String nome
     ) {
         Notifica notifica = new Notifica();
         String val = request.getParameter(nome);
-        if (val != null) {
-            if (val.matches("\\w{1,64}$")) {
-                notifica.addError("La lunghezza del " + nome +
-                        " deve compresa tra 1 e 64");
+        if (val == null || val.trim().equals("")) {
+            notifica.addError("Il " + nome
+                    + " non è stato indicato");
+        } else {
+            if (!val.matches("\\w{1,64}$")) {
+                notifica.addError("La lunghezza del " + nome
+                        + " deve essere compresa tra 1 e 64");
             }
-            if (val.matches("[A-Z, a-z,']+")) {
-                notifica.addError("Il formato del " + nome +
-                        " non è stato rispettato");
+            if (!val.matches("[A-Z, a-z,']+")) {
+                notifica.addError("Il formato del " + nome
+                        + " non è stato rispettato");
             }
         }
+        return notifica;
+    }
+
+    /**
+     * Controlla se la string contiene almeno una lettera e un numero.
+     * @param stringa da controllare
+     * @return true se la stringa contiene almeno
+     * una lettera e un numero,
+     * false altrimenti
+     * @since 0.1.1
+     */
+    private static boolean containsLetteraENumero(final String stringa) {
+        boolean digit = false;
+        boolean letter = false;
+        for (Character ch : stringa.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                letter = true;
+            }
+            if (Character.isDigit(ch)) {
+                digit = true;
+            }
+        }
+        return digit && letter;
     }
 }
