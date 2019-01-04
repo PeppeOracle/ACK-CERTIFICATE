@@ -1,35 +1,18 @@
-<%@ page import="it.unisa.ackc.gestione_pratiche.entity.DomandaLinguaInglese" %>
-<%@ page import="it.unisa.ackc.gestione_pratiche.entity.Attestato" %>
-<%@ page import="it.unisa.ackc.gestione_pratiche.entity.Pratica" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collection" %>
-<%@ page import="it.unisa.ackc.gestione_utenti.entity.AccountStudente" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Valuta pratica responsabile ufficio</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/global.css">
-
+    <%@ include file="WEB-INF/jspf/headMeta.jspf" %>
+    <title>Valuta pratica</title>
+    <%@ include file="WEB-INF/jspf/headLink.jspf" %>
 </head>
 <body>
 
-
 <!-- Navbar -->
-<jsp:include page="WEB-INF/jspf/navbarResponsabileUfficio.jspf"/>
+<%@ include file="WEB-INF/jspf/navbarResponsabileUfficio.jspf" %>
 
 <div class="container">
 
-    <br><br>
+    <br><h1>Valuta pratica</h1><br>
     <form>
         <div class="form-group">
             <label for="selectStatoPratica">Stato pratica *</label>
@@ -54,10 +37,10 @@
 </div>
 
 <!-- Footer -->
-<jsp:include page="WEB-INF/jspf/footer.jspf"/>
+<%@ include file="WEB-INF/jspf/footer.jspf" %>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<jsp:include page="WEB-INF/jspf/bootstapScript.jspf"/>
+<%@ include file="WEB-INF/jspf/bootstapScript.jspf" %>
 
 </body>
 </html>
