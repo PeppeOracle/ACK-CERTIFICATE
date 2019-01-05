@@ -1,4 +1,4 @@
-package it.unisa.ackc_v2.validazione;
+package it.unisa.ackc_v2.form;
 
 import it.unisa.ackc.validator.Notifica;
 import it.unisa.ackc_v2.form.FormDati;

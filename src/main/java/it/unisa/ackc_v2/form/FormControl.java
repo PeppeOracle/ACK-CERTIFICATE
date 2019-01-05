@@ -4,7 +4,6 @@ import it.unisa.ackc.validator.Notifica;
 import it.unisa.ackc_v2.http.Control;
 import it.unisa.ackc_v2.http.Risposta;
 import it.unisa.ackc_v2.http.Sessione;
-import it.unisa.ackc_v2.validazione.CondizioneConvalida;
 
 import java.util.List;
 
