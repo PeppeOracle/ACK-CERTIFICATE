@@ -15,6 +15,13 @@ import java.util.List;
  */
 @Local
 public interface ACKStorageFacade {
+    /**
+     * Stringa di lookup per lo storage.
+     */
+    String LOOKUP =
+            "java:global/ACK-CERTIFICATE/"
+                    + "ACKStorageFacadeEJB!it.unisa.ackc."
+                    + "gestione_storage.ACKStorageFacade";
 
     /**
      * Aggiorna una pratica nel database.

@@ -34,12 +34,12 @@ public class Attestato implements Serializable {
      * Data di aggiornamento dell'attestato.
      */
     private Date dataAggiornamento;
-
     /**
      * Pratica che contiene l'attestato.
      */
     @OneToOne(mappedBy = "attestato")
     private Pratica pratica;
+
     /**
      * Permette di istanziare
      * un oggetto di tipo <code>Attestato</code>.
