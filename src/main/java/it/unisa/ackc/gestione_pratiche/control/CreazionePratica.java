@@ -29,12 +29,12 @@ public class CreazionePratica extends FormControl {
      * Macro del parametro domanda.
      */
     public static final String DOMANDA_PARAMETRO =
-            "domanda";
+            "fileDomanda";
     /**
      * Macro del parametro attestato.
      */
     public static final String ATTESTATO_PARAMETRO =
-            "attestato";
+            "fileAttestato";
     /**
      * Macro del tipo della pratica.
      */

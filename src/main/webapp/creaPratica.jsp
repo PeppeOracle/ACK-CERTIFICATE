@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <label for="textareaMessaggio">Messaggio</label>
-            <textarea class="form-control" id="textareaMessaggio" rows="3"></textarea>
+            <textarea name="messaggio" class="form-control" id="textareaMessaggio" rows="3"></textarea>
         </div>
 
         <br><br>

@@ -24,7 +24,7 @@ public class CreazioneDomandaLinguaInglese extends FormControl {
      * Macro del parametro ente.
      */
     public static final String ENTE_PARAMETRO =
-            "ente";
+            "enteCertificatore";
     /**
      * Macro del parametro grade.
      */
@@ -34,7 +34,7 @@ public class CreazioneDomandaLinguaInglese extends FormControl {
      * Macro del parametro livello_cefr.
      */
     public static final String LIVELLO_CEFR_PARAMETRO =
-            "livello_cefr";
+            "cefr";
     /**
      * Macro del nome del file.
      */

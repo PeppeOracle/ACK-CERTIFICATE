@@ -19,7 +19,7 @@ public class ValutazionePratica extends FormControl {
     /**
      * Macro del parametro stato della pratica.
      */
-    public static final String STATO_PARAMETRO = "stato";
+    public static final String STATO_PARAMETRO = "statoPratica";
     /**
      * Macro del parametro messaggio.
      */

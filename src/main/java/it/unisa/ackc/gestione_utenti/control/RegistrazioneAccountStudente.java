@@ -37,22 +37,22 @@ public class RegistrazioneAccountStudente extends FormControl {
      * Macro del parametro data di nascita.
      */
     public static final String DATA_DI_NASCITA_PARAMETRO =
-            "data_di_nascita";
+            "dataNascita";
     /**
      * Macro del parametro luogo di nascita.
      */
     public static final String LUOGO_DI_NASCITA_PARAMETRO =
-            "luogo_di_nascita";
+            "luogoNascita";
     /**
      * Macro del parametro indirizzo di residenza.
      */
     public static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO =
-            "indirizzo_di_residenza";
+            "indirizzo";
     /**
      * Macro del parametro numero civico.
      */
     public static final String NUMERO_CIVICO_PARAMETRO =
-            "numero_civico";
+            "numeroCivico";
     /**
      * Macro del parametro cap.
      */
@@ -69,17 +69,17 @@ public class RegistrazioneAccountStudente extends FormControl {
      * Macro del parametro tipologia di laurea.
      */
     public static final String TIPOLOGIA_DI_LAUREA_PARAMETRO =
-            "tipologia_di_laurea";
+            "tipologiaLaurea";
     /**
      * Macro del parametro corso di laurea.
      */
     public static final String CORSO_DI_LAUREA_PARAMETRO =
-            "corso_di_laurea";
+            "corsoLaurea";
     /**
      * Macro del parametro anno di immatricolazione.
      */
     public static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO =
-            "anno_di_immatricolazione";
+            "annoImmatricolazione";
     /**
      * Istanza dello storage facade.
      */

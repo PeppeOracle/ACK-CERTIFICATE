@@ -34,12 +34,12 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
     /**
      * Macro del parametro numero stanza.
      */
-    public static final String NUMERO_STANZA_PARAMETRO = "numero_stanza";
+    public static final String NUMERO_STANZA_PARAMETRO = "numeroStanza";
     /**
      * Macro del parametro tipologia pratiche.
      */
     public static final String TIPOLOGIA_PRATICHE_PARAMETRO =
-            "tipologia_pratiche";
+            "tipologiaPratica";
     /**
      * Macro della jsp di successo della registrazione responsabile ufficio.
      */

@@ -20,7 +20,7 @@ public class VisualizzaPraticheStudente extends FormControl {
     /**
      * Macro della jsp della lista di pratiche.
      */
-    private static final String PRATICHE_JSP = "";
+    private static final String PRATICHE_JSP = "gestionePraticheStudente.jsp";
     /**
      * Macro del parametro pagina.
      */

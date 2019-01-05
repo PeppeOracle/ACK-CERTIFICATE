@@ -26,20 +26,20 @@ public class ModificaProfiloStudente extends FormControl {
     /**
      * Macro del parametro data di nascita.
      */
-    private static final String DATA_DI_NASCITA_PARAMETRO = "data_di_nascita";
+    private static final String DATA_DI_NASCITA_PARAMETRO = "dataNascita";
     /**
      * Macro del parametro luogo di nascita.
      */
-    private static final String LUOGO_DI_NASCITA_PARAMETRO = "luogo_di_nascita";
+    private static final String LUOGO_DI_NASCITA_PARAMETRO = "luogoNascita";
     /**
      * Macro del parametro indirizzo di residenza.
      */
     private static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO =
-            "indirizzo_di_residenza";
+            "indirizzo";
     /**
      * Macro del parametro numero civico.
      */
-    private static final String NUMERO_CIVICO_PARAMETRO = "numero_civico";
+    private static final String NUMERO_CIVICO_PARAMETRO = "numeroCivico";
     /**
      * Macro del parametro cap.
      */
@@ -56,20 +56,20 @@ public class ModificaProfiloStudente extends FormControl {
      * Macro del parametro tipologia di laurea.
      */
     private static final String TIPOLOGIA_DI_LAUREA_PARAMETRO =
-            "tipologia_di_laurea";
+            "tipologiaLaurea";
     /**
      * Macro del parametro corso di laurea.
      */
-    private static final String CORSO_DI_LAUREA_PARAMETRO = "corso_di_laurea";
+    private static final String CORSO_DI_LAUREA_PARAMETRO = "corsoLaurea";
     /**
      * Macro del parametro anno di immatricolazione.
      */
     private static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO =
-            "anno_di_immatricolazione";
+            "annoImmatricolazione";
     /**
      * Macro della jsp della modifica del profilo.
      */
-    private static final String MODIFICA_JSP = "modifica_jsp";
+    private static final String MODIFICA_JSP = "gestioneProfiloStudente.jsp";
     /**
      * Macro della jsp di successo della valutazione.
      */

@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label for="textareaMessaggio">Messaggio</label>
-            <textarea class="form-control" id="textareaMessaggio" rows="5"></textarea>
+            <textarea name="messaggio" class="form-control" id="textareaMessaggio" rows="5"></textarea>
         </div>
 
         <small class="form-text text-muted">I campi contrassegnati con * sono obbligatori.</small>

@@ -26,7 +26,7 @@ public final class GestionePratiche {
      * Macro del parametro numero_cfu.
      */
     public static final String NUMERO_CFU_PARAMETRO =
-            "numero_cfu";
+            "numeroCfu";
     /**
      * Macro del parametro identificativo della pratica.
      */

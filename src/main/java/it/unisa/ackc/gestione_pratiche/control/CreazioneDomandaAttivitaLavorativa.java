@@ -30,7 +30,7 @@ public class CreazioneDomandaAttivitaLavorativa extends FormControl {
     /**
      * Macro del parametro indirizzo_sede.
      */
-    public static final String INDIRIZZO_SEDE_PARAMETRO = "indirizzo_sede";
+    public static final String INDIRIZZO_SEDE_PARAMETRO = "indirizzoSede";
     /**
      * Macro del parametro profilo.
      */
@@ -40,7 +40,7 @@ public class CreazioneDomandaAttivitaLavorativa extends FormControl {
      * Macro del parametro tipo_di_contratto.
      */
     public static final String TIPO_CONTRATTO_PARAMETRO =
-            "tipo_di_contratto";
+            "tipoContratto";
     /**
      * Macro del parametro periodo.
      */
@@ -50,7 +50,7 @@ public class CreazioneDomandaAttivitaLavorativa extends FormControl {
      * Macro del parametro ore svolte.
      */
     public static final String ORE_SVOLTE_PARAMETRO =
-            "ore_svolte";
+            "oreSvolte";
     /**
      * Oggetto DateFormat per il parse delle date.
      */
