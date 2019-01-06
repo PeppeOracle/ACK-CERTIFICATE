@@ -26,12 +26,20 @@ public interface ACKStorageFacade {
     /**
      * Aggiorna una pratica nel database.
      *
-     * @param pratica da aggiornare
+     * @param aPratica da aggiornare
      * @return pratica aggiornata
      * @since 0.0.1
      */
-    Pratica updatePratica(Pratica pratica);
+    Pratica updatePratica(Pratica aPratica);
 
+    /**
+     * Restituisce la pratica con un  dato id.
+     *
+     * @param aId della pratica da ottenere
+     * @return account
+     * @since 0.0.1
+     */
+    Pratica findPraticaById(Long aId);
     /**
      * Restituisce tutte le pratiche
      * per un responsabile ufficio.
@@ -173,25 +181,25 @@ public interface ACKStorageFacade {
     /**
      * Controlla la presenza di un account nell'ACK_STORAGE.
      *
-     * @param email dell'account di cui voglio controllare la presenza
+     * @param aEmail dell'account di cui voglio controllare la presenza
      * @return true se l'account è presente, false altrimenti
      * @since 0.0.1
      */
-    boolean containsAccount(String email);
+    boolean containsAccount(String aEmail);
 
     /**
      * Restituisce l'account con una data email.
      *
-     * @param email dell'account che voglio ottenere
+     * @param aEmail dell'account da ottenere
      * @return account
      * @since 0.0.1
      */
-    Account findAccountByEmail(String email);
+    Account findAccountByEmail(String aEmail);
 
     /**
      * Restituisce l'account con un  dato id.
      *
-     * @param id dell'account che voglio ottenere
+     * @param id dell'account da ottenere
      * @return account
      * @since 0.0.1
      */

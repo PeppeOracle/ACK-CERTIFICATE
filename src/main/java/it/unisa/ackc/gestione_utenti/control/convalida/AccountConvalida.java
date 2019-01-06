@@ -83,9 +83,9 @@ public final class AccountConvalida {
                             "Il sesso non è stato indicato"
                     );
                 } else {
-                    if (!email.matches("\\w{18,64}$")) {
+                    if (!email.matches("\\w{19,64}$")) {
                         notifica.aggiungiErrore("La lunghezza dell'email "
-                                + "deve compresa tra 18 e 64");
+                                + "deve compresa tra 19 e 64");
                     }
                     if (!email.matches(
                             "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {

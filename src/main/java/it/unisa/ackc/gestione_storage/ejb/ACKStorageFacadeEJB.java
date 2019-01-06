@@ -53,6 +53,18 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     }
 
     /**
+     * Restituisce la pratica con un  dato id.
+     *
+     * @param id della pratica da ottenere
+     * @return account
+     * @since 0.0.1
+     */
+    @Override
+    public Pratica findPraticaById(final Long id) {
+        return praticaEJB.findById(id);
+    }
+
+    /**
      * Restituisce tutte le pratiche
      * per un responsabile ufficio.
      *
@@ -278,7 +290,7 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     /**
      * Restituisce l'account con una data email.
      *
-     * @param aEmail dell'account che voglio ottenere
+     * @param aEmail dell'account da ottenere
      * @return account
      * @since 0.0.1
      */
@@ -290,7 +302,7 @@ public class ACKStorageFacadeEJB implements ACKStorageFacade {
     /**
      * Restituisce l'account con un  dato id.
      *
-     * @param aId dell'account che voglio ottenere
+     * @param aId dell'account da ottenere
      * @return account
      * @since 0.0.1
      */

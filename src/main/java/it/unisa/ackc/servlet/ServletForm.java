@@ -15,7 +15,7 @@ import java.util.Map;
  * Astrazione di una servlet che espone un servizio di gestione
  * di una form.
  */
-public abstract class ServletForm extends Servlet<FormControl> {
+public abstract class   ServletForm extends Servlet<FormControl> {
     /**
      * Chiama il metodo sottometttiForm dell'oggetto indicato.
      *
