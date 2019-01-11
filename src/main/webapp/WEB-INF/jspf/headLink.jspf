@@ -3,4 +3,4 @@
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
 <!-- CSS -->
-<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="../css/global.css">

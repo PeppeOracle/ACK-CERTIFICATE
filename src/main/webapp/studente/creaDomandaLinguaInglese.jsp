@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <%@ include file="WEB-INF/jspf/headMeta.jspf" %>
+    <%@ include file="../WEB-INF/jspf/headMeta.jspf" %>
     <title>Crea domanda lingua inglese</title>
-    <%@ include file="WEB-INF/jspf/headLink.jspf" %>
+    <%@ include file="../WEB-INF/jspf/headLink.jspf" %>
 </head>
 <body>
 
 <!-- Navbar -->
-<%@ include file="WEB-INF/jspf/navbarStudente.jspf" %>
+<%@ include file="../WEB-INF/jspf/navbarStudente.jspf" %>
 
 <div class="container">
 
@@ -51,10 +51,10 @@
 </div>
 
 <!-- Footer -->
-<%@ include file="WEB-INF/jspf/footer.jspf" %>
+<%@ include file="../WEB-INF/jspf/footer.jspf" %>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<%@ include file="WEB-INF/jspf/bootstapScript.jspf" %>
+<%@ include file="../WEB-INF/jspf/bootstapScript.jspf" %>
 
 
 </body>

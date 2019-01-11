@@ -24,7 +24,7 @@ public class MostraPratica extends FormControl {
     /**
      * Macro della jsp per il responsabile ufficio (visualizzazione).
      */
-    private static final String PRATICA_RESPONSABILE_UFFICIO_JSP = "visualizzaPraticaResponsabileUfficio.jsp";
+    private static final String PRATICA_RESPONSABILE_UFFICIO_JSP = "visualizzaPratica.jsp";
     /**
      * Tipo jsp per responsabile ufficio (visualizzazione).
      */
@@ -40,7 +40,7 @@ public class MostraPratica extends FormControl {
     /**
      * Macro della jsp per lo studente (visualizzazione).
      */
-    private static final String PRATICA_STUDENTE_JSP = "visualizzaPraticaStudente.jsp";
+    private static final String PRATICA_STUDENTE_JSP = "visualizzaPratica.jsp";
     /**
      * Tipo jsp per lo studente  (visualizzazione).
      */
@@ -48,7 +48,7 @@ public class MostraPratica extends FormControl {
     /**
      * Macro della jsp per lo studente (modifica).
      */
-    private static final String PRATICA_STUDENTE_MODIFICA_JSP = "visualizzaPraticaStudente.jsp";
+    private static final String PRATICA_STUDENTE_MODIFICA_JSP = "visualizzaPratica.jsp";
     /**
      * Tipo jsp per lo studente  (modifica).
      */

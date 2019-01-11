@@ -69,7 +69,7 @@ public class ModificaProfiloStudente extends FormControl {
     /**
      * Macro della jsp della modifica del profilo.
      */
-    private static final String MODIFICA_JSP = "gestioneProfiloStudente.jsp";
+    private static final String MODIFICA_JSP = "gestioneProfilo.jsp";
     /**
      * Macro della jsp di successo della valutazione.
      */

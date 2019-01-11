@@ -29,7 +29,7 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
     /**
      * Macro della jsp della lista di pratiche.
      */
-    private static final String PRATICHE_JSP = "gestionePraticheResponsabileUfficio.jsp";
+    private static final String PRATICHE_JSP = "gestionePratiche.jsp";
     /**
      * Macro del filtro nessun_filtro.
      */
