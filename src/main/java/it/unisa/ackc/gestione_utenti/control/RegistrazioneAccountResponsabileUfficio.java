@@ -3,7 +3,7 @@ package it.unisa.ackc.gestione_utenti.control;
 import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
-import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
+import it.unisa.ackc.gestione_storage.ACKStorageFacade;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountConvalida;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
@@ -52,7 +52,7 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
      * Istanza dello storage facade.
      */
     @Inject
-    private ACKStorageFacadeEJB ackStorage;
+    private ACKStorageFacade ackStorage;
 
     /**
      * Permette di instanziare un oggetto di tipo <code>Control</code>.

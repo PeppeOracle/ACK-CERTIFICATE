@@ -5,7 +5,7 @@ import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.entity.Attestato;
 import it.unisa.ackc.gestione_pratiche.entity.Domanda;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
-import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
+import it.unisa.ackc.gestione_storage.ACKStorageFacade;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.http.Risposta;
@@ -59,7 +59,7 @@ public class CreazionePratica extends FormControl {
      * Istanza dello storage facade.
      */
     @Inject
-    private ACKStorageFacadeEJB ackStorage;
+    private ACKStorageFacade ackStorage;
     /**
      * Account loggato.
      */
