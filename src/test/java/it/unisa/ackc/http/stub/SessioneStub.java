@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_pratiche.entity.stub;
+package it.unisa.ackc.http.stub;
 
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.http.Sessione;

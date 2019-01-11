@@ -1,12 +1,9 @@
 package it.unisa.ackc.gestione_pratiche.entity;
 
-import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.control.CreazioneDomandaLinguaInglese;
-import it.unisa.ackc.gestione_pratiche.control.convalida.CreazioneDomanda;
-import it.unisa.ackc.gestione_pratiche.entity.stub.RispostaStub;
-import it.unisa.ackc.gestione_pratiche.entity.stub.SessioneStub;
-import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
+import it.unisa.ackc.http.stub.RispostaStub;
+import it.unisa.ackc.http.stub.SessioneStub;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
