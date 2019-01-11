@@ -15,6 +15,59 @@ import java.text.SimpleDateFormat;
  */
 public final class AccountStudente {
     /**
+     * Macro del parametro matricola.
+     */
+    public static final String MATRICOLA_PARAMETRO =
+            "matricola";
+    /**
+     * Macro del parametro data di nascita.
+     */
+    public static final String DATA_DI_NASCITA_PARAMETRO =
+            "dataNascita";
+    /**
+     * Macro del parametro luogo di nascita.
+     */
+    public static final String LUOGO_DI_NASCITA_PARAMETRO =
+            "luogoNascita";
+    /**
+     * Macro del parametro indirizzo di residenza.
+     */
+    public static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO =
+            "indirizzo";
+    /**
+     * Macro del parametro numero civico.
+     */
+    public static final String NUMERO_CIVICO_PARAMETRO =
+            "numeroCivico";
+    /**
+     * Macro del parametro cap.
+     */
+    public static final String CAP_PARAMETRO = "cap";
+    /**
+     * Macro del parametro citta.
+     */
+    public static final String CITTA_PARAMETRO = "citta";
+    /**
+     * Macro del parametro paese.
+     */
+    public static final String PAESE_PARAMETRO = "paese";
+    /**
+     * Macro del parametro tipologia di laurea.
+     */
+    public static final String TIPOLOGIA_DI_LAUREA_PARAMETRO =
+            "tipologiaLaurea";
+    /**
+     * Macro del parametro corso di laurea.
+     */
+    public static final String CORSO_DI_LAUREA_PARAMETRO =
+            "corsoLaurea";
+    /**
+     * Macro del parametro anno di immatricolazione.
+     */
+    public static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO =
+            "annoImmatricolazione";
+
+    /**
      * Lunghezza massima di un numero a tre cifre positivo.
      */
     private static final int MAX_NUMBER_TRE_CIFRE = 999;
@@ -50,8 +103,7 @@ public final class AccountStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
-                                LUOGO_DI_NASCITA_PARAMETRO
+                        LUOGO_DI_NASCITA_PARAMETRO
                 );
             };
 
@@ -65,7 +117,6 @@ public final class AccountStudente {
                 Notifica notifica = new Notifica();
                 DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                 String dataDiNascita = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
                                 DATA_DI_NASCITA_PARAMETRO
                 );
                 if (dataDiNascita == null || dataDiNascita.trim().equals("")) {
@@ -94,7 +145,6 @@ public final class AccountStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String indirizzo = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
                                 INDIRIZZO_DI_RESIDENZA_PARAMETRO
                 );
                 if (indirizzo == null || indirizzo.trim().equals("")) {
@@ -120,7 +170,6 @@ public final class AccountStudente {
                 Notifica notifica = new Notifica();
                 try {
                     Integer numeroCivico = formDati.ottieniDatoIntero(
-                            RegistrazioneAccountStudente.
                                     NUMERO_CIVICO_PARAMETRO
                     );
                     if (!isNumeroUnaTreCifre(numeroCivico)) {
@@ -147,7 +196,6 @@ public final class AccountStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String cap = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
                                 CAP_PARAMETRO
                 );
                 if (cap == null || cap.trim().equals("")) {
@@ -175,8 +223,7 @@ public final class AccountStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
-                                CITTA_PARAMETRO
+                        CITTA_PARAMETRO
                 );
             };
 
@@ -189,8 +236,7 @@ public final class AccountStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
-                                PAESE_PARAMETRO
+                        PAESE_PARAMETRO
                 );
             };
 
@@ -203,8 +249,7 @@ public final class AccountStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String matricola = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
-                                MATRICOLA_PARAMETRO
+                        MATRICOLA_PARAMETRO
                 );
                 if (matricola == null || matricola.trim().equals("")) {
                     notifica.aggiungiErrore(
@@ -231,8 +276,7 @@ public final class AccountStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
-                                TIPOLOGIA_DI_LAUREA_PARAMETRO
+                        TIPOLOGIA_DI_LAUREA_PARAMETRO
                 );
             };
 
@@ -245,8 +289,7 @@ public final class AccountStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
-                                CORSO_DI_LAUREA_PARAMETRO
+                        CORSO_DI_LAUREA_PARAMETRO
                 );
             };
 
@@ -259,8 +302,7 @@ public final class AccountStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String annoDiImmatricolazione = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
-                                ANNO_DI_IMMATRICOLAZIONE_PARAMETRO
+                        ANNO_DI_IMMATRICOLAZIONE_PARAMETRO
                 );
                 if (annoDiImmatricolazione == null
                         || annoDiImmatricolazione.trim().equals("")) {

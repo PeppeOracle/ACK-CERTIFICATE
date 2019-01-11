@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import java.text.ParseException;
 import java.util.Date;
 
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.*;
+
 /**
  * Si occupa della registrazione di un account studente.
  *
@@ -27,59 +29,6 @@ public class RegistrazioneAccountStudente extends FormControl {
      * Macro del messaggio di successo della registrazione studente.
      */
     private static final String SUCCESSFUL_MESSAGE = "";
-
-    /**
-     * Macro del parametro matricola.
-     */
-    public static final String MATRICOLA_PARAMETRO =
-            "matricola";
-    /**
-     * Macro del parametro data di nascita.
-     */
-    public static final String DATA_DI_NASCITA_PARAMETRO =
-            "dataNascita";
-    /**
-     * Macro del parametro luogo di nascita.
-     */
-    public static final String LUOGO_DI_NASCITA_PARAMETRO =
-            "luogoNascita";
-    /**
-     * Macro del parametro indirizzo di residenza.
-     */
-    public static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO =
-            "indirizzo";
-    /**
-     * Macro del parametro numero civico.
-     */
-    public static final String NUMERO_CIVICO_PARAMETRO =
-            "numeroCivico";
-    /**
-     * Macro del parametro cap.
-     */
-    public static final String CAP_PARAMETRO = "cap";
-    /**
-     * Macro del parametro citta.
-     */
-    public static final String CITTA_PARAMETRO = "citta";
-    /**
-     * Macro del parametro paese.
-     */
-    public static final String PAESE_PARAMETRO = "paese";
-    /**
-     * Macro del parametro tipologia di laurea.
-     */
-    public static final String TIPOLOGIA_DI_LAUREA_PARAMETRO =
-            "tipologiaLaurea";
-    /**
-     * Macro del parametro corso di laurea.
-     */
-    public static final String CORSO_DI_LAUREA_PARAMETRO =
-            "corsoLaurea";
-    /**
-     * Macro del parametro anno di immatricolazione.
-     */
-    public static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO =
-            "annoImmatricolazione";
     /**
      * Istanza dello storage facade.
      */

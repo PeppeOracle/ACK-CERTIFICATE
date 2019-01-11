@@ -13,59 +13,14 @@ import javax.inject.Inject;
 import java.text.ParseException;
 import java.util.Date;
 
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.*;
+
 /**
  * Si occupa della modifica del profilo di uno studente.
  *
  * @version 1.0.1
  */
 public class ModificaProfiloStudente extends FormControl {
-    /**
-     * Macro del parametro matricola.
-     */
-    private static final String MATRICOLA_PARAMETRO = "matricola";
-    /**
-     * Macro del parametro data di nascita.
-     */
-    private static final String DATA_DI_NASCITA_PARAMETRO = "dataNascita";
-    /**
-     * Macro del parametro luogo di nascita.
-     */
-    private static final String LUOGO_DI_NASCITA_PARAMETRO = "luogoNascita";
-    /**
-     * Macro del parametro indirizzo di residenza.
-     */
-    private static final String INDIRIZZO_DI_RESIDENZA_PARAMETRO =
-            "indirizzo";
-    /**
-     * Macro del parametro numero civico.
-     */
-    private static final String NUMERO_CIVICO_PARAMETRO = "numeroCivico";
-    /**
-     * Macro del parametro cap.
-     */
-    private static final String CAP_PARAMETRO = "cap";
-    /**
-     * Macro del parametro citt&agrave;.
-     */
-    private static final String CITTA_PARAMETRO = "citta";
-    /**
-     * Macro del parametro paese.
-     */
-    private static final String PAESE_PARAMETRO = "paese";
-    /**
-     * Macro del parametro tipologia di laurea.
-     */
-    private static final String TIPOLOGIA_DI_LAUREA_PARAMETRO =
-            "tipologiaLaurea";
-    /**
-     * Macro del parametro corso di laurea.
-     */
-    private static final String CORSO_DI_LAUREA_PARAMETRO = "corsoLaurea";
-    /**
-     * Macro del parametro anno di immatricolazione.
-     */
-    private static final String ANNO_DI_IMMATRICOLAZIONE_PARAMETRO =
-            "annoImmatricolazione";
     /**
      * Macro della jsp della modifica del profilo.
      */
