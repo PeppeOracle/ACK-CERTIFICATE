@@ -78,12 +78,12 @@ public abstract class FormControl extends Control {
      * @param formDati da validare
      */
     public void valida(final FormDati formDati) {
-        Notifica notifica = new Notifica();
+        Notifica notifica;
         for (CondizioneConvalida condizione : condizioniDiConvalida) {
-            notifica.aggiungiErrori(condizione.validate(formDati));
-        }
-        if (notifica.contieneErrori()) {
-            throw new IllegalArgumentException(notifica.erroreMessaggio());
+            notifica = condizione.validate(formDati);
+            if (notifica.contieneErrori()) {
+                throw new IllegalArgumentException(notifica.erroreMessaggio());
+            }
         }
     }
 }
