@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CreazioneDomandaAttivitaLavorativaTest {
+
     private CreazioneDomandaAttivitaLavorativa creazioneDomandaAttivitaLavorativa;
     private SessioneStub sessioneStub;
     private RispostaStub rispostaStub;
