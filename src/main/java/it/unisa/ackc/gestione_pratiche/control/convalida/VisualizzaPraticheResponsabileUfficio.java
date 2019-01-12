@@ -21,7 +21,7 @@ public final class VisualizzaPraticheResponsabileUfficio {
     /**
      * Istanza dello storage facade.
      */
-    @Inject
+    //@Inject
     private ACKStorageFacadeEJB ackStorage;
 
     /**

@@ -51,7 +51,7 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    @Inject
+    //@Inject
     private ACKStorageFacade ackStorage;
 
     /**

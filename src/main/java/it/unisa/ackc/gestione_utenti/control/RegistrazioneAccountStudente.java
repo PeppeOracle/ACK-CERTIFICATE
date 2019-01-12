@@ -32,7 +32,7 @@ public class RegistrazioneAccountStudente extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    @Inject
+    //@Inject
     private ACKStorageFacade ackStorage;
 
     /**

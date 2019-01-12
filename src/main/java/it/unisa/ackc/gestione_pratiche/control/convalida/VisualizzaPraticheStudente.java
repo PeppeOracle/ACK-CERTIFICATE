@@ -21,7 +21,7 @@ public final class VisualizzaPraticheStudente {
     /**
      * Istanza dello storage facade.
      */
-    @Inject
+    //@Inject
     private ACKStorageFacadeEJB ackStorage;
 
     /**

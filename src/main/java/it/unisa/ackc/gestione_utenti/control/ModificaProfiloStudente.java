@@ -36,7 +36,7 @@ public class ModificaProfiloStudente extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    @Inject
+    //@Inject
     private ACKStorageFacade ackStorage;
 
     /**
