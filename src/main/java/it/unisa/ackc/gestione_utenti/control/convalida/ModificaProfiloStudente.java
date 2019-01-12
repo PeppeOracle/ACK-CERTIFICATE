@@ -2,7 +2,6 @@ package it.unisa.ackc.gestione_utenti.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.form.FormDati;
-import it.unisa.ackc.gestione_utenti.control.RegistrazioneAccountStudente;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.http.Notifica;
 
@@ -93,8 +92,8 @@ public final class ModificaProfiloStudente {
                                 + "non è stato rispettato");
                     }
                     if (containsLetteraENumero(password)) {
-                        notifica.aggiungiErrore("La password deve contenere almeno "
-                                + "una lettera e un numero");
+                        notifica.aggiungiErrore("La password deve"
+                                + " contenere almeno una lettera e un numero");
                     }
                 }
                 return  notifica;
@@ -157,7 +156,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 LUOGO_DI_NASCITA_PARAMETRO
                 );
             };
@@ -172,7 +171,7 @@ public final class ModificaProfiloStudente {
                 Notifica notifica = new Notifica();
                 DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                 String dataDiNascita = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 DATA_DI_NASCITA_PARAMETRO
                 );
                 if (dataDiNascita != null) {
@@ -197,7 +196,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String indirizzo = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 INDIRIZZO_DI_RESIDENZA_PARAMETRO
                 );
                 if (indirizzo != null) {
@@ -222,13 +221,13 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 if (formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 NUMERO_CIVICO_PARAMETRO
                 ) != null) {
                     try {
                         Integer numeroCivico =
                                 Integer.parseInt(formDati.ottieniDato(
-                                        RegistrazioneAccountStudente.
+                                        AccountStudente.
                                                 NUMERO_CIVICO_PARAMETRO
                                 ));
                         if (!isNumeroUnaTreCifre(numeroCivico)) {
@@ -256,7 +255,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String cap = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 CAP_PARAMETRO
                 );
                 if (cap != null) {
@@ -283,7 +282,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 CITTA_PARAMETRO
                 );
             };
@@ -297,7 +296,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 PAESE_PARAMETRO
                 );
             };
@@ -311,7 +310,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String matricola = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 MATRICOLA_PARAMETRO
                 );
                 if (matricola != null) {
@@ -339,7 +338,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 TIPOLOGIA_DI_LAUREA_PARAMETRO
                 );
             };
@@ -353,7 +352,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 return AccountConvalida.validaNome(
                         formDati,
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 CORSO_DI_LAUREA_PARAMETRO
                 );
             };
@@ -367,7 +366,7 @@ public final class ModificaProfiloStudente {
             formDati -> {
                 Notifica notifica = new Notifica();
                 String annoDiImmatricolazione = formDati.ottieniDato(
-                        RegistrazioneAccountStudente.
+                        AccountStudente.
                                 ANNO_DI_IMMATRICOLAZIONE_PARAMETRO
                 );
                 if (annoDiImmatricolazione != null) {
