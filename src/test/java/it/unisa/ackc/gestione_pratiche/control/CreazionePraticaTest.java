@@ -61,14 +61,8 @@ public class CreazionePraticaTest {
         creazionePratica.valida(formDati);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void test6() {
-        formDati.aggiungiDato("fileAttestato", null);
-        creazionePratica.valida(formDati);
-    }
-
     @Test
-    public void test7() {
+    public void test6() {
         creazionePratica.valida(formDati);
     }
 }
