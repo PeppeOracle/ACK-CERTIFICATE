@@ -13,26 +13,65 @@ public class CreazioneDomandaAttivitaLavorativaTest {
     private SessioneStub sessioneStub;
     private RispostaStub rispostaStub;
     private FormDati formDati;
+    private String longString;  //una stringa di 65 a
 
     @Before
     public void setUp() throws Exception {
         sessioneStub = new SessioneStub();
         rispostaStub = new RispostaStub();
+        longString = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
         formDati = new FormDati();
-        //da compilare
-        formDati.aggiungiDato("ente", "");
-        formDati.aggiungiDato("indirizzoSede", "");
-        formDati.aggiungiDato("profilo", "");
-        formDati.aggiungiDato("tipoContratto", "");
-        formDati.aggiungiDato("periodo", "");
-        formDati.aggiungiDato("oreSvolte", "");
+        formDati.aggiungiDato("ente", "Bethesda");
+        formDati.aggiungiDato("indirizzoSede", "Rockville, Maryland, Stati Uniti");
+        formDati.aggiungiDato("profilo", "Videogiochi");
+        formDati.aggiungiDato("tipoContratto", "Programmatore");
+        formDati.aggiungiDato("periodo", "01-09-2018/12-01-2019");
+        formDati.aggiungiDato("oreSvolte", "100");
+        formDati.aggiungiDato("numeroCfu", 9);
 
         creazioneDomandaAttivitaLavorativa = new CreazioneDomandaAttivitaLavorativa(sessioneStub, rispostaStub);
     }
 
-    @Test()
+    @Test(expected = IllegalArgumentException.class)
     public void test1(){
-        //primo test
+        formDati.aggiungiDato("ente", "");
+        creazioneDomandaAttivitaLavorativa.valida(formDati);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test2(){
+        formDati.aggiungiDato("ente", longString);
+        creazioneDomandaAttivitaLavorativa.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test3(){
+        formDati.aggiungiDato("indirizzoSede", "");
+        creazioneDomandaAttivitaLavorativa.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test4(){
+        formDati.aggiungiDato("indirizzoSede", longString);
+        creazioneDomandaAttivitaLavorativa.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test5(){
+        formDati.aggiungiDato("profilo", "");
+        creazioneDomandaAttivitaLavorativa.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test6(){
+        formDati.aggiungiDato("profilo", longString);
+        creazioneDomandaAttivitaLavorativa.valida(formDati);
+    }
+
+    @Test
+    public void test7(){
+        //da completare
+    }
+
 }
