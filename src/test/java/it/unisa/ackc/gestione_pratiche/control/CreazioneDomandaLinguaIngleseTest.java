@@ -1,7 +1,6 @@
-package it.unisa.ackc.gestione_pratiche.entity;
+package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.form.FormDati;
-import it.unisa.ackc.gestione_pratiche.control.CreazioneDomandaLinguaInglese;
 import it.unisa.ackc.http.stub.RispostaStub;
 import it.unisa.ackc.http.stub.SessioneStub;
 import org.junit.After;
@@ -32,7 +31,7 @@ public class CreazioneDomandaLinguaIngleseTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void test1() {
-        formDati.aggiungiDato("grade", "");
+        formDati.aggiungiDato("grade", 0);
         creazioneDomandaLinguaInglese.valida(formDati);
     }
 
@@ -50,7 +49,7 @@ public class CreazioneDomandaLinguaIngleseTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void test4() {
-        formDati.aggiungiDato("numeroCfu", null);
+        formDati.aggiungiDato("numeroCfu", 0);
         creazioneDomandaLinguaInglese.valida(formDati);
     }
 
@@ -85,8 +84,6 @@ public class CreazioneDomandaLinguaIngleseTest {
 
     @After
     public void tearDown() throws Exception {
-
     }
-
 
 }
