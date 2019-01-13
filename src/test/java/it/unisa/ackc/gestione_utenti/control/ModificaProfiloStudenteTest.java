@@ -29,8 +29,20 @@ public class ModificaProfiloStudenteTest {
         formDati.aggiungiDato(AccountConvalida.NOME_PARAMETRO, "Mario");
         formDati.aggiungiDato(AccountConvalida.COGNOME_PARAMETRO, "Rossi");
         formDati.aggiungiDato(AccountStudente.LUOGO_DI_NASCITA_PARAMETRO, "Avellino");
-
-        //modificaProfiloStudente.valida(formDati);
+        formDati.aggiungiDato(AccountStudente.DATA_DI_NASCITA_PARAMETRO, "07-04-1993");
+        formDati.aggiungiDato(AccountStudente.INDIRIZZO_DI_RESIDENZA_PARAMETRO, "Via Tuoro Cappuccini");
+        formDati.aggiungiDato(AccountStudente.NUMERO_CIVICO_PARAMETRO, "81");
+        formDati.aggiungiDato(AccountStudente.CAP_PARAMETRO, "83100");
+        formDati.aggiungiDato(AccountStudente.CITTA_PARAMETRO, "Avellino");
+        formDati.aggiungiDato(AccountStudente.PAESE_PARAMETRO, "Italia");
+        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "3451372297");
+        formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.santoro21@studenti.unisa.it");
+        formDati.aggiungiDato(AccountStudente.MATRICOLA_PARAMETRO, "0522500487");
+        formDati.aggiungiDato(AccountStudente.TIPOLOGIA_DI_LAUREA_PARAMETRO, "Magistrale");
+        formDati.aggiungiDato(AccountStudente.CORSO_DI_LAUREA_PARAMETRO, "Informatica");
+        formDati.aggiungiDato(AccountConvalida.SESSO_PARAMETRO, "M");
+        formDati.aggiungiDato(AccountStudente.ANNO_DI_IMMATRICOLAZIONE_PARAMETRO, "2017");
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab123456");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -80,5 +92,217 @@ public class ModificaProfiloStudenteTest {
         formDati.aggiungiDato(AccountStudente.LUOGO_DI_NASCITA_PARAMETRO, longString);
         modificaProfiloStudente.valida(formDati);
     }
-    
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test09(){
+        formDati.aggiungiDato(AccountStudente.LUOGO_DI_NASCITA_PARAMETRO, "Avellino?!");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test10(){
+        formDati.aggiungiDato(AccountStudente.DATA_DI_NASCITA_PARAMETRO, "07/04/1993");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test11(){
+        formDati.aggiungiDato(AccountStudente.INDIRIZZO_DI_RESIDENZA_PARAMETRO, "");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test12(){
+        formDati.aggiungiDato(AccountStudente.INDIRIZZO_DI_RESIDENZA_PARAMETRO, longString);
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test13(){
+        formDati.aggiungiDato(AccountStudente.NUMERO_CIVICO_PARAMETRO, "");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test14(){
+        formDati.aggiungiDato(AccountStudente.NUMERO_CIVICO_PARAMETRO, "8181");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test15(){
+        formDati.aggiungiDato(AccountStudente.NUMERO_CIVICO_PARAMETRO, "aa");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test16(){
+        formDati.aggiungiDato(AccountStudente.CAP_PARAMETRO, "8310");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test17(){
+        formDati.aggiungiDato(AccountStudente.CAP_PARAMETRO, "aaaaa");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test18(){
+        formDati.aggiungiDato(AccountStudente.CITTA_PARAMETRO, "");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test19(){
+        formDati.aggiungiDato(AccountStudente.CITTA_PARAMETRO, longString);
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test20(){
+        formDati.aggiungiDato(AccountStudente.CITTA_PARAMETRO, "Avell!no?");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test21(){
+        formDati.aggiungiDato(AccountStudente.PAESE_PARAMETRO, "");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test22(){
+        formDati.aggiungiDato(AccountStudente.PAESE_PARAMETRO, longString);
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test23(){
+        formDati.aggiungiDato(AccountStudente.PAESE_PARAMETRO, "1tal!a");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test24(){
+        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "51372297");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test25(){
+        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "393451372297");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test26(){
+        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "ea5iel229l");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test27(){
+        formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.santoro21@studen");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test28(){
+        formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, longString);
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test29(){
+        formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.santoro21@personale.unisa.it");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test30(){
+        formDati.aggiungiDato(AccountStudente.MATRICOLA_PARAMETRO, "052250048");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test31(){
+        formDati.aggiungiDato(AccountStudente.MATRICOLA_PARAMETRO, "052250048a");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test32(){
+        formDati.aggiungiDato(AccountStudente.TIPOLOGIA_DI_LAUREA_PARAMETRO, "");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test33(){
+        formDati.aggiungiDato(AccountStudente.TIPOLOGIA_DI_LAUREA_PARAMETRO, longString);
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test34(){
+        formDati.aggiungiDato(AccountStudente.TIPOLOGIA_DI_LAUREA_PARAMETRO, "Mag1stral3");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test35(){
+        formDati.aggiungiDato(AccountStudente.CORSO_DI_LAUREA_PARAMETRO, "");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test36(){
+        formDati.aggiungiDato(AccountStudente.CORSO_DI_LAUREA_PARAMETRO, longString);
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test37(){
+        formDati.aggiungiDato(AccountStudente.CORSO_DI_LAUREA_PARAMETRO, "1nf0rmat1ca");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test38(){
+        formDati.aggiungiDato(AccountConvalida.SESSO_PARAMETRO, "0");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test39(){
+        formDati.aggiungiDato(AccountStudente.ANNO_DI_IMMATRICOLAZIONE_PARAMETRO, "217");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test40(){
+        formDati.aggiungiDato(AccountStudente.ANNO_DI_IMMATRICOLAZIONE_PARAMETRO, "20i7");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test41(){
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "a");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test42(){
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab1234567");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test43(){
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "12345678");
+        modificaProfiloStudente.valida(formDati);
+    }
+
+    public void test44(){ modificaProfiloStudente.valida(formDati); }
+
 }
