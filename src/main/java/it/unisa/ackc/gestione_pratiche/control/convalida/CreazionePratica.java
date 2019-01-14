@@ -27,7 +27,7 @@ public final class CreazionePratica {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_MESSAGGIO =
+    public static final CondizioneConvalida VALIDA_MESSAGGIO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String messaggio = formDati.ottieniDato(
@@ -50,7 +50,7 @@ public final class CreazionePratica {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_DOMANDA =
+    public static final CondizioneConvalida VALIDA_DOMANDA =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String domanda;
@@ -73,7 +73,7 @@ public final class CreazionePratica {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_ATTESTATO =
+    public static final CondizioneConvalida VALIDA_ATTESTATO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String attestato;
@@ -96,7 +96,7 @@ public final class CreazionePratica {
      *
      * @since 0.1.1
      */
-    static final CondizioneConvalida VALIDA_TIPO =
+    public static final CondizioneConvalida VALIDA_TIPO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String tipo = formDati.ottieniDato(

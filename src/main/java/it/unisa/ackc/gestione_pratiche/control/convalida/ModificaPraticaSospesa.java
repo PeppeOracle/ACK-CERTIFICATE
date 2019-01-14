@@ -26,7 +26,7 @@ public final class ModificaPraticaSospesa {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_MESSAGGIO =
+    public static final CondizioneConvalida VALIDA_MESSAGGIO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String messaggio = formDati.ottieniDato(
@@ -49,7 +49,7 @@ public final class ModificaPraticaSospesa {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_DOMANDA =
+    public static final CondizioneConvalida VALIDA_DOMANDA =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String domanda = formDati.ottieniDato(
@@ -74,7 +74,7 @@ public final class ModificaPraticaSospesa {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_ATTESTATO =
+    public static final CondizioneConvalida VALIDA_ATTESTATO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String attestato = formDati.ottieniDato(

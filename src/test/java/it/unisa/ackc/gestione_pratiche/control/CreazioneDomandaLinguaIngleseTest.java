@@ -32,54 +32,54 @@ public class CreazioneDomandaLinguaIngleseTest {
     @Test(expected = IllegalArgumentException.class)
     public void test1() {
         formDati.aggiungiDato("grade", 0);
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test2() {
         formDati.aggiungiDato("grade", 435);
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test3() {
         formDati.aggiungiDato("grade", "grade");
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test4() {
         formDati.aggiungiDato("numeroCfu", 0);
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test5() {
         formDati.aggiungiDato("numeroCfu", 456);
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test6() {
         formDati.aggiungiDato("numeroCfu", "numeroCfu");
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test7() {
         formDati.aggiungiDato("enteCertificatore", "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test8() {
         formDati.aggiungiDato("cefr", "abcdefghijk");
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @Test
     public void test9() {
-        creazioneDomandaLinguaInglese.valida(formDati);
+        creazioneDomandaLinguaInglese.sottomettiForm(formDati);
     }
 
     @After

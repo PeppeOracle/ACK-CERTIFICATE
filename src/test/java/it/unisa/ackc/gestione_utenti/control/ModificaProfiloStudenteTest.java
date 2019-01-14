@@ -303,6 +303,7 @@ public class ModificaProfiloStudenteTest {
         modificaProfiloStudente.valida(formDati);
     }
 
+    @Test
     public void test44(){ modificaProfiloStudente.valida(formDati); }
 
 }

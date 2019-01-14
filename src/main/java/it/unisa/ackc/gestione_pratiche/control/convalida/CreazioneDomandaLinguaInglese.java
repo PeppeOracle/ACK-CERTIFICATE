@@ -31,7 +31,7 @@ public final class CreazioneDomandaLinguaInglese {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_ENTE_CERTIFICATORE =
+    public static final CondizioneConvalida VALIDA_ENTE_CERTIFICATORE =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String enteCertificatore = formDati.ottieniDato(
@@ -59,7 +59,7 @@ public final class CreazioneDomandaLinguaInglese {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_GRADE = formDati -> {
+    public static final CondizioneConvalida VALIDA_GRADE = formDati -> {
         Notifica notifica = new Notifica();
         try {
             Integer grade = formDati.ottieniDatoIntero(
@@ -85,7 +85,7 @@ public final class CreazioneDomandaLinguaInglese {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_LIVELLO_CEFR = formDati -> {
+    public static final CondizioneConvalida VALIDA_LIVELLO_CEFR = formDati -> {
         Notifica notifica = new Notifica();
         String livelloCefr = formDati.ottieniDato(
                 it.unisa.ackc.gestione_pratiche.control

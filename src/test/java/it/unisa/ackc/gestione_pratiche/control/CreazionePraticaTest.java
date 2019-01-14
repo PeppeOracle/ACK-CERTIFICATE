@@ -34,35 +34,35 @@ public class CreazionePraticaTest {
     public void test1() {
         String actual = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus elit, pharetra a consectetur viverra, venenatis eu mauris. In hac habitasse platea dictumst. Praesent nibh elit, suscipit eget diam vitae, euismod tincidunt lectus. Sed ante ipsum, dictum a congue ac, laoreet in nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus elit, pharetra a consectetur viverra, venenatis eu mauris. In hac habitasse platea dictumst. Praesent nibh elit, suscipit eget diam vitae, euismod tincidunt lectus. Sed ante ipsum, dictum a congue ac, laoreet in nisi. Morbi dapibus sodales lacinia. Sed varius volutpat elit sed rhoncus. Vestibulum ut lectus in tortor eleifend vehicula. Fusce id risus molestie, pretium.";
         formDati.aggiungiDato("messaggio", actual);
-        creazionePratica.valida(formDati);
+        creazionePratica.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test2() {
         formDati.aggiungiDato("fileDomanda", "domanda.docx");
-        creazionePratica.valida(formDati);
+        creazionePratica.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test3() {
         formDati.aggiungiDato("fileDomanda", null);
-        creazionePratica.valida(formDati);
+        creazionePratica.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test4() {
         formDati.aggiungiDato("fileAttestato", "attestato.jpeg");
-        creazionePratica.valida(formDati);
+        creazionePratica.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test5() {
         formDati.aggiungiDato("fileAttestato", null);
-        creazionePratica.valida(formDati);
+        creazionePratica.sottomettiForm(formDati);
     }
 
     @Test
     public void test6() {
-        creazionePratica.valida(formDati);
+        creazionePratica.sottomettiForm(formDati);
     }
 }
