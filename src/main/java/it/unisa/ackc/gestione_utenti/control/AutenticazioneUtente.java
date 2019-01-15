@@ -9,7 +9,6 @@ import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-
 /**
  * Si occupa dell'autenticazione di un utente nel sistema.
  *
@@ -17,13 +16,9 @@ import it.unisa.ackc.http.Sessione;
  */
 public class AutenticazioneUtente extends FormControl {
     /**
-     * Macro della jsp di successo della modifica.
-     */
-    private static final String HOME_JSP = "";
-    /**
      * Macro della del messaggio di errore dell'autenticazione.
      */
-    private static final String ERROR_MESSAGE = "";
+    private static final String ERROR_MESSAGE = "Username o password errati";
     /**
      * Macro della jsp di errore dell'autenticazione.
      */
@@ -61,7 +56,26 @@ public class AutenticazioneUtente extends FormControl {
         Account account = ackStorage.findAccountByEmail(email);
         if (account != null && account.getPassword().equals(password)) {
             getRisposta().aggiungiAttributo("account", account);
-            getRisposta().inoltra(HOME_JSP);
+            switch (account.getRuolo()) {
+                case AMMINISTRATORE:
+                    getRisposta().inoltra(
+                            "admin/registrazioneAccountResponsabileUfficio.jsp"
+                    );
+                    break;
+                case RESPONSABILE_UFFICIO:
+                    getRisposta().inoltra(
+                            "responsabile-ufficio/gestionePratiche.jsp"
+                    );
+                    break;
+                case STUDENTE:
+                    getRisposta().inoltra(
+                            "studente/gestionePratiche.jsp"
+                    );
+                    break;
+                default:
+                    getRisposta().aggiungiAttributo("message", ERROR_MESSAGE);
+                    getRisposta().inoltra(ERROR_JSP);
+            }
         } else {
             getRisposta().aggiungiAttributo("message", ERROR_MESSAGE);
             getRisposta().inoltra(ERROR_JSP);
