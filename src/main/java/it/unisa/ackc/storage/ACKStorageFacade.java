@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_storage;
+package it.unisa.ackc.storage;
 
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_utenti.entity.Account;

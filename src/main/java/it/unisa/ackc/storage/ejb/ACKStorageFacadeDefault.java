@@ -1,9 +1,9 @@
-package it.unisa.ackc.gestione_storage.ejb;
+package it.unisa.ackc.storage.ejb;
 
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica.Stato;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica.Tipo;
-import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.storage.ACKStorageFacade;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.Account.Ruolo;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;

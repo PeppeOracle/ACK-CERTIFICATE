@@ -70,6 +70,7 @@ public class DomandaAttivitaLavorativa extends Domanda {
      */
     public DomandaAttivitaLavorativa() {
     }
+
     /**
      * Restituisce
      * l'ente presso il quale si è svolta l'attività lavorativa.

@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_pratiche.servlet;
+package it.unisa.ackc.servlet.gestione_utenti;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,31 +10,30 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_pratiche.control.CreazionePratica
+ * it.unisa.ackc.gestione_utenti.control.RegistrazioneAccountStudente
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-pratiche/creazione-pratica")
-public class CreazionePratica
-        extends ServletForm {
+@WebServlet("/gestione-utenti/registrazione-account-studente")
+public class RegistrazioneAccountStudente extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * CreazionePratica.
+     * RegistrazioneAccountStudente.
      *
      * @param richiesta http ricevuta
      * @param risposta http da inviare
      * @since 1.0.0
      */
     @Override
-    public void doGet(
+    public void doPost(
             final HttpServletRequest richiesta,
             final HttpServletResponse risposta
     ) {
         try {
             sottomettiForm(
-                    it.unisa.ackc.gestione_pratiche.control
-                            .CreazionePratica.class,
+                    it.unisa.ackc.gestione_utenti.control
+                            .AutenticazioneUtente.class,
                     richiesta,
                     risposta
             );

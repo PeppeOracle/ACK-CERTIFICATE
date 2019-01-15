@@ -39,6 +39,14 @@ public final class AccountConvalida {
      * Macro del parametro sesso.
      */
     public static final String SESSO_PARAMETRO = "sesso";
+    /**
+     * Macro della lunghezza minima per email.
+     */
+    static final int MIN_MAIL = 10;
+    /**
+     * Macro della lunghezza massima per email.
+     */
+    static final int MAX_MAIL = 64;
 
     /**
      * Costruttore di default.
@@ -83,7 +91,8 @@ public final class AccountConvalida {
                             "Il sesso non è stato indicato"
                     );
                 } else {
-                    if (email.length() < 19 || email.length() > 64) {
+                    if (email.length() < MIN_MAIL
+                            || email.length() > MAX_MAIL) {
                         notifica.aggiungiErrore("La lunghezza dell'email "
                                 + "deve compresa tra 19 e 64");
                     }

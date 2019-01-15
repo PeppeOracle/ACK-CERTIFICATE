@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_utenti.servlet;
+package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,30 +10,31 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_utenti.control.RegistrazioneAccountStudente
+ * it.unisa.ackc.gestione_pratiche.control.DownloadFile
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-utenti/registrazione-account-studente")
-public class RegistrazioneAccountStudente extends ServletForm {
+@WebServlet("/gestione-pratiche/download-file")
+public class DownloadFile
+        extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * RegistrazioneAccountStudente.
+     * DownloadFile.
      *
      * @param richiesta http ricevuta
-     * @param risposta http da inviare
+     * @param risposta  http da inviare
      * @since 1.0.0
      */
     @Override
-    public void doPost(
+    public void doGet(
             final HttpServletRequest richiesta,
             final HttpServletResponse risposta
     ) {
         try {
             sottomettiForm(
-                    it.unisa.ackc.gestione_utenti.control
-                            .AutenticazioneUtente.class,
+                    it.unisa.ackc.gestione_pratiche.control
+                            .DownloadFile.class,
                     richiesta,
                     risposta
             );

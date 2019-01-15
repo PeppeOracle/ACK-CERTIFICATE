@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_pratiche.servlet;
+package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,17 +10,17 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_pratiche.control.DownloadFile
+ * it.unisa.ackc.gestione_pratiche.control.VisualizzaPraticheStudente
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-pratiche/download-file")
-public class DownloadFile
+@WebServlet("/gestione-pratiche/visualizza-pratiche-studente")
+public class VisualizzaPraticheStudente
         extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * DownloadFile.
+     * VisualizzaPraticheStudente.
      *
      * @param richiesta http ricevuta
      * @param risposta  http da inviare
@@ -34,7 +34,7 @@ public class DownloadFile
         try {
             sottomettiForm(
                     it.unisa.ackc.gestione_pratiche.control
-                            .DownloadFile.class,
+                            .VisualizzaPraticheStudente.class,
                     richiesta,
                     risposta
             );

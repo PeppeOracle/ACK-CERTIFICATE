@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_utenti.servlet;
+package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,30 +10,31 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_utenti.control.ModificaProfiloStudente
+ * it.unisa.ackc.gestione_pratiche.control.ModificaPraticaSospesa
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-utenti/modifica-profilo-studente")
-public class ModificaProfiloStudente extends ServletForm {
+@WebServlet("/gestione-pratiche/modifica-pratica-sospesa")
+public class ModificaPraticaSospesa
+        extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * ModificaProfiloStudente.
+     * ModificaPraticaSospesa.
      *
      * @param richiesta http ricevuta
-     * @param risposta http da inviare
+     * @param risposta  http da inviare
      * @since 1.0.0
      */
     @Override
-    public void doPost(
+    public void doGet(
             final HttpServletRequest richiesta,
             final HttpServletResponse risposta
     ) {
         try {
             sottomettiForm(
-                    it.unisa.ackc.gestione_utenti.control
-                            .AutenticazioneUtente.class,
+                    it.unisa.ackc.gestione_pratiche.control
+                            .ModificaPraticaSospesa.class,
                     richiesta,
                     risposta
             );

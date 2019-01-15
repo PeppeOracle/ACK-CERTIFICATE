@@ -58,7 +58,8 @@ public final class ModificaProfiloStudente {
                         AccountConvalida.EMAIL_PARAMETRO
                 );
                 if (email != null) {
-                    if (email.length() < 19 || email.length() > 64) {
+                    if (email.length() < AccountConvalida.MIN_MAIL
+                            || email.length() > AccountConvalida.MAX_MAIL) {
                         notifica.aggiungiErrore("La lunghezza dell'email "
                                 + "deve compresa tra 19 e 64");
                     }

@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_pratiche.servlet;
+package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,20 +10,20 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_pratiche.control.VisualizzaPraticheStudente
+ * it.unisa.ackc.gestione_pratiche.control.CreazionePratica
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-pratiche/visualizza-pratiche-studente")
-public class VisualizzaPraticheStudente
+@WebServlet("/gestione-pratiche/creazione-pratica")
+public class CreazionePratica
         extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * VisualizzaPraticheStudente.
+     * CreazionePratica.
      *
      * @param richiesta http ricevuta
-     * @param risposta  http da inviare
+     * @param risposta http da inviare
      * @since 1.0.0
      */
     @Override
@@ -34,7 +34,7 @@ public class VisualizzaPraticheStudente
         try {
             sottomettiForm(
                     it.unisa.ackc.gestione_pratiche.control
-                            .VisualizzaPraticheStudente.class,
+                            .CreazionePratica.class,
                     richiesta,
                     risposta
             );

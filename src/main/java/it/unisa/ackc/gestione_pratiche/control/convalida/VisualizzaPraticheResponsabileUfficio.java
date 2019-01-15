@@ -1,8 +1,8 @@
 package it.unisa.ackc.gestione_pratiche.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
-import it.unisa.ackc.gestione_storage.ACKStorageFacade;
-import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
+import it.unisa.ackc.storage.ACKStorageFacade;
+import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 import it.unisa.ackc.http.Notifica;
 

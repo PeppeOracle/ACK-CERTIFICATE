@@ -78,8 +78,7 @@ public class AccountResponsabileUfficio extends Account {
     /**
      * Costruttore di default.
      */
-    public AccountResponsabileUfficio(){
-    }
+    public AccountResponsabileUfficio() { }
 
     /**
      * Restituisce

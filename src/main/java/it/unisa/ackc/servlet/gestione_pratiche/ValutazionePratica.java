@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_pratiche.servlet;
+package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,20 +10,20 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_pratiche.control.CreazioneDomandaLinguaInglese
+ * it.unisa.ackc.gestione_pratiche.control.ValutazionePratica
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-pratiche/creazione-domanda-lingua-inglese")
-public class CreazioneDomandaLinguaInglese
+@WebServlet("/gestione-pratiche/valutazione-pratica")
+public class ValutazionePratica
         extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * CreazioneDomandaLinguaInglese.
+     * ValutazionePratica.
      *
      * @param richiesta http ricevuta
-     * @param risposta http da inviare
+     * @param risposta  http da inviare
      * @since 1.0.0
      */
     @Override
@@ -34,7 +34,7 @@ public class CreazioneDomandaLinguaInglese
         try {
             sottomettiForm(
                     it.unisa.ackc.gestione_pratiche.control
-                            .CreazioneDomandaLinguaInglese.class,
+                            .ValutazionePratica.class,
                     richiesta,
                     risposta
             );

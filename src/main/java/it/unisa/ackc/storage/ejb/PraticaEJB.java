@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_storage.ejb;
+package it.unisa.ackc.storage.ejb;
 
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica.Stato;

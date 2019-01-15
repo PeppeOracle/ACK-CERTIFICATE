@@ -42,9 +42,11 @@ public class DomandaLinguaInglese extends Domanda {
         this.livelloCefr = aLivelloCefr;
     }
 
-    public DomandaLinguaInglese(){
+    /**
+     * Costruttore di default.
+     */
+    public DomandaLinguaInglese() { }
 
-    }
     /**
      * Restituisce
      * l'ente che ha rilasciato la certificazione.

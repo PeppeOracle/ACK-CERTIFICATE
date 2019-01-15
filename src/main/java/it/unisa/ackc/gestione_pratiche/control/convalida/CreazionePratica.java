@@ -94,11 +94,14 @@ public final class CreazionePratica {
                             "L'attestato non è presente"
                     );
                 } else {
-                    String[] splitAttestato = attestato.split(Pattern.quote("."));
+                    String[] splitAttestato = attestato.split(
+                            Pattern.quote(".")
+                    );
                     if (splitAttestato.length != 2
                             || !splitAttestato[1].equals("pdf")) {
                         notifica.aggiungiErrore(
-                                "Il formato dell'attestato non è corretto [pdf]"
+                                "Il formato dell'attestato non"
+                                        + " è corretto [pdf]"
                         );
                     }
                 }

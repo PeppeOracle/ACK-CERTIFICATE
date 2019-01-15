@@ -27,8 +27,10 @@ public final class PdfUtils {
      * @param os output stream
      * @param formData mappa contenente le corrispondenze tra nome del campo
      *                 del pdf e valore da inserire
-     * @throws IOException
-     * @throws DocumentException
+     * @throws IOException lanciata se ci sono stati problemi
+     *                     nella lettura o nella scrittura sugli stream
+     * @throws DocumentException lanciata se ci sono stati problemi nella
+     *                           produzione del documento.
      */
     public static void compilePdf(
             final InputStream is,

@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_pratiche.servlet;
+package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,17 +10,17 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_pratiche.control.VisualizzaPraticheResponsabileUfficio
+ * it.unisa.ackc.gestione_pratiche.control.MostraPratica
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-pratiche/visualizza-pratiche-responsabile-ufficio")
-public class VisualizzaPraticheResponsabileUfficio
+@WebServlet("/gestione-pratiche/mostra-pratica")
+public class MostraPratica
         extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * VisualizzaPraticheResponsabileUfficio.
+     * MostraPratica.
      *
      * @param richiesta http ricevuta
      * @param risposta  http da inviare
@@ -34,7 +34,7 @@ public class VisualizzaPraticheResponsabileUfficio
         try {
             sottomettiForm(
                     it.unisa.ackc.gestione_pratiche.control
-                            .VisualizzaPraticheResponsabileUfficio.class,
+                            .MostraPratica.class,
                     richiesta,
                     risposta
             );

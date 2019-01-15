@@ -47,6 +47,14 @@ public final class CreazioneDomandaAttivitaLavorativa {
      * Lunghezza massima di un numero a tre cifre positivo.
      */
     private static final int MAX_NUMBER_TRE_CIFRE = 999;
+    /**
+     * Macro della lunghezza minima per email.
+     */
+    private static final int MIN_ANNO = 1000;
+    /**
+     * Macro della lunghezza massima per email.
+     */
+    private static final int MAX_ANNO = 9999;
 
     /**
      * Costruttore di default.
@@ -177,14 +185,14 @@ public final class CreazioneDomandaAttivitaLavorativa {
             try {
                 format.parse(splitPeriodo[0]);
                 Integer y1 = Integer.parseInt(splitPeriodo[0].split("-")[2]);
-                if (y1 < 1000 || y1 > 9999) {
+                if (y1 < MIN_ANNO || y1 > MAX_ANNO) {
                     notifica.aggiungiErrore(
                             "L'anno della prima data non è valido"
                     );
                 }
                 format.parse(splitPeriodo[1]);
                 Integer y2 = Integer.parseInt(splitPeriodo[1].split("-")[2]);
-                if (y2 < 1000 || y2 > 9999) {
+                if (y2 < MIN_ANNO || y2 > MAX_ANNO) {
                     notifica.aggiungiErrore(
                             "L'anno della seconda data non è valido"
                     );

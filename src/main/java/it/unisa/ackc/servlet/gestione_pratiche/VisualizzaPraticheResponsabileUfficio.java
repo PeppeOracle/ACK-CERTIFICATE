@@ -1,4 +1,4 @@
-package it.unisa.ackc.gestione_pratiche.servlet;
+package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
 
@@ -10,19 +10,20 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Interfaccia http per il control
  * {@link
- * it.unisa.ackc.gestione_pratiche.control.CreazioneDomanda
+ * it.unisa.ackc.gestione_pratiche.control.VisualizzaPraticheResponsabileUfficio
  * }.
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-pratiche/creazione-domanda")
-public class CreazioneDomanda extends ServletForm {
+@WebServlet("/gestione-pratiche/visualizza-pratiche-responsabile-ufficio")
+public class VisualizzaPraticheResponsabileUfficio
+        extends ServletForm {
     /**
      * Interfaccia http esposta per il servizio di
-     * CreazioneDomanda.
+     * VisualizzaPraticheResponsabileUfficio.
      *
      * @param richiesta http ricevuta
-     * @param risposta http da inviare
+     * @param risposta  http da inviare
      * @since 1.0.0
      */
     @Override
@@ -33,11 +34,10 @@ public class CreazioneDomanda extends ServletForm {
         try {
             sottomettiForm(
                     it.unisa.ackc.gestione_pratiche.control
-                            .CreazioneDomanda.class,
+                            .VisualizzaPraticheResponsabileUfficio.class,
                     richiesta,
                     risposta
             );
-
         } catch (InvocationTargetException
                 | NoSuchMethodException
                 | InstantiationException
