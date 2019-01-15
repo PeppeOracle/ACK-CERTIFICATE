@@ -179,10 +179,10 @@ public class PraticaEJB {
      * @return lista di tutte le pratiche
      * @since 0.1.1
      */
-    public List<Pratica> findAllByTipi(
-            final List<Tipo> aTipi,
-            final int aLimit,
-            final int aOffset) {
+        public List<Pratica> findAllByTipi(
+                final List<Tipo> aTipi,
+                final int aLimit,
+                final int aOffset) {
         TypedQuery<Pratica> query =
                 em.createNamedQuery("findAllPraticheByTipi", Pratica.class);
         query.setParameter("listaTipi", aTipi);

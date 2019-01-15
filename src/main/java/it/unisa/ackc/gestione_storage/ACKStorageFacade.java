@@ -196,6 +196,13 @@ public interface ACKStorageFacade {
     Account findAccountById(Long id);
 
     /**
+     * Controlla la presenza di un account admin nell'ACK_STORAGE.
+     *
+     * @return true se l'account è presente, false altrimenti
+     * @since 0.3.1
+     */
+    boolean containsAdminAccount();
+    /**
      * Crea un account nell'ACK_STORAGE.
      *
      * @param account da creare

@@ -117,6 +117,7 @@ public class ModificaProfiloStudente extends FormControl {
         AccountStudente studente = (AccountStudente) ackStorage.findAccountById(
                 account.getId()
         );
+        //DA vedere
         if (email != null) {
             studente.setEmail(email);
         }

@@ -2,11 +2,10 @@ package it.unisa.ackc.gestione_pratiche.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
-import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeEJB;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 import it.unisa.ackc.http.Notifica;
 
-import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -22,7 +21,7 @@ public final class VisualizzaPraticheResponsabileUfficio {
      * Istanza dello storage facade.
      */
     //@Inject
-    private ACKStorageFacadeEJB ackStorage;
+    private ACKStorageFacade ackStorage;
 
     /**
      * Costruttore di default.
@@ -79,10 +78,7 @@ public final class VisualizzaPraticheResponsabileUfficio {
                 ACKStorageFacade ackStorage = null;
                 try {
                     Context context = new InitialContext();
-                    ackStorage = (ACKStorageFacade)
-                            context.lookup(
-                                    ACKStorageFacade.LOOKUP
-                            );
+                    ackStorage = new ACKStorageFacadeDefault();
                 } catch (NamingException e) {
                     notifica.aggiungiErrore(
                             "Non è stato possibile effettuare l'operazione", e

@@ -5,6 +5,7 @@ import it.unisa.ackc.gestione_pratiche.entity.Pratica.Stato;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica.Tipo;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
 import it.unisa.ackc.gestione_utenti.entity.Account;
+import it.unisa.ackc.gestione_utenti.entity.Account.Ruolo;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
@@ -14,7 +15,7 @@ import javax.inject.Inject;
 
 /**
  * Facade per l'accesso al database ACK_Storage.
- * @version 0.2.1
+ * @version 0.3.1
  */
 public class ACKStorageFacadeDefault implements ACKStorageFacade {
 
@@ -307,6 +308,16 @@ public class ACKStorageFacadeDefault implements ACKStorageFacade {
         return accountEJB.findById(aId);
     }
 
+    /**
+     * Controlla la presenza di un account admin nell'ACK_STORAGE.
+     *
+     * @return true se l'account è presente, false altrimenti
+     * @since 0.3.1
+     */
+    @Override
+    public boolean containsAdminAccount() {
+        return accountEJB.findByRuolo(Ruolo.AMMINISTRATORE).isEmpty();
+    }
     /**
      * Crea un account nell'ACK_STORAGE.
      *

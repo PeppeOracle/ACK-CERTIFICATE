@@ -15,14 +15,14 @@ import javax.inject.Inject;
  * la sua creazione e la sua distruzione.
  * @version 0.0.1
  */
+
 @Singleton
 @Startup
 public class DatabasePopulator {
     /**
      * EJB per le transazioni relative all'account.
      */
-    @Inject
-    private AccountEJB accountEJB;
+    private ACKStorageFacade storageFacade;
 
     /**
      * Account dell'amministratore.
@@ -36,10 +36,10 @@ public class DatabasePopulator {
      */
     @PostConstruct
     private void populateDB() {
-        if (accountEJB.findByRuolo(Ruolo.AMMINISTRATORE).isEmpty()) {
+        if (storageFacade.containsAdminAccount()) {
             adminAccount = new Account("admin@unisa.it", "admin", "000000000",
                     "Admin", "Admin", Ruolo.AMMINISTRATORE, Sesso.MASCHIO);
-            accountEJB.createAccount(adminAccount);
+            storageFacade.createAccount(adminAccount);
         }
     }
 }

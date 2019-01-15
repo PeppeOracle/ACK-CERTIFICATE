@@ -3,6 +3,7 @@ package it.unisa.ackc.gestione_pratiche.control.convalida;
 import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.http.Notifica;
 
 import javax.naming.Context;
@@ -81,10 +82,7 @@ public final class GestionePratiche {
                 ACKStorageFacade ackStorage = null;
                 try {
                     Context context = new InitialContext();
-                    ackStorage = (ACKStorageFacade)
-                            context.lookup(
-                                    ACKStorageFacade.LOOKUP
-                            );
+                    ackStorage = new ACKStorageFacadeDefault();
                 } catch (NamingException e) {
                     notifica.aggiungiErrore(
                             "Non è stato possibile effettuare l'operazione", e
