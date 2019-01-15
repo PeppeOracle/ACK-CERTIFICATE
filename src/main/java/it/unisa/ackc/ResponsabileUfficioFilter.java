@@ -1,4 +1,4 @@
-package it.unisa.ackc.filters;
+package it.unisa.ackc;
 
 import it.unisa.ackc.gestione_utenti.entity.Account;
 
@@ -14,17 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Filtro per verificare che l'utente loggato sia uno studente.
+ * Filtro per verificare che l'utente loggato sia un responsabile ufficio.
  */
 @WebFilter(filterName = "AccountFilter", urlPatterns = {
-        "/gestione-pratiche/creazione-domanda-attivita-lavorativa",
-        "/gestione-pratiche/creazione-domanda",
-        "/gestione-pratiche/creazione-domanda-lingua-inglese",
-        "/gestione-pratiche/creazione-pratica",
-        "/gestione-pratiche/modifica-pratica-sospesa",
-        "/gestione-pratiche/visualizza-pratiche-studente"
+        "/gestione-pratiche/valutazione-pratica",
+        "/gestione-pratiche/visualizza-pratiche-responsabile-ufficio"
 })
-public class StudenteFilter  implements Filter {
+public class ResponsabileUfficioFilter implements Filter {
     /**
      * Macro della jsp nel caso in cui venga negato il permessso.
      */
@@ -37,7 +33,7 @@ public class StudenteFilter  implements Filter {
 
     /**
      * Veririfica che l'utente che ha richiesto la
-     * servlet sia uno studente.
+     * servlet sia un responsabile ufficio.
      *
      * @param req specifica la richiesta http
      * @param res specifica la risposta http
@@ -54,7 +50,7 @@ public class StudenteFilter  implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         Account account = (Account)
                 request.getSession(false).getAttribute("account");
-        if (account.getRuolo().equals(Account.Ruolo.STUDENTE)) {
+        if (account.getRuolo().equals(Account.Ruolo.RESPONSABILE_UFFICIO)) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(

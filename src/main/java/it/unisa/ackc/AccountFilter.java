@@ -1,4 +1,4 @@
-package it.unisa.ackc.filters;
+package it.unisa.ackc;
 
 import javax.servlet.ServletResponse;
 import javax.servlet.Filter;

@@ -1,4 +1,4 @@
-package it.unisa.ackc.filters;
+package it.unisa.ackc;
 
 import it.unisa.ackc.gestione_utenti.entity.Account;
 
