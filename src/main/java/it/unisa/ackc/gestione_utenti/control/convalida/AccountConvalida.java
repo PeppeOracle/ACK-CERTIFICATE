@@ -88,7 +88,7 @@ public final class AccountConvalida {
                 );
                 if (email == null || email.trim().equals("")) {
                     notifica.aggiungiErrore(
-                            "Il sesso non è stato indicato"
+                            "La mail non è stato indicato"
                     );
                 } else {
                     if (email.length() < MIN_MAIL
@@ -118,7 +118,7 @@ public final class AccountConvalida {
                 );
                 if (password == null || password.trim().equals("")) {
                     notifica.aggiungiErrore(
-                            "Il sesso non è stato indicato"
+                            "La password non è stato indicata"
                     );
                 } else {
                     if (!password.matches("\\w{2,8}$")) {
@@ -151,7 +151,7 @@ public final class AccountConvalida {
                 );
                 if (telefono == null || telefono.trim().equals("")) {
                     notifica.aggiungiErrore(
-                            "Il sesso non è stato indicato"
+                            "Il telefono non è stato indicato"
                     );
                 } else {
                     if (!telefono.matches("\\w{9,10}$")) {
