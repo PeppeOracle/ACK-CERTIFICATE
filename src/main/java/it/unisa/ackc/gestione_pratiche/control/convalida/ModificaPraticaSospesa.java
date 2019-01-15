@@ -3,6 +3,8 @@ package it.unisa.ackc.gestione_pratiche.control.convalida;
 import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.http.Notifica;
 
+import java.util.regex.Pattern;
+
 /**
  * Contiene le condizioni di convalida per la modifica della pratica sospesa.
  *
@@ -59,9 +61,9 @@ public final class ModificaPraticaSospesa {
                 if (domanda == null) {
                     return notifica;
                 }
-                String[] splitDomanda = domanda.split(".");
-                if (splitDomanda.length == 2
-                        && splitDomanda[1].equals("pdf")) {
+                String[] splitDomanda = domanda.split(Pattern.quote("."));
+                if (splitDomanda.length != 2
+                        || !splitDomanda[1].equals("pdf")) {
                     notifica.aggiungiErrore(
                             "Il formato della domanda non è corretto [pdf]"
                     );
@@ -84,10 +86,9 @@ public final class ModificaPraticaSospesa {
                 if (attestato == null) {
                     return notifica;
                 }
-                String[] splitAttestato =
-                        attestato.split(".");
-                if (splitAttestato.length == 2
-                        && splitAttestato[1].equals("pdf")) {
+                String[] splitAttestato = attestato.split(Pattern.quote("."));
+                if (splitAttestato.length != 2
+                        || !splitAttestato[1].equals("pdf")) {
                     notifica.aggiungiErrore(
                             "Il formato dell'attestato non è corretto [pdf]"
                     );

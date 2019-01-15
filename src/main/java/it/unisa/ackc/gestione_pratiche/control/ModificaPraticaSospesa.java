@@ -101,6 +101,12 @@ public class ModificaPraticaSospesa extends FormControl {
         pratica = ackStorage.findPraticaById(
                 formDati.ottieniDatoLong(GestionePratiche.PRATICA_PARAMETRO)
         );
+        if (!pratica.getStato().equals(Pratica.Stato.SOSPESA)) {
+            throw new IllegalArgumentException(
+                    "Per essere modificata la pratica deve avere come"
+                        + " stato SOSPESA"
+            );
+        }
         uploadPath = getRisposta().ottieniUploadPath() + STUDENTI_PATH;
         nomeDomanda = formDati.ottieniDato(DOMANDA_PARAMETRO);
         nomeAttestato = formDati.ottieniDato(ATTESTATO_PARAMETRO);

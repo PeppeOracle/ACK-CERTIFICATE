@@ -6,8 +6,6 @@ import it.unisa.ackc.http.stub.SessioneStub;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class CreazioneDomandaAttivitaLavorativaTest {
 
     private CreazioneDomandaAttivitaLavorativa creazioneDomandaAttivitaLavorativa;

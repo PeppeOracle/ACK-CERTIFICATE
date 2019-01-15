@@ -16,7 +16,6 @@ public class ModificaPraticaSospesaTest {
 
     @Before
     public void setUp() throws Exception {
-
         sessioneStub = new SessioneStub();
         rispostaStub = new RispostaStub();
 
