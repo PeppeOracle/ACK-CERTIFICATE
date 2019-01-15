@@ -65,15 +65,20 @@ public abstract class   ServletForm extends Servlet<FormControl> {
                 }
             }
         }
-        try {
-            for (Part part : richiesta.getParts()) {
-                formDati.aggiungiDato(
-                        part.getName(),
-                        part.getSubmittedFileName()
-                );
+        if (richiesta.getContentType() != null
+                && richiesta.getContentType()
+                .toLowerCase()
+                .indexOf("multipart/form-data") > -1) {
+            try {
+                for (Part part : richiesta.getParts()) {
+                    formDati.aggiungiDato(
+                            part.getName(),
+                            part.getSubmittedFileName()
+                    );
+                }
+            } catch (IOException | ServletException e) {
+                // ignore
             }
-        } catch (IOException | ServletException e) {
-            // ignore
         }
         return formDati;
     }
