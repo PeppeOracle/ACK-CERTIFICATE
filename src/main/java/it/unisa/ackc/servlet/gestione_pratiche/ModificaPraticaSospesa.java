@@ -1,7 +1,9 @@
 package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
+import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,11 @@ import java.lang.reflect.InvocationTargetException;
 @WebServlet("/gestione-pratiche/modifica-pratica-sospesa")
 public class ModificaPraticaSospesa
         extends ServletForm {
+    /**
+     * Istanza dellEJB per accedere al database.
+     */
+    @Inject
+    private ACKStorageFacadeDefault ackStorage;
     /**
      * Interfaccia http esposta per il servizio di
      * ModificaPraticaSospesa.
@@ -36,7 +43,8 @@ public class ModificaPraticaSospesa
                     it.unisa.ackc.gestione_pratiche.control
                             .ModificaPraticaSospesa.class,
                     richiesta,
-                    risposta
+                    risposta,
+                    ackStorage
             );
         } catch (InvocationTargetException
                 | NoSuchMethodException

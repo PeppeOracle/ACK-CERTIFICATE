@@ -1,7 +1,9 @@
 package it.unisa.ackc.servlet.gestione_utenti;
 
 import it.unisa.ackc.servlet.ServletForm;
+import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,11 @@ import java.lang.reflect.InvocationTargetException;
  */
 @WebServlet("/gestione-utenti/autenticazione-utente")
 public class AutenticazioneUtente extends ServletForm {
+    /**
+     * Istanza dellEJB per accedere al database.
+     */
+    @Inject
+    private ACKStorageFacadeDefault ackStorage;
     /**
      * Interfaccia http esposta per il servizio di
      * AutenticazioneUtente.
@@ -36,7 +43,8 @@ public class AutenticazioneUtente extends ServletForm {
                     it.unisa.ackc.gestione_utenti.control
                             .AutenticazioneUtente.class,
                     richiesta,
-                    risposta
+                    risposta,
+                    ackStorage
             );
         } catch (InvocationTargetException
                 | NoSuchMethodException

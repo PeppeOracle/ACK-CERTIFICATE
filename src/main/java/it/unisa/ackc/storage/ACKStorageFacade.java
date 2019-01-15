@@ -5,6 +5,7 @@ import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
+import javax.ejb.Local;
 import java.util.List;
 
 /**

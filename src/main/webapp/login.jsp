@@ -19,13 +19,13 @@
 
         <div class="form-group">
             <%--<label for="inputLoginUsername">Email</label>--%>
-            <input name="loginUsername" type="email" class="form-control" id="inputLoginUsername"
+            <input name="email" type="email" class="form-control" id="inputLoginUsername"
                    placeholder="Username" required>
         </div>
 
         <div class="form-group">
             <%--<label for="inputLoginPassword">Password</label>--%>
-            <input name="loginPassword" type="password" class="form-control" id="inputLoginPassword"
+            <input name="password" type="password" class="form-control" id="inputLoginPassword"
                    placeholder="Password" required>
         </div>
 

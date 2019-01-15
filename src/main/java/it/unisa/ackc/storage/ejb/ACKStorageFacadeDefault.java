@@ -11,12 +11,16 @@ import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  * Facade per l'accesso al database ACK_Storage.
  * @version 0.3.1
  */
+@Stateless
+@LocalBean
 public class ACKStorageFacadeDefault implements ACKStorageFacade {
 
     /**
