@@ -83,7 +83,7 @@ public final class AccountConvalida {
                             "Il sesso non è stato indicato"
                     );
                 } else {
-                    if (!email.matches("\\w{19,64}$")) {
+                    if (email.length() < 19 || email.length() > 64) {
                         notifica.aggiungiErrore("La lunghezza dell'email "
                                 + "deve compresa tra 19 e 64");
                     }
@@ -221,7 +221,7 @@ public final class AccountConvalida {
      * false altrimenti
      * @since 0.1.1
      */
-    private static boolean containsLetteraENumero(final String stringa) {
+    protected static boolean containsLetteraENumero(final String stringa) {
         boolean digit = false;
         boolean letter = false;
         for (Character ch : stringa.toCharArray()) {

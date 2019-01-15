@@ -1,7 +1,6 @@
 package it.unisa.ackc.gestione_utenti.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
-import it.unisa.ackc.gestione_utenti.control.RegistrazioneAccountStudente;
 import it.unisa.ackc.http.Notifica;
 
 import java.text.DateFormat;
@@ -86,7 +85,7 @@ public final class AccountStudente {
     /**
      * Lunghezza dell'anno di immatricolazione.
      */
-    static final int ANNO_DI_IMMATRICOLAZIONE_LENGTH = 10;
+    static final int ANNO_DI_IMMATRICOLAZIONE_LENGTH = 4;
     /**
      * Costruttore di default.
      *
@@ -100,12 +99,10 @@ public final class AccountStudente {
      * @since 0.0.1
      */
     public static final CondizioneConvalida VALIDA_LUOGO_DI_NASCITA =
-            formDati -> {
-                return AccountConvalida.validaNome(
+            formDati -> AccountConvalida.validaNome(
                         formDati,
                         LUOGO_DI_NASCITA_PARAMETRO
                 );
-            };
 
     /**
      * Convalida della data di nascita.
@@ -286,12 +283,10 @@ public final class AccountStudente {
      * @since 0.0.1
      */
     public static final CondizioneConvalida VALIDA_CORSO_DI_LAUREA =
-            formDati -> {
-                return AccountConvalida.validaNome(
+            formDati -> AccountConvalida.validaNome(
                         formDati,
                         CORSO_DI_LAUREA_PARAMETRO
                 );
-            };
 
     /**
      * Convalida dell'anno di immatricolazione.
@@ -307,16 +302,19 @@ public final class AccountStudente {
                 if (annoDiImmatricolazione == null
                         || annoDiImmatricolazione.trim().equals("")) {
                     notifica.aggiungiErrore(
-                            "Il CAP non è stato indicato"
+                            "L'anno di immatricolazione non"
+                                    + " è stato indicato"
                     );
                 } else if (annoDiImmatricolazione.length()
                         != ANNO_DI_IMMATRICOLAZIONE_LENGTH) {
                     notifica.aggiungiErrore(
-                            "Il CAP deve essere di 4 caratteri"
+                            "L'anno di immatricolazione deve "
+                                    + "essere di 4 caratteri"
                     );
                 } else if (!annoDiImmatricolazione.matches("[0-9]+")) {
                     notifica.aggiungiErrore(
-                            "Il CAP deve essere composto solo da cifre"
+                            "L'anno di immatricolazione deve essere"
+                                    + "composto solo da cifre"
                     );
                 }
                 return  notifica;

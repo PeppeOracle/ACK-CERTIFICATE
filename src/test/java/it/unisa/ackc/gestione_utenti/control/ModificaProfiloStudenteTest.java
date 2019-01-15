@@ -40,7 +40,7 @@ public class ModificaProfiloStudenteTest {
         formDati.aggiungiDato(AccountStudente.MATRICOLA_PARAMETRO, "0522500487");
         formDati.aggiungiDato(AccountStudente.TIPOLOGIA_DI_LAUREA_PARAMETRO, "Magistrale");
         formDati.aggiungiDato(AccountStudente.CORSO_DI_LAUREA_PARAMETRO, "Informatica");
-        formDati.aggiungiDato(AccountConvalida.SESSO_PARAMETRO, "M");
+        formDati.aggiungiDato(AccountConvalida.SESSO_PARAMETRO, "MASCHIO");
         formDati.aggiungiDato(AccountStudente.ANNO_DI_IMMATRICOLAZIONE_PARAMETRO, "2017");
         formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab123456");
     }

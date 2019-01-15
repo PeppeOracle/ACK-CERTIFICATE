@@ -9,7 +9,6 @@ import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-import javax.inject.Inject;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -172,77 +171,10 @@ public class ModificaProfiloStudente extends FormControl {
      */
     @Override
     public void valida(final FormDati formDati) {
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_EMAIL
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_COGNOME
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_NOME
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_PASSWORD
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_SESSO
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_TELEFONO
-        );
-        aggiungiCondizione(
+        aggiungiCondizioni(
                 it.unisa.ackc.gestione_utenti.control.
                         convalida.ModificaProfiloStudente
-                        .VALIDA_LUOGO_DI_NASCITA
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_DATA_DI_NASCITA
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente
-                        .VALIDA_INDIRIZZO_DI_RESIDENZA
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_NUMERO_CIVICO
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_CAP
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_CITTA
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_PAESE
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_MATRICOLA
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente
-                        .VALIDA_TIPOLOGIA_DI_LAUREA
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente.VALIDA_CORSO_DI_LAUREA
-        );
-        aggiungiCondizione(
-                it.unisa.ackc.gestione_utenti.control.
-                        convalida.ModificaProfiloStudente
-                        .VALIDA_ANNO_DI_IMMATRICOLAZIONE
+                        .class
         );
         super.valida(formDati);
     }

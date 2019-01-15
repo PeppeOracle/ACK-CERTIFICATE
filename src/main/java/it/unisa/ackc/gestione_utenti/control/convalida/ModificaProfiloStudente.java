@@ -58,7 +58,7 @@ public final class ModificaProfiloStudente {
                         AccountConvalida.EMAIL_PARAMETRO
                 );
                 if (email != null) {
-                    if (!email.matches("\\w{19,64}$")) {
+                    if (email.length() < 19 || email.length() > 64) {
                         notifica.aggiungiErrore("La lunghezza dell'email "
                                 + "deve compresa tra 19 e 64");
                     }
@@ -91,7 +91,7 @@ public final class ModificaProfiloStudente {
                         notifica.aggiungiErrore("Il formato della password "
                                 + "non è stato rispettato");
                     }
-                    if (containsLetteraENumero(password)) {
+                    if (!AccountConvalida.containsLetteraENumero(password)) {
                         notifica.aggiungiErrore("La password deve"
                                 + " contenere almeno una lettera e un numero");
                     }
@@ -140,7 +140,7 @@ public final class ModificaProfiloStudente {
                     } catch (IllegalArgumentException e) {
                         notifica.aggiungiErrore(
                                 "Il sesso indicato"
-                                        + "non è corretto"
+                                        + " non è corretto"
                         );
                     }
                 }
@@ -206,6 +206,11 @@ public final class ModificaProfiloStudente {
                         notifica.aggiungiErrore(
                                 "L'indirizzo di residenza "
                                         + "non può superare i 64 caratteri"
+                        );
+                    } else if (indirizzo.trim().equals("")) {
+                        notifica.aggiungiErrore(
+                                "L'indirizzo di residenza "
+                                        + " non può essere vuoto"
                         );
                     }
                 }
@@ -335,13 +340,11 @@ public final class ModificaProfiloStudente {
      * @since 0.0.1
      */
     public static final CondizioneConvalida VALIDA_TIPOLOGIA_DI_LAUREA =
-            formDati -> {
-                return AccountConvalida.validaNome(
+            formDati -> AccountConvalida.validaNome(
                         formDati,
                         AccountStudente.
                                 TIPOLOGIA_DI_LAUREA_PARAMETRO
                 );
-            };
 
     /**
      * Convalida del corso di laurea.
@@ -349,13 +352,11 @@ public final class ModificaProfiloStudente {
      * @since 0.0.1
      */
     public static final CondizioneConvalida VALIDA_CORSO_DI_LAUREA =
-            formDati -> {
-                return AccountConvalida.validaNome(
+            formDati -> AccountConvalida.validaNome(
                         formDati,
                         AccountStudente.
                                 CORSO_DI_LAUREA_PARAMETRO
                 );
-            };
 
     /**
      * Convalida dell'anno di immatricolazione.
@@ -374,11 +375,13 @@ public final class ModificaProfiloStudente {
                             != AccountStudente.
                             ANNO_DI_IMMATRICOLAZIONE_LENGTH) {
                         notifica.aggiungiErrore(
-                                "Il CAP deve essere di 4 caratteri"
+                                "L'anno di immatricolazione deve essere"
+                                        + " di 4 caratteri"
                         );
                     } else if (!annoDiImmatricolazione.matches("[0-9]+")) {
                         notifica.aggiungiErrore(
-                                "Il CAP deve essere composto solo da cifre"
+                                "L'anno di immatricolazione deve essere"
+                                        + " composto solo da cifre"
                         );
                     }
                 }
@@ -419,27 +422,5 @@ public final class ModificaProfiloStudente {
             }
         }
         return notifica;
-    }
-
-    /**
-     * Controlla se la string contiene almeno una lettera e un numero.
-     * @param stringa da controllare
-     * @return true se la stringa contiene almeno
-     * una lettera e un numero,
-     * false altrimenti
-     * @since 0.1.1
-     */
-    private static boolean containsLetteraENumero(final String stringa) {
-        boolean digit = false;
-        boolean letter = false;
-        for (Character ch : stringa.toCharArray()) {
-            if (Character.isLetter(ch)) {
-                letter = true;
-            }
-            if (Character.isDigit(ch)) {
-                digit = true;
-            }
-        }
-        return digit && letter;
     }
 }

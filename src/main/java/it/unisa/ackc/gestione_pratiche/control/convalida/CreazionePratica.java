@@ -4,6 +4,8 @@ import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.http.Notifica;
 
+import java.util.regex.Pattern;
+
 /**
  * Si occupa della convalida della creazione di una pratica.
  *
@@ -58,12 +60,18 @@ public final class CreazionePratica {
                         it.unisa.ackc.gestione_pratiche.control
                                 .CreazionePratica.DOMANDA_PARAMETRO
                 );
-                String[] splitDomanda = domanda.split(".");
-                if (splitDomanda.length == 2
-                        && splitDomanda[1].equals("pdf")) {
+                if (domanda == null) {
                     notifica.aggiungiErrore(
-                            "Il formato della domanda non è corretto [pdf]"
+                            "La domanda non è presente"
                     );
+                } else {
+                    String[] splitDomanda = domanda.split(Pattern.quote("."));
+                    if (splitDomanda.length != 2
+                            || !splitDomanda[1].equals("pdf")) {
+                        notifica.aggiungiErrore(
+                                "Il formato della domanda non è corretto [pdf]"
+                        );
+                    }
                 }
                 return  notifica;
             };
@@ -81,12 +89,18 @@ public final class CreazionePratica {
                         it.unisa.ackc.gestione_pratiche.control
                                 .CreazionePratica.ATTESTATO_PARAMETRO
                 );
-                String[] splitAttestato = attestato.split(".");
-                if (splitAttestato.length == 2
-                        && splitAttestato[1].equals("pdf")) {
+                if (attestato == null) {
                     notifica.aggiungiErrore(
-                            "Il formato dell'attestato non è corretto [pdf]"
+                            "L'attestato non è presente"
                     );
+                } else {
+                    String[] splitAttestato = attestato.split(Pattern.quote("."));
+                    if (splitAttestato.length != 2
+                            || !splitAttestato[1].equals("pdf")) {
+                        notifica.aggiungiErrore(
+                                "Il formato dell'attestato non è corretto [pdf]"
+                        );
+                    }
                 }
                 return  notifica;
             };

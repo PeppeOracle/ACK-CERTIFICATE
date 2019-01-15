@@ -23,6 +23,7 @@ public class ModificaPraticaSospesaTest {
         modificaPraticaSospesa = new ModificaPraticaSospesa(sessioneStub, rispostaStub);
 
         formDati = new FormDati();
+        formDati.aggiungiDato("pratica", "1");
         formDati.aggiungiDato("messaggio", "In allegato i file");
         formDati.aggiungiDato("tipo", "LINGUA_INGLESE");
         formDati.aggiungiDato("fileDomanda", "domanda.pdf");
@@ -44,20 +45,8 @@ public class ModificaPraticaSospesaTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test3() {
-        formDati.aggiungiDato("fileDomanda", null);
-        modificaPraticaSospesa.sottomettiForm(formDati);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void test4() {
         formDati.aggiungiDato("fileAttestato", "attestato.jpeg");
-        modificaPraticaSospesa.sottomettiForm(formDati);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void test5() {
-        formDati.aggiungiDato("fileAttestato", null);
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 
