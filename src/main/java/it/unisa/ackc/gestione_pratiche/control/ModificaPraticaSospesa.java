@@ -7,7 +7,6 @@ import it.unisa.ackc.gestione_pratiche.entity.Attestato;
 import it.unisa.ackc.gestione_pratiche.entity.Domanda;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.storage.ACKStorageFacade;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
@@ -87,16 +86,6 @@ public class ModificaPraticaSospesa extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
-        ackStorage = new ACKStorageFacadeDefault();
-    }
-
-    /**
-     * Imposta il facade dello storage.
-     *
-     * @param aAckStorage da impostare
-     */
-    public void setAckStorage(final ACKStorageFacade aAckStorage) {
-        this.ackStorage = aAckStorage;
     }
 
     /**
@@ -105,6 +94,9 @@ public class ModificaPraticaSospesa extends FormControl {
      */
     @Override
     public void sottomettiForm(final FormDati formDati) {
+        if (ackStorage == null) {
+            ackStorage = getAckStorage();
+        }
         valida(formDati);
         messaggio = formDati.ottieniDato(MESSAGGIO_PARAMETRO);
         pratica = ackStorage.findPraticaById(

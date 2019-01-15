@@ -4,6 +4,7 @@ import it.unisa.ackc.http.Notifica;
 import it.unisa.ackc.http.Control;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
+import it.unisa.ackc.storage.ACKStorageFacade;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -21,6 +22,10 @@ public abstract class FormControl extends Control {
      * del form che il control dovrà gestire.
      */
     private List<CondizioneConvalida> condizioniDiConvalida;
+    /**
+     * Istanza dello storage facade.
+     */
+    private ACKStorageFacade ackStorage;
 
     /**
      * Permette di instanziare un oggetto di tipo <code>Control</code>.
@@ -31,6 +36,24 @@ public abstract class FormControl extends Control {
     public FormControl(final Sessione aSessione, final Risposta aRisposta) {
         super(aSessione, aRisposta);
         condizioniDiConvalida = new ArrayList<>();
+    }
+
+    /**
+     * Restituisce un istanza del facade per l'accesso allo storage.
+     *
+     * @return istanza del facade per lo storage
+     */
+    public ACKStorageFacade getAckStorage() {
+        return ackStorage;
+    }
+
+    /**
+     * Imposta un istanza del facade per l'accesso allo storage.
+     *
+     * @param aAckStorage da impostare
+     */
+    public void setAckStorage(final ACKStorageFacade aAckStorage) {
+        this.ackStorage = aAckStorage;
     }
 
     /**

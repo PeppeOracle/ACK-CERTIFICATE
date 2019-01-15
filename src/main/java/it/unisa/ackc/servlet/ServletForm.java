@@ -2,6 +2,7 @@ package it.unisa.ackc.servlet;
 
 import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
+import it.unisa.ackc.storage.ACKStorageFacade;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ public abstract class   ServletForm extends Servlet<FormControl> {
      * @param controlClass da istanziare
      * @param richiesta http ricevuta
      * @param risposta http da inviare
+     * @param ackStorageFacade facade per l'accesso allo storage
      * @throws InvocationTargetException sollevata se ci sono stati errori
      *                                   con ottieniControl
      * @throws NoSuchMethodException sollevata se ci sono stati errori
@@ -34,8 +36,9 @@ public abstract class   ServletForm extends Servlet<FormControl> {
     public void sottomettiForm(
             final Class<? extends FormControl> controlClass,
             final HttpServletRequest richiesta,
-            final HttpServletResponse risposta
-    ) throws InvocationTargetException,
+            final HttpServletResponse risposta,
+            final ACKStorageFacade ackStorageFacade
+     ) throws InvocationTargetException,
             NoSuchMethodException,
             InstantiationException,
             IllegalAccessException {
@@ -44,6 +47,7 @@ public abstract class   ServletForm extends Servlet<FormControl> {
                 richiesta,
                 risposta
         );
+        control.setAckStorage(ackStorageFacade);
         control.sottomettiForm(ottieniFormDati(richiesta));
     }
 

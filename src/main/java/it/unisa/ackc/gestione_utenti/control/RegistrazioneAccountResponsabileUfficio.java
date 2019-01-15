@@ -65,7 +65,6 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
-        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**
@@ -74,6 +73,9 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
      */
     @Override
     public void sottomettiForm(final FormDati formDati) {
+        if (ackStorage == null) {
+            ackStorage = getAckStorage();
+        }
         valida(formDati);
         String email = formDati.ottieniDato(AccountConvalida.EMAIL_PARAMETRO);
         String password = formDati.ottieniDato(

@@ -50,7 +50,6 @@ public class ValutazionePratica extends FormControl {
             final Sessione aSessione,
             final Risposta aRisposta) {
         super(aSessione, aRisposta);
-        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**
@@ -59,6 +58,9 @@ public class ValutazionePratica extends FormControl {
      */
     @Override
     public void sottomettiForm(final FormDati formDati) {
+        if (ackStorage == null) {
+            ackStorage = getAckStorage();
+        }
         valida(formDati);
         Pratica.Stato stato = Pratica.Stato.valueOf(
                 formDati.ottieniDato(STATO_PARAMETRO)

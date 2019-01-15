@@ -46,7 +46,6 @@ public class VisualizzaPraticheStudente extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
-        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**
@@ -56,6 +55,9 @@ public class VisualizzaPraticheStudente extends FormControl {
      */
     @Override
     public void sottomettiForm(final FormDati formDati) {
+        if (ackStorage == null) {
+            ackStorage = getAckStorage();
+        }
         AccountStudente account = (AccountStudente)
                 getSessione().ottieni("account");
         formDati.aggiungiDato("temp_account", account);

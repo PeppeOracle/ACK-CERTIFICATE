@@ -39,7 +39,6 @@ public class AutenticazioneUtente extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
-        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**
@@ -48,6 +47,9 @@ public class AutenticazioneUtente extends FormControl {
      */
     @Override
     public void sottomettiForm(final FormDati formDati) {
+        if (ackStorage == null) {
+            ackStorage = getAckStorage();
+        }
         valida(formDati);
         String email =
                 formDati.ottieniDato(AccountConvalida.EMAIL_PARAMETRO);
@@ -75,6 +77,7 @@ public class AutenticazioneUtente extends FormControl {
                 default:
                     getRisposta().aggiungiAttributo("message", ERROR_MESSAGE);
                     getRisposta().inoltra(ERROR_JSP);
+                    break;
             }
         } else {
             getRisposta().aggiungiAttributo("message", ERROR_MESSAGE);

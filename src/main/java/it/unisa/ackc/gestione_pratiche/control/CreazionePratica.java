@@ -96,7 +96,6 @@ public class CreazionePratica extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
-        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**
@@ -105,6 +104,9 @@ public class CreazionePratica extends FormControl {
      */
     @Override
     public void sottomettiForm(final FormDati formDati) {
+        if (ackStorage == null) {
+            ackStorage = getAckStorage();
+        }
         valida(formDati);
         account = (Account)
                 getSessione().ottieni("account");
@@ -115,15 +117,6 @@ public class CreazionePratica extends FormControl {
         salvaPratica();
         getRisposta().aggiungiAttributo("successful", SUCCESSFUL_MESSAGE);
         getRisposta().inoltra(SUCCESSFUL_JSP);
-    }
-
-    /**
-     * Imposta il facade dello storage.
-     *
-     * @param aAckStorage da impostare
-     */
-    public void setAckStorage(final ACKStorageFacade aAckStorage) {
-        this.ackStorage = aAckStorage;
     }
 
     /**

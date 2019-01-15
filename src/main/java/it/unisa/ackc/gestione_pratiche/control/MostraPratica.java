@@ -76,7 +76,6 @@ public class MostraPratica extends FormControl {
      */
     public MostraPratica(final Sessione aSessione, final Risposta aRisposta) {
         super(aSessione, aRisposta);
-        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**
@@ -85,6 +84,9 @@ public class MostraPratica extends FormControl {
      */
     @Override
     public void sottomettiForm(final FormDati formDati) {
+        if (ackStorage == null) {
+            ackStorage = getAckStorage();
+        }
         valida(formDati);
         Pratica pratica = ackStorage.findPraticaById(
                 formDati.ottieniDatoLong(GestionePratiche.PRATICA_PARAMETRO)
