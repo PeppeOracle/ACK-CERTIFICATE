@@ -7,10 +7,6 @@ import java.io.OutputStream;
  */
 public abstract class Risposta {
     /**
-     * Output della risposta.
-     */
-    private OutputStream output;
-    /**
      * Notifica della risposta.
      */
     private Notifica notifica;
@@ -72,9 +68,7 @@ public abstract class Risposta {
      *
      * @return output
      */
-    public OutputStream getOutput() {
-        return output;
-    }
+    public abstract OutputStream getOutput();
 
     /**
      * Restituisce la notifica.

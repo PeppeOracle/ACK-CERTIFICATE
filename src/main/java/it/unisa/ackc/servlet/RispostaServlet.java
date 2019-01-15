@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Implementazione della risposta per le servlet.
@@ -113,5 +114,17 @@ public class RispostaServlet extends Risposta {
     public String ottieniUploadPath() {
         return richiesta.getServletContext().getRealPath("")
                 + File.separator;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public OutputStream getOutput() {
+        try {
+            return risposta.getOutputStream();
+        } catch (IOException e) {
+            return null;
+        }
     }
 }
