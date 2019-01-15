@@ -44,25 +44,25 @@ public class ModificaPraticaSospesaTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test4() {
+    public void test3() {
         formDati.aggiungiDato("fileAttestato", "attestato.jpeg");
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test6() {
+    public void test4() {
         formDati.aggiungiDato("stato", "APPROVATA");
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test7() {
+    public void test5() {
         formDati.aggiungiDato("tipo", "domanda");
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 
     @Test
-    public void test8() {
+    public void test6() {
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 }
