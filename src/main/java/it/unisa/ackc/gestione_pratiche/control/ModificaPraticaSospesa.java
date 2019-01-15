@@ -91,6 +91,15 @@ public class ModificaPraticaSospesa extends FormControl {
     }
 
     /**
+     * Imposta il facade dello storage.
+     *
+     * @param aAckStorage da impostare
+     */
+    public void setAckStorage(final ACKStorageFacade aAckStorage) {
+        this.ackStorage = aAckStorage;
+    }
+
+    /**
      * {@inheritDoc}
      * @since 1.1.1
      */

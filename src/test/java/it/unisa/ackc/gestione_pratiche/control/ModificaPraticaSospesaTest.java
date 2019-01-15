@@ -1,8 +1,13 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.form.FormDati;
+import it.unisa.ackc.gestione_pratiche.entity.Attestato;
+import it.unisa.ackc.gestione_pratiche.entity.Domanda;
+import it.unisa.ackc.gestione_pratiche.entity.Pratica;
+import it.unisa.ackc.http.stub.ACKCStorageStub;
 import it.unisa.ackc.http.stub.RispostaStub;
 import it.unisa.ackc.http.stub.SessioneStub;
+import it.unisa.ackc.storage.ACKStorageFacade;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +18,7 @@ public class ModificaPraticaSospesaTest {
     private SessioneStub sessioneStub;
     private RispostaStub rispostaStub;
     private FormDati formDati;
+    private ACKCStorageStub storage;
 
     @Before
     public void setUp() throws Exception {
@@ -20,6 +26,7 @@ public class ModificaPraticaSospesaTest {
         rispostaStub = new RispostaStub();
 
         modificaPraticaSospesa = new ModificaPraticaSospesa(sessioneStub, rispostaStub);
+        modificaPraticaSospesa.setAckStorage(storage = new ACKCStorageStub());
 
         formDati = new FormDati();
         formDati.aggiungiDato("pratica", "1");
@@ -51,18 +58,27 @@ public class ModificaPraticaSospesaTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void test4() {
-        formDati.aggiungiDato("stato", "APPROVATA");
+        Pratica pratica = new Pratica();
+        pratica.setStato(Pratica.Stato.APPROVATA);
+        storage.setPratica(pratica);
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test5() {
-        formDati.aggiungiDato("tipo", "domanda");
+        Pratica pratica = new Pratica();
+        pratica.setTipo("caiao");
+        storage.setPratica(pratica);
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 
     @Test
     public void test6() {
+        Pratica pratica = new Pratica();
+        pratica.setStato(Pratica.Stato.SOSPESA);
+        pratica.setDomanda(new Domanda());
+        pratica.setAttestato(new Attestato());
+        storage.setPratica(pratica);
         modificaPraticaSospesa.sottomettiForm(formDati);
     }
 }

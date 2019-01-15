@@ -330,6 +330,18 @@ public class Pratica implements Serializable {
     public void setTipo(final Tipo aTipo) {
         this.tipo = aTipo;
     }
+
+    /**
+     * Permette di impostare
+     * il tipo della pratica.
+     *
+     * @param aTipo nuovo tipo
+     * @since 0.0.1
+     */
+    public void setTipo(final String aTipo) {
+        this.tipo = Tipo.valueOf(aTipo);
+    }
+
     /**
      * Permette di associare
      * una pratica ad un account studente.
@@ -340,6 +352,7 @@ public class Pratica implements Serializable {
     public void setAccountStudente(final AccountStudente aAccountStudente) {
         this.accountStudente = aAccountStudente;
     }
+
     /**
      * Restituisce
      * l'account studente associato alla pratica.
@@ -350,6 +363,7 @@ public class Pratica implements Serializable {
     public AccountStudente getAccountStudente() {
         return accountStudente;
     }
+
     /**
      * Possibili stati di una pratica.
      * Una pratica è considerata aperta se nello stato di attesa o sospesa.

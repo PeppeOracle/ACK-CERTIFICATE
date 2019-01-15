@@ -62,8 +62,7 @@ public final class ModificaProfiloStudente {
                             || email.length() > AccountConvalida.MAX_MAIL) {
                         notifica.aggiungiErrore("La lunghezza dell'email "
                                 + "deve compresa tra 19 e 64");
-                    }
-                    if (!email.matches(
+                    } else if (!email.matches(
                             "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {
                         notifica.aggiungiErrore("Il formato dell'email "
                                 + "non è stato rispettato");

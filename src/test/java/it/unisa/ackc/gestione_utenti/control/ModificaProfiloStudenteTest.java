@@ -203,7 +203,7 @@ public class ModificaProfiloStudenteTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void test27(){
-        formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.santoro21@studen");
+        formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.soro21@");
         modificaProfiloStudente.valida(formDati);
     }
 

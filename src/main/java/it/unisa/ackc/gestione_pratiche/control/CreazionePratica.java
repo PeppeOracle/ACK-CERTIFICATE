@@ -118,6 +118,15 @@ public class CreazionePratica extends FormControl {
     }
 
     /**
+     * Imposta il facade dello storage.
+     *
+     * @param aAckStorage da impostare
+     */
+    public void setAckStorage(final ACKStorageFacade aAckStorage) {
+        this.ackStorage = aAckStorage;
+    }
+
+    /**
      * Salva la pratica.
      *
      * @since 1.1.1

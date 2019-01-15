@@ -129,6 +129,7 @@ public class AccountStudente extends Account {
      * Costruttore di default.
      */
     public AccountStudente() {
+        this.pratiche = new ArrayList<>();
     }
     /**
      * Restituisce

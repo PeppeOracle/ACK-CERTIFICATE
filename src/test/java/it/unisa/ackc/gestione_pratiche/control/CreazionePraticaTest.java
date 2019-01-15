@@ -1,6 +1,7 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.form.FormDati;
+import it.unisa.ackc.http.stub.ACKCStorageStub;
 import it.unisa.ackc.http.stub.RispostaStub;
 import it.unisa.ackc.http.stub.SessioneStub;
 import org.junit.Before;
@@ -22,6 +23,7 @@ public class CreazionePraticaTest {
         rispostaStub = new RispostaStub();
 
         creazionePratica = new CreazionePratica(sessioneStub, rispostaStub);
+        creazionePratica.setAckStorage(new ACKCStorageStub());
 
         formDati = new FormDati();
         formDati.aggiungiDato("messaggio", "Attestato non riconosciuto");
