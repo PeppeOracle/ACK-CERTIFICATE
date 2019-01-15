@@ -10,34 +10,30 @@ import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
- * EJB per l'accesso al database ACK_Storage.
+ * Facade per l'accesso al database ACK_Storage.
  * @version 0.2.1
  */
-@Stateless
-@LocalBean
-public class ACKStorageFacadeEJB implements ACKStorageFacade {
+public class ACKStorageFacadeDefault implements ACKStorageFacade {
 
     /**
      * EJB per le transazioni relative alla pratica.
      */
-    @EJB
+    @Inject
     private PraticaEJB praticaEJB;
     /**
      * EJB per le transazioni relative all'account.
      */
-    @EJB
+    @Inject
     private AccountEJB accountEJB;
 
     /**
-     * Costruttore di default del bean.
+     * Costruttore di default del facade.
      * @since 0.0.1
      */
-    public ACKStorageFacadeEJB() {
+    public ACKStorageFacadeDefault() {
     }
 
     /**

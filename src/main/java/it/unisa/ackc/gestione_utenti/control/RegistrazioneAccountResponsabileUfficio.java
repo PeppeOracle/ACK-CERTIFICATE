@@ -4,13 +4,13 @@ import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountConvalida;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 
 /**
@@ -51,7 +51,6 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    //@Inject
     private ACKStorageFacade ackStorage;
 
     /**
@@ -66,6 +65,7 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
+        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**

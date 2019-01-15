@@ -5,10 +5,9 @@ import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.control.convalida.GestionePratiche;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
-
-import javax.inject.Inject;
 
 /**
  * Si occupa della valutazione di una pratica.
@@ -38,7 +37,6 @@ public class ValutazionePratica extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    @Inject
     private ACKStorageFacade ackStorage;
 
     /**
@@ -48,8 +46,11 @@ public class ValutazionePratica extends FormControl {
      * @param aRisposta da restituire all'utente che ha innescato il
      * @since 1.1.1
      */
-    public ValutazionePratica(final Sessione aSessione, final Risposta aRisposta) {
+    public ValutazionePratica(
+            final Sessione aSessione,
+            final Risposta aRisposta) {
         super(aSessione, aRisposta);
+        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**

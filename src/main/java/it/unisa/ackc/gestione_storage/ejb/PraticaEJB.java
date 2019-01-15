@@ -7,8 +7,8 @@ import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class PraticaEJB {
     /**
      * Entity manager che gestisce le transazioni nel database.
      */
-    @Inject
+    @PersistenceContext(unitName = "ACKPU")
     private EntityManager em;
     /**
      * Costruttore di default del bean.
@@ -57,7 +57,7 @@ public class PraticaEJB {
      * @since 0.0.1
      */
     public void deletePratica(final Pratica aPratica) {
-        em.remove(aPratica);
+        em.remove(em.merge(aPratica));
     }
     /**
      * Trova una pratica nel database.
@@ -129,7 +129,7 @@ public class PraticaEJB {
             final List<Tipo> aTipi) {
         TypedQuery<Long> query =
                 em.createNamedQuery("countPraticheByStatoByTipi", Long.class);
-        query.setParameter("listaStati", aStato);
+        query.setParameter("stato", aStato);
         query.setParameter("listaTipi", aTipi);
         return query.getSingleResult();
     }

@@ -3,6 +3,7 @@ package it.unisa.ackc.gestione_utenti.control;
 import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountConvalida;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
@@ -12,7 +13,17 @@ import it.unisa.ackc.http.Sessione;
 import java.text.ParseException;
 import java.util.Date;
 
-import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.*;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.MATRICOLA_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.DATA_DI_NASCITA_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.LUOGO_DI_NASCITA_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.INDIRIZZO_DI_RESIDENZA_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.NUMERO_CIVICO_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.CAP_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.CITTA_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.PAESE_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.TIPOLOGIA_DI_LAUREA_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.CORSO_DI_LAUREA_PARAMETRO;
+import static it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente.ANNO_DI_IMMATRICOLAZIONE_PARAMETRO;
 
 /**
  * Si occupa della modifica del profilo di uno studente.
@@ -35,7 +46,6 @@ public class ModificaProfiloStudente extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    //@Inject
     private ACKStorageFacade ackStorage;
 
     /**
@@ -50,6 +60,7 @@ public class ModificaProfiloStudente extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
+        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**

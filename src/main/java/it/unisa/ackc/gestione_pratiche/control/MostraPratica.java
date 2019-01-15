@@ -5,10 +5,10 @@ import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.control.convalida.GestionePratiche;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-import javax.inject.Inject;
 
 /**
  * Si occupa di reperire le informazioni relative ad una pratica
@@ -20,43 +20,51 @@ public class MostraPratica extends FormControl {
     /**
      * Macro del parametro tipo di visualizzione richiesta.
      */
-    public static final String TIPO_PARAMETRO = "tipo";
+    public static final String
+            TIPO_PARAMETRO = "tipo";
     /**
      * Macro della jsp per il responsabile ufficio (visualizzazione).
      */
-    private static final String PRATICA_RESPONSABILE_UFFICIO_JSP = "visualizzaPratica.jsp";
+    private static final String
+            PRATICA_RESPONSABILE_UFFICIO_JSP = "visualizzaPratica.jsp";
     /**
      * Tipo jsp per responsabile ufficio (visualizzazione).
      */
-    public static final int PRATICA_RESPONSABILE_UFFICIO = 0;
+    public static final int
+            PRATICA_RESPONSABILE_UFFICIO = 0;
     /**
      * Macro della jsp per il responsabile ufficio (valutazione).
      */
-    private static final String PRATICA_RESPONSABILE_UFFICIO_VALUTA_JSP = "valutaPratica.jsp";
+    private static final String
+            PRATICA_RESPONSABILE_UFFICIO_VALUTA_JSP = "valutaPratica.jsp";
     /**
      * Tipo jsp per responsabile ufficio (valutazione).
      */
-    public static final int PRATICA_RESPONSABILE_UFFICIO_VALUTA = 1;
+    public static final int
+            PRATICA_RESPONSABILE_UFFICIO_VALUTA = 1;
     /**
      * Macro della jsp per lo studente (visualizzazione).
      */
-    private static final String PRATICA_STUDENTE_JSP = "visualizzaPratica.jsp";
+    private static final String
+            PRATICA_STUDENTE_JSP = "visualizzaPratica.jsp";
     /**
      * Tipo jsp per lo studente  (visualizzazione).
      */
-    public static final int PRATICA_STUDENTE = 2;
+    public static final int
+            PRATICA_STUDENTE = 2;
     /**
      * Macro della jsp per lo studente (modifica).
      */
-    private static final String PRATICA_STUDENTE_MODIFICA_JSP = "visualizzaPratica.jsp";
+    private static final String
+            PRATICA_STUDENTE_MODIFICA_JSP = "visualizzaPratica.jsp";
     /**
      * Tipo jsp per lo studente  (modifica).
      */
-    public static final int PRATICA_STUDENTE_MODIFICA = 3;
+    public static final int
+            PRATICA_STUDENTE_MODIFICA = 3;
     /**
      * Istanza dello storage facade.
      */
-    @Inject
     private ACKStorageFacade ackStorage;
 
     /**
@@ -68,6 +76,7 @@ public class MostraPratica extends FormControl {
      */
     public MostraPratica(final Sessione aSessione, final Risposta aRisposta) {
         super(aSessione, aRisposta);
+        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**

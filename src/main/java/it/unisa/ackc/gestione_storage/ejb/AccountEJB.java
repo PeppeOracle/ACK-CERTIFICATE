@@ -5,8 +5,8 @@ import it.unisa.ackc.gestione_utenti.entity.Account.Ruolo;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class AccountEJB {
     /**
      * Entity manager che gestisce le transazioni nel database.
      */
-    @Inject
+    @PersistenceContext(unitName = "ACKPU")
     private EntityManager em;
     /**
      * Costruttore di default del bean.
@@ -55,7 +55,7 @@ public class AccountEJB {
      * @since 0.0.1
      */
     public void deleteAccount(final Account aAccount) {
-        em.remove(aAccount);
+        em.remove(em.merge(aAccount));
     }
     /**
      * Trova un account nel database.
@@ -89,7 +89,7 @@ public class AccountEJB {
      */
     public List<Account> findByRuolo(final Ruolo aRuolo) {
         TypedQuery<Account> query =
-                em.createNamedQuery("findAccountByTipo", Account.class);
+                em.createNamedQuery("findAccountByRuolo", Account.class);
         query.setParameter("ruolo", aRuolo);
         return query.getResultList();
     }

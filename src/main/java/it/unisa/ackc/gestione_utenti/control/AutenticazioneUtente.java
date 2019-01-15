@@ -3,12 +3,12 @@ package it.unisa.ackc.gestione_utenti.control;
 import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountConvalida;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-import javax.inject.Inject;
 
 /**
  * Si occupa dell'autenticazione di un utente nel sistema.
@@ -31,7 +31,6 @@ public class AutenticazioneUtente extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    //@Inject
     private ACKStorageFacade ackStorage;
 
     /**
@@ -45,6 +44,7 @@ public class AutenticazioneUtente extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
+        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**

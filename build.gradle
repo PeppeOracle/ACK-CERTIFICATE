@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'war'
+    id 'eclipse'
+    id 'maven'
 }
 
 group '1'
@@ -14,6 +16,9 @@ repositories {
 
 dependencies {
     compile 'com.itextpdf:itextg:5.5.10'
+    compile 'com.itextpdf:itextg:5.5.10'
+    compile 'org.wisdom-framework:mysql-connector-java:5.1.34_1'
+
     providedCompile group: 'javax', name: 'javaee-api', version:'7.0'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

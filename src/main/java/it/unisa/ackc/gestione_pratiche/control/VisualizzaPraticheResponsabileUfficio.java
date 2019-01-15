@@ -4,11 +4,11 @@ import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_storage.ACKStorageFacade;
+import it.unisa.ackc.gestione_storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -53,7 +53,6 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
     /**
      * Istanza dello storage facade.
      */
-    @Inject
     private ACKStorageFacade ackStorage;
 
     /**
@@ -68,6 +67,7 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
             final Risposta aRisposta
     ) {
         super(aSessione, aRisposta);
+        ackStorage = new ACKStorageFacadeDefault();
     }
 
     /**
@@ -126,7 +126,8 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
      */
     @Override
     public void valida(final FormDati formDati) {
-        aggiungiCondizioni(it.unisa.ackc.gestione_pratiche.control.convalida.VisualizzaPraticheResponsabileUfficio.class);
+        aggiungiCondizioni(it.unisa.ackc.gestione_pratiche.control.convalida
+                .VisualizzaPraticheResponsabileUfficio.class);
         super.valida(formDati);
     }
 }
