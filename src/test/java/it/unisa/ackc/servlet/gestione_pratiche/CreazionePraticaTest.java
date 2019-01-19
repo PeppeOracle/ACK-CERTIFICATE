@@ -3,7 +3,9 @@ package it.unisa.ackc.servlet.gestione_pratiche;
 import it.unisa.ackc.gestione_pratiche.entity.Domanda;
 import it.unisa.ackc.http.stub.ACKCStorageStub;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -43,6 +45,8 @@ public class CreazionePraticaTest {
     private Part attestatoFile;
     @Mock
     private RequestDispatcher rd;
+    @Rule
+    public ExpectedException expect = ExpectedException.none();
 
     @Before
     public void setUp() {
@@ -87,6 +91,53 @@ public class CreazionePraticaTest {
         when(response.getWriter()).thenReturn(writer);
         when(response.getOutputStream()).thenReturn(servletOutputStream);
 
+        CreazionePratica creazionePratica = new CreazionePratica();
+        setField(creazionePratica,
+                creazionePratica.getClass().getDeclaredField("ackStorage"),
+                new ACKCStorageStub()
+        );
+        creazionePratica.doGet(request, response);
+    }
+
+    @Test
+    public void test02() throws IOException, ServletException, NoSuchFieldException {
+        HashMap<String, String[]> values = new HashMap<>();
+        values.put("ente", new String[] {"Bethesda"});
+        values.put(it.unisa.ackc.gestione_pratiche.control.CreazionePratica.MESSAGGIO_PARAMETRO,
+                new String[] {"Attestato non riconosciuto"});
+        values.put(it.unisa.ackc.gestione_pratiche.control.CreazionePratica.TIPO_PARAMETRO,
+                new String[] { "LINGUA_INGLESE"});
+        List<Part> parts = new ArrayList<>();
+        when(domandaFile.getName()).thenReturn(
+                it.unisa.ackc.gestione_pratiche.control.CreazionePratica.DOMANDA_PARAMETRO);
+        when(domandaFile.getSubmittedFileName()).thenReturn("domanda.pdf");
+        when(attestatoFile.getName()).thenReturn(
+                it.unisa.ackc.gestione_pratiche.control.CreazionePratica.ATTESTATO_PARAMETRO);
+        when(attestatoFile.getSubmittedFileName()).thenReturn("attestato.pdf");
+        parts.add(attestatoFile);
+        when(request.getPart(it.unisa.ackc.gestione_pratiche.control.CreazionePratica.DOMANDA_PARAMETRO))
+                .thenReturn(domandaFile);
+        when(request.getPart(it.unisa.ackc.gestione_pratiche.control.CreazionePratica.ATTESTATO_PARAMETRO))
+                .thenReturn(attestatoFile);
+        when(request.getParts()).thenReturn(parts);
+        when(request.getContentType()).thenReturn("multipart/form-data");
+        when(request.getParameterMap()).thenReturn(values);
+        when(request.getServletContext()).thenReturn(servletContext);
+        it.unisa.ackc.gestione_utenti.entity.AccountStudente accountStudente
+                = new it.unisa.ackc.gestione_utenti.entity.AccountStudente();
+        when(session.getAttribute("account")).thenReturn(accountStudente);
+        when(session.getAttribute("domanda")).thenReturn(new Domanda());
+        when(request.getSession()).thenReturn(session);
+        when(request.getSession(any(Boolean.class))).thenReturn(session);
+        when(request.getRequestDispatcher(any(String.class))).thenReturn(rd);
+
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter);
+        when(response.getWriter()).thenReturn(writer);
+        when(response.getOutputStream()).thenReturn(servletOutputStream);
+
+        expect.expect(Error.class);
+        expect.expectMessage("La domanda non è presente");
         CreazionePratica creazionePratica = new CreazionePratica();
         setField(creazionePratica,
                 creazionePratica.getClass().getDeclaredField("ackStorage"),

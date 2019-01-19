@@ -34,14 +34,14 @@ public class AutenticazioneUtenteTest {
         ACKCStorageStub storage = new ACKCStorageStub();
         account = new Account();
         account.setEmail("v.santoro21@personale.unisa.it");
-        account.setPassword("abc123");
+        account.setPassword("Abc123");
         account.setRuolo(Account.Ruolo.STUDENTE);
         storage.setAccount(account);
         autenticazioneUtente.setAckStorage(storage);
 
         formDati = new FormDati();
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.santoro21@personale.unisa.it");
-        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "abc123");
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "Abc123");
     }
 
     @Test

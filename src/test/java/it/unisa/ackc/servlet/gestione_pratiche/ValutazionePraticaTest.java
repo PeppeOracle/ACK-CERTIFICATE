@@ -4,7 +4,9 @@ import it.unisa.ackc.gestione_pratiche.control.convalida.GestionePratiche;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.http.stub.ACKCStorageStub;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -27,6 +29,9 @@ public class ValutazionePraticaTest {
     @Mock
     private RequestDispatcher rd;
 
+    @Rule
+    public ExpectedException expect = ExpectedException.none();
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -42,6 +47,34 @@ public class ValutazionePraticaTest {
         values.put(
                 it.unisa.ackc.gestione_pratiche.control.ValutazionePratica.STATO_PARAMETRO, new String[]{Pratica.Stato.APPROVATA.name()});
         values.put(
+                it.unisa.ackc.gestione_pratiche.control.ValutazionePratica.MESSAGGIO_PARAMETRO, new String[] {"Complimenti!"});
+        values.put(
+                GestionePratiche.PRATICA_PARAMETRO, new String[] {"1"});
+
+
+        when(request.getParameterMap()).thenReturn(values);
+
+        ACKCStorageStub storage = new ACKCStorageStub();
+        storage.setPratica(new Pratica());
+
+        setField(valutazionePratica,
+                valutazionePratica.getClass().getDeclaredField("ackStorage"),
+                storage
+        );
+
+        valutazionePratica.doGet(request, response);
+    }
+
+    @Test
+    public void test02() throws IOException, ServletException, NoSuchFieldException {
+        when(request.getRequestDispatcher(any(String.class))).thenReturn(rd);
+
+        expect.expect(Error.class);
+        expect.expectMessage("Indicare il nuovo stato");
+        ValutazionePratica valutazionePratica = new ValutazionePratica();
+        HashMap<String, String[]> values = new HashMap<>();
+
+       values.put(
                 it.unisa.ackc.gestione_pratiche.control.ValutazionePratica.MESSAGGIO_PARAMETRO, new String[] {"Complimenti!"});
         values.put(
                 GestionePratiche.PRATICA_PARAMETRO, new String[] {"1"});

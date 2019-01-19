@@ -122,7 +122,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("La lunghezza del telefono deve compresa tra 9 e 10");
 
-        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "12345678910");
+        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "12345678943510");
         registrazioneAccount.sottomettiForm(formDati);
     }
 
