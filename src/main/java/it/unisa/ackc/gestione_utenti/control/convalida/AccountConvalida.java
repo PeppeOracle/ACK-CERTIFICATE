@@ -124,7 +124,7 @@ public final class AccountConvalida {
                 );
                 if (password == null || password.trim().equals("")) {
                     notifica.aggiungiErrore(
-                            "La password non è stato indicata"
+                            "La password non è stata indicata"
                     );
                 } else {
                     if (!password.matches("\\w{2,8}$")) {

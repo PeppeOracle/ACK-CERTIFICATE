@@ -309,7 +309,7 @@ public final class AccountStudente {
                     );
                 } else if (!annoDiImmatricolazione.matches("[0-9]+")) {
                     notifica.aggiungiErrore(
-                            "L'anno di immatricolazione deve essere"
+                            "L'anno di immatricolazione deve essere "
                                     + "composto solo da cifre"
                     );
                 }
