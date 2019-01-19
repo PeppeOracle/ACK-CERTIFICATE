@@ -7,7 +7,10 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AccountFilterTest.class,
-        AmministratoreFilterTest.class
+        AmministratoreFilterTest.class,
+        ConsumerFilter.class,
+        ResponsabileUfficioFilter.class,
+        StudenteFilter.class
 })
 public class FilterSuite {
 }
