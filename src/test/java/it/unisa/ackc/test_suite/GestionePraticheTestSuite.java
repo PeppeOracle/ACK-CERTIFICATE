@@ -1,9 +1,6 @@
 package it.unisa.ackc.test_suite;
 
-import it.unisa.ackc.gestione_pratiche.control.CreazioneDomandaAttivitaLavorativaTest;
-import it.unisa.ackc.gestione_pratiche.control.CreazioneDomandaLinguaIngleseTest;
-import it.unisa.ackc.gestione_pratiche.control.CreazionePraticaTest;
-import it.unisa.ackc.gestione_pratiche.control.ModificaPraticaSospesaTest;
+import it.unisa.ackc.gestione_pratiche.control.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -12,7 +9,9 @@ import org.junit.runners.Suite;
         CreazioneDomandaLinguaIngleseTest.class,
         CreazionePraticaTest.class,
         ModificaPraticaSospesaTest.class,
-        CreazioneDomandaAttivitaLavorativaTest.class
+        CreazioneDomandaAttivitaLavorativaTest.class,
+        CreazioneDomandaTest.class,
+        MostraPraticaTest.class
 })
 public class GestionePraticheTestSuite {
 }

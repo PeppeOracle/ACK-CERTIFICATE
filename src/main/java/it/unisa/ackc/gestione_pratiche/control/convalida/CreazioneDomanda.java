@@ -21,7 +21,7 @@ public final class CreazioneDomanda {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_TIPO_DI_DOMANDA =
+    public static final CondizioneConvalida VALIDA_TIPO_DI_DOMANDA =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String tipoDiDomanda = formDati.ottieniDato(

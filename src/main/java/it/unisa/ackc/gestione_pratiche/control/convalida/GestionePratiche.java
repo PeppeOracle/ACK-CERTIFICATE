@@ -78,22 +78,6 @@ public final class GestionePratiche {
                         "L'identificativo della pratica "
                                 + "deve essere maggiore di 0"
                 );
-            } else {
-                ACKStorageFacade ackStorage = null;
-                try {
-                    Context context = new InitialContext();
-                    ackStorage = new ACKStorageFacadeDefault();
-                } catch (NamingException e) {
-                    notifica.aggiungiErrore(
-                            "Non è stato possibile effettuare l'operazione", e
-                    );
-                }
-                Pratica pratica = ackStorage.findPraticaById(praticaId);
-                if (pratica == null) {
-                    notifica.aggiungiErrore(
-                            "L'identificativo di pratica indicato non esiste"
-                    );
-                }
             }
         } catch (NumberFormatException e) {
             notifica.aggiungiErrore(

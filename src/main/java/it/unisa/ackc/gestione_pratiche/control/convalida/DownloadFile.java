@@ -3,6 +3,8 @@ package it.unisa.ackc.gestione_pratiche.control.convalida;
 import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.http.Notifica;
 
+import java.util.regex.Pattern;
+
 /**
  * Si occupa della convalida per il download di un file.
  *
@@ -26,7 +28,7 @@ public final class DownloadFile {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_FILE =
+    public static final CondizioneConvalida VALIDA_FILE =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String fileName = formDati.ottieniDato(
@@ -38,10 +40,9 @@ public final class DownloadFile {
                             "Il file non è stato indicato"
                     );
                 } else {
-                    String[] splitFileName =
-                            fileName.split(".");
-                    if (splitFileName.length == 2
-                            && splitFileName[1].equals("pdf")) {
+                    String[] splitFileName = fileName.split(Pattern.quote("."));
+                    if (splitFileName.length != 2
+                            || !splitFileName[1].equals("pdf")) {
                         notifica.aggiungiErrore(
                                 "Il formato del file non è corretto [pdf]"
                         );

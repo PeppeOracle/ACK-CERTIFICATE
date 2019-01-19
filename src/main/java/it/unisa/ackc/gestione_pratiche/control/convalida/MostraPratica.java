@@ -21,7 +21,7 @@ public final class MostraPratica {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_TIPO = formDati -> {
+    public static final CondizioneConvalida VALIDA_TIPO = formDati -> {
         Notifica notifica = new Notifica();
         try {
             Integer tipo = formDati.ottieniDatoIntero(

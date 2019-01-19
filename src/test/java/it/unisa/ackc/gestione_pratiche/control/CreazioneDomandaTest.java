@@ -1,8 +1,6 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.form.FormDati;
-import it.unisa.ackc.gestione_pratiche.entity.Pratica;
-import it.unisa.ackc.http.stub.ACKCStorageStub;
 import it.unisa.ackc.http.stub.RispostaStub;
 import it.unisa.ackc.http.stub.SessioneStub;
 import org.junit.Before;
@@ -26,9 +24,6 @@ public class CreazioneDomandaTest {
         formDati.aggiungiDato(CreazioneDomanda.TIPO_DI_DOMANDA_PARAMETRO, "attivitaLavorativa");
 
         creazioneDomanda = new CreazioneDomanda(sessioneStub, rispostaStub);
-        ACKCStorageStub storage = new ACKCStorageStub();
-        storage.setPratica(new Pratica());
-        creazioneDomanda.setAckStorage(storage);
     }
 
     @Test

@@ -126,6 +126,7 @@ public class MostraPratica extends FormControl {
     public void valida(final FormDati formDati) {
         aggiungiCondizioni(it.unisa.ackc.gestione_pratiche.control.convalida
                 .MostraPratica.class);
+        aggiungiCondizione(GestionePratiche.VALIDA_PRATICA);
         super.valida(formDati);
     }
 }
