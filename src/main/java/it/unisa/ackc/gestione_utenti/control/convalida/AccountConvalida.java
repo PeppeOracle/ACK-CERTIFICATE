@@ -48,6 +48,14 @@ public final class AccountConvalida {
      */
     static final int MAX_MAIL = 64;
     /**
+     * Macro della lunghezza minima per password.
+     */
+    static final int MIN_PASSWORD = 2;
+    /**
+     * Macro della lunghezza massima per password.
+     */
+    static final int MAX_PASSWORD = 10;
+    /**
      * Macro della lunghezza minima per il telefono.
      */
     static final int MIN_TELEFONO = 9;
@@ -65,7 +73,8 @@ public final class AccountConvalida {
      *
      * @since 0.0.1
      */
-    private AccountConvalida() { }
+    private AccountConvalida() {
+    }
 
     /**
      * Convalida del nome.
@@ -103,10 +112,11 @@ public final class AccountConvalida {
                             "La password non è stata indicata"
                     );
                 } else {
-                    if (!password.matches("\\w{2,8}$")) {
+                    if (password.length() < MIN_PASSWORD
+                            || password.length() > MAX_PASSWORD) {
                         notifica.aggiungiErrore("La lunghezza della password "
                                 + "deve compresa tra 2 e 8");
-                    } else if (!password.matches("[A-Z, a-z,0-9]+")) {
+                    } else if (!password.matches("[A-Z, a-z, 0-9]+")) {
                         notifica.aggiungiErrore("Il formato della password "
                                 + "non è stato rispettato");
                     } else if (!containsLetteraENumero(password)) {
@@ -115,7 +125,7 @@ public final class AccountConvalida {
                                 + "una lettera e un numero");
                     }
                 }
-                return  notifica;
+                return notifica;
             };
 
     /**
@@ -143,7 +153,7 @@ public final class AccountConvalida {
                                 + "non è stato rispettato");
                     }
                 }
-                return  notifica;
+                return notifica;
             };
 
     /**
@@ -171,13 +181,14 @@ public final class AccountConvalida {
                         );
                     }
                 }
-                return  notifica;
+                return notifica;
             };
 
     /**
      * Restituisce la notifica degli errori su una convalida del nome.
+     *
      * @param formDati da cui prendere il parametro
-     * @param nome del parametro
+     * @param nome     del parametro
      * @return notifica
      * @since 0.0.1
      */
@@ -204,6 +215,7 @@ public final class AccountConvalida {
 
     /**
      * Controlla se la string contiene almeno una lettera e un numero.
+     *
      * @param stringa da controllare
      * @return true se la stringa contiene almeno
      * una lettera e un numero,
