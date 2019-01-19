@@ -8,9 +8,10 @@
 <body>
 
 <%@ page import="it.unisa.ackc.gestione_utenti.entity.AccountStudente" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
     AccountStudente accountBean = (AccountStudente) session.getAttribute("account");
+    SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
 %>
 
 <!-- Navbar -->
@@ -42,8 +43,8 @@
 
         <div class="form-group">
             <label for="inputDataNascita">Data di nascita</label>
-            <input name="dataNascita" type="date" class="form-control" id="inputDataNascita"
-                   value="<%= accountBean.getDataDiNascita() %>" required disabled>
+            <input name="dataNascita" type="text" class="form-control" id="inputDataNascita"
+                   value="<%= format.format(accountBean.getDataDiNascita()) %>" required disabled>
         </div>
 
         <div class="form-group">

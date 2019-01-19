@@ -8,9 +8,12 @@
 </head>
 <body>
 
+<%
+    session.removeAttribute("account");
+%>
+
 <!-- Navbar -->
 <%@ include file="WEB-INF/jspf/navbarNoUser.jspf" %>
-
 <div class="container">
 
     <form action="/gestione-utente/autenticazione-utente" method="post" id="loginForm">
