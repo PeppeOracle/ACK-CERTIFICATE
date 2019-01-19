@@ -66,7 +66,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test03(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza dell'email deve compresa tra 19 e 64");
+        expect.expectMessage("La lunghezza dell'email deve compresa tra 10 e 64");
 
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.soro21@");
         registrazioneAccount.sottomettiForm(formDati);
@@ -75,7 +75,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test04(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza dell'email deve compresa tra 19 e 64");
+        expect.expectMessage("La lunghezza dell'email deve compresa tra 10 e 64");
 
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, longString);
         registrazioneAccount.sottomettiForm(formDati);
@@ -235,7 +235,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test23() {
+    public void test24() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero del piano deve essere un intero");
 
@@ -244,7 +244,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test24() {
+    public void test25() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero del piano deve essere un intero");
 
@@ -253,7 +253,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test25() {
+    public void test26() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero del piano deve essere un intero al più a due cifre");
 
@@ -262,7 +262,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test26() {
+    public void test27() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero della stanza deve essere un positivo");
 
@@ -271,7 +271,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test27() {
+    public void test28() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero della stanza deve essere un positivo");
 
@@ -280,7 +280,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test28() {
+    public void test29() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero della stanza deve essere maggiore di 0 e deve essere un numero al più a tre cifre");
 
@@ -289,7 +289,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test29() {
+    public void test30() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Le tipologia delle pratiche pratica non è stata indicata");
 
@@ -298,7 +298,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test30() {
+    public void test31() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il tipo indicato non è corretto");
 
@@ -307,7 +307,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test31(){
+    public void test50(){
         registrazioneAccount.sottomettiForm(formDati);
     }
 }

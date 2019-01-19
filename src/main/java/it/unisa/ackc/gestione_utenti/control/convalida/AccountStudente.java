@@ -1,6 +1,7 @@
 package it.unisa.ackc.gestione_utenti.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
+import it.unisa.ackc.gestione_utenti.control.RegistrazioneAccountStudente;
 import it.unisa.ackc.http.Notifica;
 
 import java.text.DateFormat;
@@ -88,6 +89,40 @@ public final class AccountStudente {
      * @since 0.0.1
      */
     private AccountStudente() { }
+
+    /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            formDati -> {
+                Notifica notifica = new Notifica();
+                String email = formDati.ottieniDato(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (email == null || email.trim().equals("")) {
+                    notifica.aggiungiErrore(
+                            "La mail non è stato indicato"
+                    );
+                } else {
+                    if (email.length()
+                            < RegistrazioneAccountStudente.
+                            MIN_MAIL
+                            || email.length()
+                            > RegistrazioneAccountStudente.
+                            MAX_MAIL) {
+                        notifica.aggiungiErrore("La lunghezza dell'email "
+                                + "deve compresa tra 19 e 64");
+                    }
+                    if (!email.matches(
+                            "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {
+                        notifica.aggiungiErrore("Il formato dell'email "
+                                + "non è stato rispettato");
+                    }
+                }
+                return  notifica;
+            };
 
     /**
      * Convalida del luogo di nascita.

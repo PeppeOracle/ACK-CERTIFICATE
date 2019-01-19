@@ -44,7 +44,7 @@ public final class AutenticazioneUtente {
                 if (email.length() < MIN_MAIL
                         || email.length() > MAX_MAIL) {
                     notifica.aggiungiErrore("La lunghezza dell'email "
-                            + "deve compresa tra 19 e 64");
+                            + "deve compresa tra 10 e 64");
                 }
             }
             return  notifica;
