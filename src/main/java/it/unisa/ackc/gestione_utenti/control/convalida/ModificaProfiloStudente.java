@@ -201,8 +201,8 @@ public final class ModificaProfiloStudente {
                 );
                 if (indirizzo != null) {
                     if (indirizzo.length()
-                            > AccountStudente.
-                            INDIRIZZO_DI_RESIDENZA_MAX) {
+                            > AccountConvalida.
+                            MAX_NOME) {
                         notifica.aggiungiErrore(
                                 "L'indirizzo di residenza "
                                         + "non può superare i 64 caratteri"
