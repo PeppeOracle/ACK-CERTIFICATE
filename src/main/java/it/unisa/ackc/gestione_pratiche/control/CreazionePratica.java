@@ -6,7 +6,6 @@ import it.unisa.ackc.gestione_pratiche.entity.Attestato;
 import it.unisa.ackc.gestione_pratiche.entity.Domanda;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.storage.ACKStorageFacade;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.http.Risposta;

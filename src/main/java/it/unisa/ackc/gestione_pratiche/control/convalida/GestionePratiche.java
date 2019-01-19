@@ -1,14 +1,7 @@
 package it.unisa.ackc.gestione_pratiche.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
-import it.unisa.ackc.gestione_pratiche.entity.Pratica;
-import it.unisa.ackc.storage.ACKStorageFacade;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.http.Notifica;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 /**
  * Contiene le condizioni di convalida per la gestione pratiche.

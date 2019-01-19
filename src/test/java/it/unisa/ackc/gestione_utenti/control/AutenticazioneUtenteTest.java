@@ -18,6 +18,7 @@ public class AutenticazioneUtenteTest {
     public ExpectedException expect = ExpectedException.none();
 
     private AutenticazioneUtente autenticazioneUtente;
+    private Account account;
     private SessioneStub sessioneStub;
     private RispostaStub rispostaStub;
     private FormDati formDati;
@@ -31,7 +32,7 @@ public class AutenticazioneUtenteTest {
 
         autenticazioneUtente = new AutenticazioneUtente(sessioneStub, rispostaStub);
         ACKCStorageStub storage = new ACKCStorageStub();
-        Account account = new Account();
+        account = new Account();
         account.setEmail("v.santoro21@personale.unisa.it");
         account.setPassword("abc123");
         account.setRuolo(Account.Ruolo.STUDENTE);
@@ -124,6 +125,26 @@ public class AutenticazioneUtenteTest {
 
     @Test
     public void test10(){
+        autenticazioneUtente.sottomettiForm(formDati);
+        assertNotEquals(AutenticazioneUtente.ERROR_JSP, rispostaStub.getUrl());
+    }
+
+    @Test
+        public void test11(){
+        account.setRuolo(Account.Ruolo.RESPONSABILE_UFFICIO);
+        autenticazioneUtente.sottomettiForm(formDati);
+        assertNotEquals(AutenticazioneUtente.ERROR_JSP, rispostaStub.getUrl());
+    }
+
+    @Test
+    public void test12(){
+        account.setRuolo(Account.Ruolo.AMMINISTRATORE);
+        autenticazioneUtente.sottomettiForm(formDati);
+        assertNotEquals(AutenticazioneUtente.ERROR_JSP, rispostaStub.getUrl());
+    }
+
+    @Test
+    public void test13(){
         autenticazioneUtente.sottomettiForm(formDati);
         assertNotEquals(AutenticazioneUtente.ERROR_JSP, rispostaStub.getUrl());
     }
