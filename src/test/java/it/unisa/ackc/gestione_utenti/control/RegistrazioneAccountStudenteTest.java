@@ -210,7 +210,7 @@ public class RegistrazioneAccountStudenteTest {
     public void test18() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il formato del telefono non è stato rispettato");
-        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "+3335675129");
+        formDati.aggiungiDato(AccountConvalida.TELEFONO_PARAMETRO, "+33356759");
 
         registrazioneAccountStudente.sottomettiForm(formDati);
     }

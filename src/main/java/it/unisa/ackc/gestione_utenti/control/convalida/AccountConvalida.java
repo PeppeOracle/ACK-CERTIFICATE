@@ -126,7 +126,7 @@ public final class AccountConvalida {
                             "Il telefono non è stato indicato"
                     );
                 } else {
-                    if (!telefono.matches("\\w{9,10}$")) {
+                    if (telefono.length() < 9 || telefono.length() > 10) {
                         notifica.aggiungiErrore("La lunghezza del telefono "
                                 + "deve compresa tra 9 e 10");
                     } else if (!telefono.matches("[0-9]+")) {
