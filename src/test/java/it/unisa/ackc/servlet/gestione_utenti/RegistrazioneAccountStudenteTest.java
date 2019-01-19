@@ -1,6 +1,5 @@
 package it.unisa.ackc.servlet.gestione_utenti;
 
-import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountConvalida;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountStudente;
 import it.unisa.ackc.http.stub.ACKCStorageStub;
@@ -20,11 +19,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
 
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.util.reflection.FieldSetter.setField;
 
-public class ModificaProfiloStudenteTest {
+public class RegistrazioneAccountStudenteTest {
 
     @Mock
     private HttpServletRequest request;
@@ -38,14 +38,12 @@ public class ModificaProfiloStudenteTest {
     @Rule
     public ExpectedException expect = ExpectedException.none();
 
+    private HashMap<String, String[]> values;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    public void test01() throws IOException, NoSuchFieldException {
-        HashMap<String, String[]> values = new HashMap<>();
+        values = new HashMap<>();
         values.put(AccountConvalida.PASSWORD_PARAMETRO, new String[]{"Ab123456"});
         values.put(AccountConvalida.TELEFONO_PARAMETRO, new String[]{"3451372297"});
         values.put(AccountConvalida.NOME_PARAMETRO, new String[]{"Mario"});
@@ -60,7 +58,14 @@ public class ModificaProfiloStudenteTest {
         values.put(AccountStudente.PAESE_PARAMETRO, new String[]{"Italia"});
         values.put(AccountStudente.TIPOLOGIA_DI_LAUREA_PARAMETRO, new String[]{"Triennale"});
         values.put(AccountStudente.CORSO_DI_LAUREA_PARAMETRO, new String[]{"Informatica"});
-        values.put(AccountStudente.DATA_DI_NASCITA_PARAMETRO, new String[]{"22/11/1998"});
+        values.put(AccountStudente.DATA_DI_NASCITA_PARAMETRO, new String[]{"22-11-1998"});
+        values.put(AccountConvalida.EMAIL_PARAMETRO, new String[]{"m.rossi@studenti.unisa.it"});
+        values.put(AccountStudente.INDIRIZZO_DI_RESIDENZA_PARAMETRO, new String[]{"Via Roma"});
+    }
+
+
+    @Test
+    public void test02() throws IOException, NoSuchFieldException {
 
         when(request.getParameterMap()).thenReturn(values);
         StringWriter stringWriter = new StringWriter();
@@ -72,14 +77,38 @@ public class ModificaProfiloStudenteTest {
 
         ACKCStorageStub storage = new ACKCStorageStub();
 
-        expect.expect(Error.class);
-        expect.expectMessage("Il formato del periodo non è stato rispettato");
-        ModificaProfiloStudente modificaProfiloStudente =
-                new ModificaProfiloStudente();
-        setField(modificaProfiloStudente,
-                modificaProfiloStudente.getClass().getDeclaredField("ackStorage"),
+        RegistrazioneAccountStudente registrazioneAccountStudente =
+                new RegistrazioneAccountStudente();
+        setField(registrazioneAccountStudente,
+                registrazioneAccountStudente.getClass().getDeclaredField("ackStorage"),
                 storage
         );
-        modificaProfiloStudente.doPost(request, response);
+        registrazioneAccountStudente.doPost(request, response);
+    }
+
+    @Test
+    public void test01() throws IOException, NoSuchFieldException {
+
+        when(request.getParameterMap()).thenReturn(values);
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter writer = new PrintWriter(stringWriter);
+        when(response.getWriter()).thenReturn(writer);
+        when(request.getSession()).thenReturn(session);
+        when(request.getSession(any(Boolean.class))).thenReturn(session);
+        when(request.getRequestDispatcher(any(String.class))).thenReturn(rd);
+
+        ACKCStorageStub storage = new ACKCStorageStub();
+
+        values.put(AccountStudente.DATA_DI_NASCITA_PARAMETRO, new String[]{"22/11/1998"});
+
+        expect.expect(Error.class);
+        expect.expectMessage("Il formato del periodo non è stato rispettato");
+        RegistrazioneAccountStudente registrazioneAccountStudente =
+                new RegistrazioneAccountStudente();
+        setField(registrazioneAccountStudente,
+                registrazioneAccountStudente.getClass().getDeclaredField("ackStorage"),
+                storage
+        );
+        registrazioneAccountStudente.doPost(request, response);
     }
 }
