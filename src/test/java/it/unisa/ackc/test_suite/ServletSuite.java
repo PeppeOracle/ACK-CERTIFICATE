@@ -12,7 +12,8 @@ import org.junit.runners.Suite;
         CreazioneDomandaLinguaIngleseTest.class,
         CreazionePraticaTest.class,
         AutenticazioneUtenteTest.class,
-        RegistrazioneAccountResponsabileUfficioTest.class
+        RegistrazioneAccountResponsabileUfficioTest.class,
+        MostraPraticaTest.class
 })
 public class ServletSuite {
 }
