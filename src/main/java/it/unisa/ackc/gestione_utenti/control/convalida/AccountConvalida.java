@@ -47,6 +47,10 @@ public final class AccountConvalida {
      * Macro della lunghezza massima per email.
      */
     static final int MAX_MAIL = 64;
+    /**
+     * Macro della lunghezza massima per un nome.
+     */
+    static final int MAX_NOME = 64;
 
     /**
      * Costruttore di default.
@@ -97,7 +101,9 @@ public final class AccountConvalida {
                                 + "deve compresa tra 19 e 64");
                     }
                     if (!email.matches(
-                            "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {
+                            "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")
+                        && !email.matches(
+                            "[A-Z,a-z,0-9,-,.,_ ]+[@unisa.it]+")) {
                         notifica.aggiungiErrore("Il formato dell'email "
                                 + "non è stato rispettato");
                     }
@@ -118,18 +124,16 @@ public final class AccountConvalida {
                 );
                 if (password == null || password.trim().equals("")) {
                     notifica.aggiungiErrore(
-                            "La password non è stato indicata"
+                            "La password non è stata indicata"
                     );
                 } else {
                     if (!password.matches("\\w{2,8}$")) {
                         notifica.aggiungiErrore("La lunghezza della password "
                                 + "deve compresa tra 2 e 8");
-                    }
-                    if (!password.matches("[A-Z, a-z,0-9]+")) {
+                    } else if (!password.matches("[A-Z, a-z,0-9]+")) {
                         notifica.aggiungiErrore("Il formato della password "
                                 + "non è stato rispettato");
-                    }
-                    if (containsLetteraENumero(password)) {
+                    } else if (!containsLetteraENumero(password)) {
                         notifica.aggiungiErrore("La password deve "
                                 + "contenere almeno "
                                 + "una lettera e un numero");
@@ -157,8 +161,7 @@ public final class AccountConvalida {
                     if (!telefono.matches("\\w{9,10}$")) {
                         notifica.aggiungiErrore("La lunghezza del telefono "
                                 + "deve compresa tra 9 e 10");
-                    }
-                    if (!telefono.matches("[0-9]+")) {
+                    } else if (!telefono.matches("[0-9]+")) {
                         notifica.aggiungiErrore("Il formato del telefono "
                                 + "non è stato rispettato");
                     }
@@ -186,7 +189,7 @@ public final class AccountConvalida {
                         Account.Sesso.valueOf(sesso);
                     } catch (IllegalArgumentException e) {
                         notifica.aggiungiErrore(
-                                "Il sesso indicato"
+                                "Il sesso indicato "
                                         + "non è corretto"
                         );
                     }
@@ -210,7 +213,7 @@ public final class AccountConvalida {
             notifica.aggiungiErrore("Il " + nome
                     + " non è stato indicato");
         } else {
-            if (!val.matches("\\w{1,64}$")) {
+            if (val.length() > MAX_NOME) {
                 notifica.aggiungiErrore("La lunghezza del " + nome
                         + " deve essere compresa tra 1 e 64");
             }

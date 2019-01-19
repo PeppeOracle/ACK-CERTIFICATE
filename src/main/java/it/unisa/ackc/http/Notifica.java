@@ -53,16 +53,6 @@ public class Notifica {
     }
 
     /**
-     * Aggiunge gli errori contenuti nella notifica
-     * a quella attuale.
-     *
-     * @param aNotifica contenente gli errori da aggiungere
-     */
-    public void aggiungiErrori(final Notifica aNotifica) {
-        errori.addAll(aNotifica.errori);
-    }
-
-    /**
      * Incapsula le informazioni riguardante un errore.
      */
     private final class Errore {
@@ -87,5 +77,4 @@ public class Notifica {
         }
     }
 }
-
 

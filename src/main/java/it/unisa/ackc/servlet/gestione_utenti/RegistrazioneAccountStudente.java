@@ -40,17 +40,22 @@ public class RegistrazioneAccountStudente extends ServletForm {
         try {
             sottomettiForm(
                     it.unisa.ackc.gestione_utenti.control
-                            .AutenticazioneUtente.class,
+                            .RegistrazioneAccountStudente.class,
                     richiesta,
                     risposta,
                     ackStorage
+            );
+        } catch (IllegalArgumentException e) {
+            throw new Error(
+                    "Input errato "
+                            + '\n' + '\n' + "Causa: " + '\n' + e.getMessage()
             );
         } catch (InvocationTargetException
                 | NoSuchMethodException
                 | InstantiationException
                 | IllegalAccessException e) {
             throw new Error(
-                    "Si è verificato un problema riprovare più tardi"
+                    "Si è verificato un problema riprovare più tardi "
             );
         }
     }

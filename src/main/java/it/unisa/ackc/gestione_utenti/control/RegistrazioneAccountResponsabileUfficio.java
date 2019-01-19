@@ -4,7 +4,6 @@ import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.storage.ACKStorageFacade;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountConvalida;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
@@ -87,9 +86,6 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
         String nome = formDati.ottieniDato(AccountConvalida.NOME_PARAMETRO);
         String cognome = formDati.ottieniDato(
                 AccountConvalida.COGNOME_PARAMETRO
-        );
-        Account.Ruolo ruolo = Account.Ruolo.valueOf(
-                formDati.ottieniDato(AccountConvalida.RUOLO_PARAMETRO)
         );
         Account.Sesso sesso = Account.Sesso.valueOf(
                 formDati.ottieniDato(AccountConvalida.SESSO_PARAMETRO)

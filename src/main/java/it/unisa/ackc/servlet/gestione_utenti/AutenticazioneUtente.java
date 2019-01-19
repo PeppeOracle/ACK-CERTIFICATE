@@ -32,7 +32,6 @@ public class AutenticazioneUtente extends ServletForm {
      * @param risposta http da inviare
      * @since 1.0.0
      */
-    @Override
     public void doPost(
 
             final HttpServletRequest richiesta,
@@ -46,12 +45,17 @@ public class AutenticazioneUtente extends ServletForm {
                     risposta,
                     ackStorage
             );
+        } catch (IllegalArgumentException e) {
+            throw new Error(
+                    "Input errato "
+                            + '\n' + '\n' + "Causa: " + '\n' + e.getMessage()
+            );
         } catch (InvocationTargetException
                 | NoSuchMethodException
                 | InstantiationException
                 | IllegalAccessException e) {
             throw new Error(
-                    "Si è verificato un problema riprovare più tardi"
+                    "Si è verificato un problema riprovare più tardi "
             );
         }
     }

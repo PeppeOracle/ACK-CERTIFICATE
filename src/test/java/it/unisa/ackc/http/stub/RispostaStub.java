@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class RispostaStub extends Risposta {
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
     @Override
     public void impostaTipoContenuto(TipoDiContenuto tipoDiContenuto) {
 
@@ -30,7 +36,7 @@ public class RispostaStub extends Risposta {
 
     @Override
     public void inoltra(String url) {
-
+        this.url = url;
     }
 
     @Override

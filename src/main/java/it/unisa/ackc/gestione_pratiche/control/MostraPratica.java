@@ -5,7 +5,6 @@ import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_pratiche.control.convalida.GestionePratiche;
 import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.storage.ACKStorageFacade;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 

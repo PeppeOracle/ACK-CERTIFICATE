@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 public class CreazioneDomandaLinguaIngleseTest {
 
     private CreazioneDomandaLinguaInglese creazioneDomandaLinguaInglese;
@@ -16,8 +18,11 @@ public class CreazioneDomandaLinguaIngleseTest {
 
     @Before
     public void setUp() throws Exception {
-
         sessioneStub = new SessioneStub();
+        it.unisa.ackc.gestione_utenti.entity.AccountStudente accountStudente
+                = new it.unisa.ackc.gestione_utenti.entity.AccountStudente();
+        accountStudente.setTipologiaDiLaurea("Triennale");
+        sessioneStub.setAccount(accountStudente);
         rispostaStub = new RispostaStub();
 
         formDati = new FormDati();

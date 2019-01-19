@@ -10,9 +10,14 @@ import java.util.List;
 
 public class ACKCStorageStub implements ACKStorageFacade {
     private Pratica pratica;
+    private Account account;
 
     public void setPratica(Pratica pratica) {
         this.pratica = pratica;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
@@ -92,12 +97,12 @@ public class ACKCStorageStub implements ACKStorageFacade {
 
     @Override
     public Account findAccountByEmail(String aEmail) {
-        return null;
+        return account;
     }
 
     @Override
     public Account findAccountById(Long id) {
-        return null;
+        return account;
     }
 
     @Override

@@ -71,10 +71,6 @@ public final class AccountStudente {
      */
     private static final int MAX_NUMBER_TRE_CIFRE = 999;
     /**
-     * Lunghezza massima dell'indirizzo di residenza.
-     */
-    static final int INDIRIZZO_DI_RESIDENZA_MAX = 64;
-    /**
      * Lunghezza del cap.
      */
     static final int CAP_LENGTH = 5;
@@ -148,7 +144,7 @@ public final class AccountStudente {
                     notifica.aggiungiErrore(
                             "L'indirizzo di residenza non è stato indicato"
                     );
-                } else if (indirizzo.length() > INDIRIZZO_DI_RESIDENZA_MAX) {
+                } else if (indirizzo.length() > AccountConvalida.MAX_NOME) {
                     notifica.aggiungiErrore(
                             "L'indirizzo di residenza non "
                                     + "può superare i 64 caratteri"
@@ -313,7 +309,7 @@ public final class AccountStudente {
                     );
                 } else if (!annoDiImmatricolazione.matches("[0-9]+")) {
                     notifica.aggiungiErrore(
-                            "L'anno di immatricolazione deve essere"
+                            "L'anno di immatricolazione deve essere "
                                     + "composto solo da cifre"
                     );
                 }

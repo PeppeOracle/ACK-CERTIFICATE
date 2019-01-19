@@ -49,11 +49,22 @@ public final class AccountResponsabileUfficio {
      */
     public static final CondizioneConvalida VALIDA_EDIFICIO =
             formDati -> {
-                return AccountConvalida.validaNome(
-                        formDati,
+                Notifica notifica = new Notifica();
+                String edificio = formDati.ottieniDato(
                         RegistrazioneAccountResponsabileUfficio.
                                 EDIFICIO_PARAMETRO
                 );
+                if (edificio == null || edificio.trim().equals("")) {
+                    notifica.aggiungiErrore(
+                            "L'edificio non è stato indicato"
+                    );
+                } else if (edificio.length() > AccountConvalida.MAX_NOME) {
+                    notifica.aggiungiErrore(
+                            "Il nome dell'edificio non "
+                                    + "può superare i 64 caratteri"
+                    );
+                }
+                return  notifica;
             };
     /**
      * Convalida la tipologia di pratiche.
@@ -80,7 +91,7 @@ public final class AccountResponsabileUfficio {
                     } catch (IllegalArgumentException e) {
                         notifica.aggiungiErrore(
                                 "Il tipo indicato"
-                                        + "non è corretto"
+                                        + " non è corretto"
                         );
                     }
                 }
@@ -101,7 +112,7 @@ public final class AccountResponsabileUfficio {
             if (!isInteroUnaDueCifre(numeroPiano)) {
                 notifica.aggiungiErrore(
                         "Il numero del piano "
-                                + "deve essere un intero al più a due cifre e "
+                                + "deve essere un intero al più a due cifre"
                 );
             }
         } catch (NumberFormatException e) {
