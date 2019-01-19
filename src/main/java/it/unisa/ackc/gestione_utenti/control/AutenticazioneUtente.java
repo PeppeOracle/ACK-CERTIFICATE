@@ -3,7 +3,6 @@ package it.unisa.ackc.gestione_utenti.control;
 import it.unisa.ackc.form.FormControl;
 import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.storage.ACKStorageFacade;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
 import it.unisa.ackc.gestione_utenti.control.convalida.AccountConvalida;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.http.Risposta;
@@ -22,7 +21,7 @@ public class AutenticazioneUtente extends FormControl {
     /**
      * Macro della jsp di errore dell'autenticazione.
      */
-    private static final String ERROR_JSP = "";
+    public static final String ERROR_JSP = "";
     /**
      * Istanza dello storage facade.
      */
@@ -92,7 +91,8 @@ public class AutenticazioneUtente extends FormControl {
     @Override
     public void valida(final FormDati formDati) {
         aggiungiCondizione(
-                AccountConvalida.VALIDA_EMAIL
+                it.unisa.ackc.gestione_utenti.control
+                        .convalida.AutenticazioneUtente.VALIDA_EMAIL
         );
         aggiungiCondizione(
                 AccountConvalida.VALIDA_PASSWORD

@@ -124,12 +124,10 @@ public final class AccountConvalida {
                     if (!password.matches("\\w{2,8}$")) {
                         notifica.aggiungiErrore("La lunghezza della password "
                                 + "deve compresa tra 2 e 8");
-                    }
-                    if (!password.matches("[A-Z, a-z,0-9]+")) {
+                    } else if (!password.matches("[A-Z, a-z,0-9]+")) {
                         notifica.aggiungiErrore("Il formato della password "
                                 + "non è stato rispettato");
-                    }
-                    if (containsLetteraENumero(password)) {
+                    } else if (!containsLetteraENumero(password)) {
                         notifica.aggiungiErrore("La password deve "
                                 + "contenere almeno "
                                 + "una lettera e un numero");

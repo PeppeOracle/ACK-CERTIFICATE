@@ -85,9 +85,6 @@ public class ModificaProfiloStudente extends FormControl {
         String cognome = formDati.ottieniDato(
                 AccountConvalida.COGNOME_PARAMETRO
         );
-        Account.Ruolo ruolo = Account.Ruolo.valueOf(
-                formDati.ottieniDato(AccountConvalida.RUOLO_PARAMETRO)
-        );
         Account.Sesso sesso = Account.Sesso.valueOf(
                 formDati.ottieniDato(AccountConvalida.SESSO_PARAMETRO)
         );
@@ -134,9 +131,6 @@ public class ModificaProfiloStudente extends FormControl {
         }
         if (cognome != null) {
             studente.setCognome(cognome);
-        }
-        if (ruolo != null) {
-            studente.setRuolo(ruolo);
         }
         if (sesso != null) {
             studente.setSesso(sesso);
