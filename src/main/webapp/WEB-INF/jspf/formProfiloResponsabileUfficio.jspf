@@ -89,7 +89,7 @@
 
     <label>Tipologia pratica da gestire *</label>
     <div class="form-check">
-        <input name="tipologiaPratica" class="form-check-input" type="checkbox" value="LINGUA_INGLSESE"
+        <input name="tipologiaPratica" class="form-check-input" type="checkbox" value="LINGUA_INGLESE"
                id="linguaIngleseCheck">
         <label class="form-check-label" for="linguaIngleseCheck">
             Lingua inglese

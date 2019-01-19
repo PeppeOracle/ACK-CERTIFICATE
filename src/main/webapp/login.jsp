@@ -13,7 +13,7 @@
 
 <div class="container">
 
-    <form action="/gestione-utenti/autenticazione-utente" method="post" id="loginForm">
+    <form action="/gestione-utente/autenticazione-utente" method="post" id="loginForm">
 
         <img src="images/ackc-logo.png" alt="Logo">
 
