@@ -48,10 +48,6 @@ public final class AccountConvalida {
      */
     static final int MAX_MAIL = 64;
     /**
-     * Macro della lunghezza minima per un nome.
-     */
-    static final int MIN_NOME = 1;
-    /**
      * Macro della lunghezza massima per un nome.
      */
     static final int MAX_NOME = 64;
@@ -105,7 +101,9 @@ public final class AccountConvalida {
                                 + "deve compresa tra 19 e 64");
                     }
                     if (!email.matches(
-                            "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")) {
+                            "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")
+                        || !email.matches(
+                            "[A-Z,a-z,0-9,-,.,_ ]+[@unisa.it]+")) {
                         notifica.aggiungiErrore("Il formato dell'email "
                                 + "non è stato rispettato");
                     }
@@ -215,7 +213,7 @@ public final class AccountConvalida {
             notifica.aggiungiErrore("Il " + nome
                     + " non è stato indicato");
         } else {
-            if (val.length() < MIN_NOME || val.length() > MAX_NOME) {
+            if (val.length() > MAX_NOME) {
                 notifica.aggiungiErrore("La lunghezza del " + nome
                         + " deve essere compresa tra 1 e 64");
             }

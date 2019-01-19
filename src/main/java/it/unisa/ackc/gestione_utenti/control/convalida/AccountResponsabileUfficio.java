@@ -49,11 +49,22 @@ public final class AccountResponsabileUfficio {
      */
     public static final CondizioneConvalida VALIDA_EDIFICIO =
             formDati -> {
-                return AccountConvalida.validaNome(
-                        formDati,
+                Notifica notifica = new Notifica();
+                String edificio = formDati.ottieniDato(
                         RegistrazioneAccountResponsabileUfficio.
                                 EDIFICIO_PARAMETRO
                 );
+                if (edificio == null || edificio.trim().equals("")) {
+                    notifica.aggiungiErrore(
+                            "L'edificio non è stato indicato"
+                    );
+                } else if (edificio.length() > AccountConvalida.MAX_NOME) {
+                    notifica.aggiungiErrore(
+                            "Il nome dell'edificio non "
+                                    + "può superare i 64 caratteri"
+                    );
+                }
+                return  notifica;
             };
     /**
      * Convalida la tipologia di pratiche.
