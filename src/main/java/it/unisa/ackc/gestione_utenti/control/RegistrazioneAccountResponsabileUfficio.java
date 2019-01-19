@@ -87,9 +87,6 @@ public final class RegistrazioneAccountResponsabileUfficio extends FormControl {
         String cognome = formDati.ottieniDato(
                 AccountConvalida.COGNOME_PARAMETRO
         );
-        Account.Ruolo ruolo = Account.Ruolo.valueOf(
-                formDati.ottieniDato(AccountConvalida.RUOLO_PARAMETRO)
-        );
         Account.Sesso sesso = Account.Sesso.valueOf(
                 formDati.ottieniDato(AccountConvalida.SESSO_PARAMETRO)
         );
