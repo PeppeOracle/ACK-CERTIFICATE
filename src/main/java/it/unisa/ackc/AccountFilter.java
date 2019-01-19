@@ -31,7 +31,7 @@ public class AccountFilter implements Filter {
     /**
      * Macro della jsp di login.
      */
-    private static final String LOGIN_JSP =
+    public static final String LOGIN_JSP =
             "login.jsp";
 
     @Override

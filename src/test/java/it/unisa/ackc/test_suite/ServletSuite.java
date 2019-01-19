@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
         CreazioneDomandaLinguaIngleseTest.class,
         CreazionePraticaTest.class,
         AutenticazioneUtenteTest.class,
-        RegistrazioneAccountResponsabileUfficio.class
+        RegistrazioneAccountResponsabileUfficioTest.class
 })
 public class ServletSuite {
 }

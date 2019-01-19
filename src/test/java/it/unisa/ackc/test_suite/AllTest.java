@@ -7,7 +7,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         GestionePraticheTestSuite.class,
         GestioneUtentiTestSuite.class,
-        ServletSuite.class
+        ServletSuite.class,
+        FilterSuite.class
 })
 public class AllTest {
 }
