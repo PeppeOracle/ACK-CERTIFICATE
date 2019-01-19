@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
         ModificaPraticaSospesaTest.class,
         CreazioneDomandaAttivitaLavorativaTest.class,
         CreazioneDomandaTest.class,
-        MostraPraticaTest.class
+        MostraPraticaTest.class,
+        ValutazionePraticaTest.class
 })
 public class GestionePraticheTestSuite {
 }

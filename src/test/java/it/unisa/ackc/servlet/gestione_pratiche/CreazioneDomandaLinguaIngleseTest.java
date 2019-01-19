@@ -9,14 +9,14 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.util.Date;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class CreazioneDomandaAttivitaLavorativaTest {
+public class CreazioneDomandaLinguaIngleseTest {
     @Mock
     private HttpServletRequest request;
     @Mock
@@ -26,26 +26,22 @@ public class CreazioneDomandaAttivitaLavorativaTest {
     @Mock
     private ServletOutputStream servletOutputStream;
 
-    @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
+    private HashMap<String, String[]> values;
 
-    @Test
-    public void test01() throws IOException {
-        HashMap<String, String[]> values = new HashMap<>();
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+
+        values = new HashMap<>();
         values.put("ente", new String[] {"Bethesda"});
-        values.put("indirizzoSede", new String[] {"Rockville, Maryland, Stati Uniti"});
-        values.put("profilo", new String[] {"Videogiochi"});
-        values.put("tipoContratto", new String[] {"Programmatore"});
-        values.put("periodo", new String[] {"01-09-2018/12-01-2019"});
-        values.put("oreSvolte", new String[] {"100"});
+        values.put("grade", new String[] {"4"});
         values.put("numeroCfu", new String[] {"9"});
-        when(request.getParameterMap()).thenReturn(values);
+        values.put("enteCertificatore", new String[] {"Trinity"});
+        values.put("cefr", new String[] {"A2.2"});
         when(request.getSession()).thenReturn(session);
         it.unisa.ackc.gestione_utenti.entity.AccountStudente accountStudente
                 = new it.unisa.ackc.gestione_utenti.entity.AccountStudente();
-        accountStudente.setDataDiNascita(new Date());
+        accountStudente.setTipologiaDiLaurea("Triennale");
         when(session.getAttribute("account")).thenReturn(accountStudente);
         when(request.getSession(any(Boolean.class))).thenReturn(session);
 
@@ -53,7 +49,19 @@ public class CreazioneDomandaAttivitaLavorativaTest {
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
         when(response.getOutputStream()).thenReturn(servletOutputStream);
+    }
 
-        new CreazioneDomandaAttivitaLavorativa().doGet(request, response);
+    @Test
+    public void test01() {
+        when(request.getParameterMap()).thenReturn(values);
+        new CreazioneDomandaLinguaInglese().doGet(request, response);
+    }
+
+    @Test(expected = Error.class)
+    public void test02() {
+        values.put("enteCertificatore", new String[] {});
+        when(request.getParameterMap()).thenReturn(values);
+
+        new CreazioneDomandaLinguaInglese().doGet(request, response);
     }
 }

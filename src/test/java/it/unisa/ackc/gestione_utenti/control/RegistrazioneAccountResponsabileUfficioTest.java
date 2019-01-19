@@ -219,7 +219,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test21() {
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il edificio non è stato indicato");
+        expect.expectMessage("L'edificio non è stato indicato");
 
         formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.EDIFICIO_PARAMETRO, null);
         registrazioneAccount.sottomettiForm(formDati);
@@ -228,7 +228,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test22() {
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza del edificio deve essere compresa tra 1 e 64");
+        expect.expectMessage("Il nome dell'edificio non può superare i 64 caratteri");
 
         formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.EDIFICIO_PARAMETRO, longString);
         registrazioneAccount.sottomettiForm(formDati);
@@ -237,9 +237,9 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test23() {
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il formato del edificio non è stato rispettato");
+        expect.expectMessage("Il numero del piano deve essere un intero");
 
-        formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.EDIFICIO_PARAMETRO, "123cc");
+        formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.PIANO_PARAMETRO, null);
         registrazioneAccount.sottomettiForm(formDati);
     }
 
@@ -248,21 +248,12 @@ public class RegistrazioneAccountResponsabileUfficioTest {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero del piano deve essere un intero");
 
-        formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.PIANO_PARAMETRO, null);
-        registrazioneAccount.sottomettiForm(formDati);
-    }
-
-    @Test
-    public void test25() {
-        expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il numero del piano deve essere un intero");
-
         formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.PIANO_PARAMETRO, "test");
         registrazioneAccount.sottomettiForm(formDati);
     }
 
     @Test
-    public void test26() {
+    public void test25() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero del piano deve essere un intero al più a due cifre");
 
@@ -271,7 +262,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test27() {
+    public void test26() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero della stanza deve essere un positivo");
 
@@ -280,7 +271,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test28() {
+    public void test27() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero della stanza deve essere un positivo");
 
@@ -289,7 +280,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test29() {
+    public void test28() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il numero della stanza deve essere maggiore di 0 e deve essere un numero al più a tre cifre");
 
@@ -298,7 +289,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test30() {
+    public void test29() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Le tipologia delle pratiche pratica non è stata indicata");
 
@@ -307,7 +298,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test31() {
+    public void test30() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il tipo indicato non è corretto");
 
@@ -316,7 +307,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     }
 
     @Test
-    public void test50(){
+    public void test31(){
         registrazioneAccount.sottomettiForm(formDati);
     }
 }
