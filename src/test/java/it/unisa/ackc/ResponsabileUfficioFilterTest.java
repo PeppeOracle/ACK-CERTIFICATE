@@ -18,7 +18,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class ConsumerFilterTest {
+public class ResponsabileUfficioFilterTest {
     @Mock
     private FilterChain chain;
     @Mock
@@ -35,7 +35,19 @@ public class ConsumerFilterTest {
 
     @Test
     public void test01() throws IOException, ServletException {
-        ConsumerFilter filter = new ConsumerFilter();
+        ResponsabileUfficioFilter filter = new ResponsabileUfficioFilter();
+
+        Account account = new Account();
+        account.setRuolo(Account.Ruolo.RESPONSABILE_UFFICIO);
+        when(session.getAttribute("account")).thenReturn(account);
+        when(request.getSession(any(Boolean.TYPE))).thenReturn(session);
+        filter.doFilter(request, response, chain);
+        verify(response, never()).sendRedirect(request.getContextPath() + ResponsabileUfficioFilter.PERMESSO_NEGATO_JSP);
+    }
+
+    @Test
+    public void test02() throws IOException, ServletException {
+        ResponsabileUfficioFilter filter = new ResponsabileUfficioFilter();
 
         Account account = new Account();
         account.setRuolo(Account.Ruolo.AMMINISTRATORE);
@@ -46,26 +58,14 @@ public class ConsumerFilterTest {
     }
 
     @Test
-    public void test02() throws IOException, ServletException {
-        ConsumerFilter filter = new ConsumerFilter();
-
-        Account account = new Account();
-        account.setRuolo(Account.Ruolo.RESPONSABILE_UFFICIO);
-        when(session.getAttribute("account")).thenReturn(account);
-        when(request.getSession(any(Boolean.TYPE))).thenReturn(session);
-        filter.doFilter(request, response, chain);
-        verify(response, never()).sendRedirect(request.getContextPath() + ConsumerFilter.PERMESSO_NEGATO_JSP);
-    }
-
-    @Test
     public void test03() throws IOException, ServletException {
-        ConsumerFilter filter = new ConsumerFilter();
+        ResponsabileUfficioFilter filter = new ResponsabileUfficioFilter();
 
         Account account = new Account();
         account.setRuolo(Account.Ruolo.STUDENTE);
         when(session.getAttribute("account")).thenReturn(account);
         when(request.getSession(any(Boolean.TYPE))).thenReturn(session);
         filter.doFilter(request, response, chain);
-        verify(response, never()).sendRedirect(request.getContextPath() + ConsumerFilter.PERMESSO_NEGATO_JSP);
+        verify(response).sendRedirect(request.getContextPath() + ConsumerFilter.PERMESSO_NEGATO_JSP);
     }
 }

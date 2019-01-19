@@ -28,7 +28,7 @@ public class StudenteFilter  implements Filter {
     /**
      * Macro della jsp nel caso in cui venga negato il permessso.
      */
-    private static final String PERMESSO_NEGATO_JSP =
+    public static final String PERMESSO_NEGATO_JSP =
             "";
 
     @Override

@@ -8,9 +8,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         AccountFilterTest.class,
         AmministratoreFilterTest.class,
-        ConsumerFilter.class,
-        ResponsabileUfficioFilter.class,
-        StudenteFilter.class
+        ConsumerFilterTest.class,
+        ResponsabileUfficioFilterTest.class,
+        StudenteFilterTest.class
 })
 public class FilterSuite {
 }
