@@ -83,6 +83,7 @@ public class ValutazionePratica extends FormControl {
     public void valida(final FormDati formDati) {
         aggiungiCondizioni(it.unisa.ackc.gestione_pratiche.control.convalida
                 .ValutazionePratica.class);
+        aggiungiCondizione(GestionePratiche.VALIDA_PRATICA);
         super.valida(formDati);
     }
 }

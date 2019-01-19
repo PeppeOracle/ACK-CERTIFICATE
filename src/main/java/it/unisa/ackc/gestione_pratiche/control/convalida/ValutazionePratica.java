@@ -27,7 +27,7 @@ public final class ValutazionePratica {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_MESSAGGIO =
+    public static final CondizioneConvalida VALIDA_MESSAGGIO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String messaggio = formDati.ottieniDato(
@@ -37,8 +37,8 @@ public final class ValutazionePratica {
                 if (messaggio != null) {
                     if (messaggio.length() > MESSAGGIO_MAX) {
                         notifica.aggiungiErrore(
-                                "Il messaggio dell responsabile ufficio "
-                                        + "non può superare i 64 caratteri"
+                                "Il messaggio del responsabile ufficio "
+                                        + "non può superare i 512 caratteri"
                         );
                     }
                 }
@@ -50,7 +50,7 @@ public final class ValutazionePratica {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_STATO =
+    public static final CondizioneConvalida VALIDA_STATO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 String stato = formDati.ottieniDato(
