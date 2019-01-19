@@ -19,7 +19,9 @@ var campiFormModificabili = [
     "#inputCorsoLaurea",
     "#inputPaese",
     "#inputTipologiaLaurea",
-    "#inputAnnoImmatricolazione"
+    "#inputAnnoImmatricolazione",
+    "#inputLuogoNascita",
+    "#inputDataNascita"
 ];
 
 function disabilitaCampiListener() {

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="gestionePratiche.jsp">
         <img src="../images/ackc-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Ack Certificate
     </a>

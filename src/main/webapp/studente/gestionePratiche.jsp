@@ -1,7 +1,7 @@
 <%@ page import="it.unisa.ackc.gestione_pratiche.entity.Pratica" %>
-<%@ page import="java.util.Collection" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="it.unisa.ackc.gestione_utenti.entity.AccountStudente" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -15,22 +15,7 @@
 <%@ include file="../WEB-INF/jspf/navbarStudente.jspf" %>
 
 <%
-    //   /* **********************************************
-    //  STUB TEST
-    Pratica p1 = new Pratica();
-    p1.setStato(Pratica.Stato.IN_ATTESA);
-    p1.setTipo(Pratica.Tipo.ATTIVITA_LAVORATIVA);
-    Pratica p2 = new Pratica();
-    p2.setStato(Pratica.Stato.APPROVATA);
-    p2.setTipo(Pratica.Tipo.LINGUA_INGLESE);
-
-    ArrayList<Pratica> x = new ArrayList<>();
-    x.add(p1);
-    x.add(p2);
-    //   ****************************** */
-
-    Collection<?> pratiche = x;
-
+    List<Pratica> pratiche = ((AccountStudente) session.getAttribute("account")).getPratiche();
 %>
 
 <div class="container">

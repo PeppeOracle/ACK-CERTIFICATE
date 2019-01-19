@@ -10,25 +10,7 @@
 <%@ page import="it.unisa.ackc.gestione_utenti.entity.AccountStudente" %>
 <%@ page import="java.util.Date" %>
 <%
-    /* STUB ****************************************/
-    AccountStudente accountBean = new AccountStudente();
-    accountBean.setNome("Mario");
-    accountBean.setCognome("Rossi");
-    accountBean.setMatricola("1245345");
-    accountBean.setAnnoDiImmatricolazione("2014");
-    accountBean.setCap("6732");
-    accountBean.setCitta("Roma");
-    accountBean.setCorsoDiLaurea("Informatica");
-    accountBean.setDataDiNascita(new Date());
-    accountBean.setIndirizzoDiResidenza("via xxx");
-    accountBean.setLuogoDiNascita("Roma");
-    accountBean.setNumeroCivico(3);
-    accountBean.setEmail("esempio@email.it");
-    accountBean.setPaese("Italia");
-    accountBean.setTelefono("3338908976");
-    accountBean.setTipologiaDiLaurea("Triennale");
-    /* ****************************************/
-
+    AccountStudente accountBean = (AccountStudente) session.getAttribute("account");
 %>
 
 <!-- Navbar -->
@@ -38,7 +20,7 @@
 
     <br>
     <h1>Gestione profilo</h1><br>
-    <form action="" method="post" id="modificaProfiloForm">
+    <form action="/gestione-utenti/modifica-profilo-studente" method="post" id="modificaProfiloForm">
 
         <div class="form-group">
             <label for="inputNome">Nome</label>
@@ -52,17 +34,17 @@
                    value="<%= accountBean.getCognome() %>" required disabled>
         </div>
 
-        <!--       <div class="form-group">
+        <div class="form-group">
             <label for="inputLuogoNascita">Luogo di nascita</label>
             <input name="luogoNascita" type="text" class="form-control" id="inputLuogoNascita"
                    value="<%= accountBean.getLuogoDiNascita() %>" required disabled>
         </div>
 
         <div class="form-group">
-            <label for="inputDataNascita">Data di nascita *</label>
+            <label for="inputDataNascita">Data di nascita</label>
             <input name="dataNascita" type="date" class="form-control" id="inputDataNascita"
                    value="<%= accountBean.getDataDiNascita() %>" required disabled>
-        </div>-->
+        </div>
 
         <div class="form-group">
             <label for="inputTelefono">Recapito telefonico</label>
