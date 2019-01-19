@@ -11,6 +11,8 @@ import it.unisa.ackc.http.stub.SessioneStub;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class ModificaProfiloStudenteTest {
@@ -24,6 +26,11 @@ public class ModificaProfiloStudenteTest {
     @Before
     public void setUp() throws Exception {
         sessioneStub = new SessioneStub();
+        it.unisa.ackc.gestione_utenti.entity.AccountStudente accountStudente
+                = new it.unisa.ackc.gestione_utenti.entity.AccountStudente();
+        accountStudente.setTipologiaDiLaurea("Triennale");
+        accountStudente.setDataDiNascita(new Date());
+        sessioneStub.setAccount(accountStudente);
         rispostaStub = new RispostaStub();
         modificaProfiloStudente = new ModificaProfiloStudente(sessioneStub, rispostaStub);
         ACKCStorageStub storage = new ACKCStorageStub();

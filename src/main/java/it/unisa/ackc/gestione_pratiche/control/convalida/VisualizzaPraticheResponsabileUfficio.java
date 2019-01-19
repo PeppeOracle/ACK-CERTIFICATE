@@ -35,7 +35,7 @@ public final class VisualizzaPraticheResponsabileUfficio {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_FILTRO =
+    public static final CondizioneConvalida VALIDA_FILTRO =
             formDati -> {
                 Notifica notifica = new Notifica();
                 int filtro = formDati.ottieniDatoIntero(
@@ -59,7 +59,7 @@ public final class VisualizzaPraticheResponsabileUfficio {
      *
      * @since 0.0.1
      */
-    static final CondizioneConvalida VALIDA_PAGINA =
+    public static final CondizioneConvalida VALIDA_PAGINA =
             formDati -> {
                 Notifica notifica = new Notifica();
                 int filtro = formDati.ottieniDatoIntero(

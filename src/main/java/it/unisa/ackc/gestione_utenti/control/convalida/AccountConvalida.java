@@ -155,8 +155,7 @@ public final class AccountConvalida {
                     if (!telefono.matches("\\w{9,10}$")) {
                         notifica.aggiungiErrore("La lunghezza del telefono "
                                 + "deve compresa tra 9 e 10");
-                    }
-                    if (!telefono.matches("[0-9]+")) {
+                    } else if (!telefono.matches("[0-9]+")) {
                         notifica.aggiungiErrore("Il formato del telefono "
                                 + "non è stato rispettato");
                     }

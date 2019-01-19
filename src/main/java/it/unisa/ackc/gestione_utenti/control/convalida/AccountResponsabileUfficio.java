@@ -80,7 +80,7 @@ public final class AccountResponsabileUfficio {
                     } catch (IllegalArgumentException e) {
                         notifica.aggiungiErrore(
                                 "Il tipo indicato"
-                                        + "non è corretto"
+                                        + " non è corretto"
                         );
                     }
                 }
@@ -101,7 +101,7 @@ public final class AccountResponsabileUfficio {
             if (!isInteroUnaDueCifre(numeroPiano)) {
                 notifica.aggiungiErrore(
                         "Il numero del piano "
-                                + "deve essere un intero al più a due cifre e "
+                                + "deve essere un intero al più a due cifre"
                 );
             }
         } catch (NumberFormatException e) {

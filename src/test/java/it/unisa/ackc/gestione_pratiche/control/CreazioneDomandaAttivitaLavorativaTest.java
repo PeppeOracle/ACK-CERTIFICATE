@@ -6,6 +6,8 @@ import it.unisa.ackc.http.stub.SessioneStub;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 public class CreazioneDomandaAttivitaLavorativaTest {
 
     private CreazioneDomandaAttivitaLavorativa creazioneDomandaAttivitaLavorativa;
@@ -17,6 +19,10 @@ public class CreazioneDomandaAttivitaLavorativaTest {
     @Before
     public void setUp() throws Exception {
         sessioneStub = new SessioneStub();
+        it.unisa.ackc.gestione_utenti.entity.AccountStudente accountStudente
+                = new it.unisa.ackc.gestione_utenti.entity.AccountStudente();
+        accountStudente.setDataDiNascita(new Date());
+        sessioneStub.setAccount(accountStudente);
         rispostaStub = new RispostaStub();
         longString = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 

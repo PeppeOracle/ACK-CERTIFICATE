@@ -18,6 +18,9 @@ public class CreazionePraticaTest {
     @Before
     public void setUp() {
         sessioneStub = new SessioneStub();
+        it.unisa.ackc.gestione_utenti.entity.AccountStudente accountStudente
+                = new it.unisa.ackc.gestione_utenti.entity.AccountStudente();
+        sessioneStub.setAccount(accountStudente);
         rispostaStub = new RispostaStub();
 
         creazionePratica = new CreazionePratica(sessioneStub, rispostaStub);
