@@ -309,7 +309,7 @@ public class RegistrazioneAccountStudenteTest {
     public void test29() {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("Il formato della password non è stato rispettato");
-        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab1267");
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab-267");
 
         registrazioneAccountStudente.sottomettiForm(formDati);
     }
