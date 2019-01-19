@@ -48,6 +48,14 @@ public final class AccountConvalida {
      */
     static final int MAX_MAIL = 64;
     /**
+     * Macro della lunghezza minima per il telefono.
+     */
+    static final int MIN_TELEFONO = 9;
+    /**
+     * Macro della lunghezza massima per il telefono.
+     */
+    static final int MAX_TELEFONO = 11;
+    /**
      * Macro della lunghezza massima per un nome.
      */
     static final int MAX_NOME = 64;
@@ -126,7 +134,8 @@ public final class AccountConvalida {
                             "Il telefono non è stato indicato"
                     );
                 } else {
-                    if (telefono.length() < 9 || telefono.length() > 10) {
+                    if (telefono.length() < MIN_TELEFONO
+                            || telefono.length() > MAX_TELEFONO) {
                         notifica.aggiungiErrore("La lunghezza del telefono "
                                 + "deve compresa tra 9 e 10");
                     } else if (!telefono.matches("[0-9]+")) {

@@ -11,7 +11,7 @@ import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.LocalBean;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -20,7 +20,7 @@ import javax.inject.Inject;
  * @version 0.3.1
  */
 @Stateless
-@LocalBean
+@Local(ACKStorageFacade.class)
 public class ACKStorageFacadeDefault implements ACKStorageFacade {
 
     /**

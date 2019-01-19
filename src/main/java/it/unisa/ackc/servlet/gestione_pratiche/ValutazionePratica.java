@@ -1,7 +1,7 @@
 package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.servlet.ServletForm;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
+import it.unisa.ackc.storage.ACKStorageFacade;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -21,10 +21,10 @@ import java.lang.reflect.InvocationTargetException;
 public class ValutazionePratica
         extends ServletForm {
     /**
-     * Istanza dellEJB per accedere al database.
+     * Istanza dell'EJB per accedere al database.
      */
     @Inject
-    private ACKStorageFacadeDefault ackStorage;
+    private ACKStorageFacade ackStorage;
     /**
      * Interfaccia http esposta per il servizio di
      * ValutazionePratica.
