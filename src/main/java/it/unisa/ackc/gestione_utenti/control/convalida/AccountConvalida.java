@@ -102,7 +102,7 @@ public final class AccountConvalida {
                     }
                     if (!email.matches(
                             "[A-Z,a-z,0-9,-,.,_ ]+[@studenti.unisa.it]+")
-                        || !email.matches(
+                        && !email.matches(
                             "[A-Z,a-z,0-9,-,.,_ ]+[@unisa.it]+")) {
                         notifica.aggiungiErrore("Il formato dell'email "
                                 + "non è stato rispettato");
