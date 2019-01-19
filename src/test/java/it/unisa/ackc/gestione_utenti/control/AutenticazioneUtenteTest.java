@@ -65,7 +65,7 @@ public class AutenticazioneUtenteTest {
     @Test
     public void test03(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza dell'email deve compresa tra 19 e 64");
+        expect.expectMessage("La lunghezza dell'email deve compresa tra 10 e 64");
 
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.soro21@");
         autenticazioneUtente.sottomettiForm(formDati);
@@ -74,7 +74,7 @@ public class AutenticazioneUtenteTest {
     @Test
     public void test04(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza dell'email deve compresa tra 19 e 64");
+        expect.expectMessage("La lunghezza dell'email deve compresa tra 10 e 64");
 
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, longString);
         autenticazioneUtente.sottomettiForm(formDati);
@@ -83,7 +83,7 @@ public class AutenticazioneUtenteTest {
     @Test
     public void test05(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza dell'email deve compresa tra 19 e 64");
+        expect.expectMessage("La lunghezza dell'email deve compresa tra 10 e 64");
 
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, longString);
         autenticazioneUtente.sottomettiForm(formDati);

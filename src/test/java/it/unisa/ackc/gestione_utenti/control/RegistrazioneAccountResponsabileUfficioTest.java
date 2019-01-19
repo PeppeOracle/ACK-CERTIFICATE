@@ -66,7 +66,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test03(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza dell'email deve compresa tra 19 e 64");
+        expect.expectMessage("La lunghezza dell'email deve compresa tra 10 e 64");
 
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, "v.soro21@");
         registrazioneAccount.sottomettiForm(formDati);
@@ -75,7 +75,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test04(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza dell'email deve compresa tra 19 e 64");
+        expect.expectMessage("La lunghezza dell'email deve compresa tra 10 e 64");
 
         formDati.aggiungiDato(AccountConvalida.EMAIL_PARAMETRO, longString);
         registrazioneAccount.sottomettiForm(formDati);
@@ -219,7 +219,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test21() {
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il edificio non è stato indicato");
+        expect.expectMessage("L'edificio non è stato indicato");
 
         formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.EDIFICIO_PARAMETRO, null);
         registrazioneAccount.sottomettiForm(formDati);
@@ -228,18 +228,9 @@ public class RegistrazioneAccountResponsabileUfficioTest {
     @Test
     public void test22() {
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("La lunghezza del edificio deve essere compresa tra 1 e 64");
+        expect.expectMessage("Il nome dell'edificio non può superare i 64 caratteri");
 
         formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.EDIFICIO_PARAMETRO, longString);
-        registrazioneAccount.sottomettiForm(formDati);
-    }
-
-    @Test
-    public void test23() {
-        expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il formato del edificio non è stato rispettato");
-
-        formDati.aggiungiDato(RegistrazioneAccountResponsabileUfficio.EDIFICIO_PARAMETRO, "123cc");
         registrazioneAccount.sottomettiForm(formDati);
     }
 
