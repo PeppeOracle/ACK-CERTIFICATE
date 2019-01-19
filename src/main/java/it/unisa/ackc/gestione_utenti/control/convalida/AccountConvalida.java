@@ -47,6 +47,14 @@ public final class AccountConvalida {
      * Macro della lunghezza massima per email.
      */
     static final int MAX_MAIL = 64;
+    /**
+     * Macro della lunghezza minima per un nome.
+     */
+    static final int MIN_NOME = 1;
+    /**
+     * Macro della lunghezza massima per un nome.
+     */
+    static final int MAX_NOME = 64;
 
     /**
      * Costruttore di default.
@@ -183,7 +191,7 @@ public final class AccountConvalida {
                         Account.Sesso.valueOf(sesso);
                     } catch (IllegalArgumentException e) {
                         notifica.aggiungiErrore(
-                                "Il sesso indicato"
+                                "Il sesso indicato "
                                         + "non è corretto"
                         );
                     }
@@ -207,7 +215,7 @@ public final class AccountConvalida {
             notifica.aggiungiErrore("Il " + nome
                     + " non è stato indicato");
         } else {
-            if (!val.matches("\\w{1,64}$")) {
+            if (val.length() < MIN_NOME || val.length() > MAX_NOME) {
                 notifica.aggiungiErrore("La lunghezza del " + nome
                         + " deve essere compresa tra 1 e 64");
             }

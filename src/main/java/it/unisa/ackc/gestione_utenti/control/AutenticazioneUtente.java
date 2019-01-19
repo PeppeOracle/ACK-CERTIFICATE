@@ -56,21 +56,21 @@ public class AutenticazioneUtente extends FormControl {
                 formDati.ottieniDato(AccountConvalida.PASSWORD_PARAMETRO);
         Account account = ackStorage.findAccountByEmail(email);
         if (account != null && account.getPassword().equals(password)) {
-            getRisposta().aggiungiAttributo("account", account);
+            getSessione().aggiungi("account", account);
             switch (account.getRuolo()) {
                 case AMMINISTRATORE:
                     getRisposta().inoltra(
-                            "admin/registrazioneAccountResponsabileUfficio.jsp"
+                            "/admin/registrazioneAccountResponsabileUfficio.jsp"
                     );
                     break;
                 case RESPONSABILE_UFFICIO:
                     getRisposta().inoltra(
-                            "responsabile-ufficio/gestionePratiche.jsp"
+                            "/responsabile-ufficio/gestionePratiche.jsp"
                     );
                     break;
                 case STUDENTE:
                     getRisposta().inoltra(
-                            "studente/gestionePratiche.jsp"
+                            "/studente/gestionePratiche.jsp"
                     );
                     break;
                 default:
