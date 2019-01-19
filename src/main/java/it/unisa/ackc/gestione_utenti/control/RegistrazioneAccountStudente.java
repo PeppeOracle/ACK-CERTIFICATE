@@ -40,6 +40,14 @@ public class RegistrazioneAccountStudente extends FormControl {
      */
     private static final String SUCCESSFUL_MESSAGE = "";
     /**
+     * Macro della lunghezza minima per email.
+     */
+    public static final int MIN_MAIL = 19;
+    /**
+     * Macro della lunghezza massima per email.
+     */
+    public static final int MAX_MAIL = 64;
+    /**
      * Istanza dello storage facade.
      */
     private ACKStorageFacade ackStorage;
@@ -139,9 +147,6 @@ public class RegistrazioneAccountStudente extends FormControl {
     @Override
     public void valida(final FormDati formDati) {
         aggiungiCondizione(
-                AccountConvalida.VALIDA_EMAIL
-        );
-        aggiungiCondizione(
                 AccountConvalida.VALIDA_COGNOME
         );
         aggiungiCondizione(
@@ -155,6 +160,11 @@ public class RegistrazioneAccountStudente extends FormControl {
         );
         aggiungiCondizione(
                 AccountConvalida.VALIDA_TELEFONO
+        );
+        aggiungiCondizione(
+                it.unisa.ackc.gestione_utenti.control.
+                        convalida.AccountStudente
+                        .VALIDA_EMAIL
         );
         aggiungiCondizione(
                 it.unisa.ackc.gestione_utenti.control.

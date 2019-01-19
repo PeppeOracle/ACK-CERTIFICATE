@@ -29,6 +29,40 @@ public final class AccountResponsabileUfficio {
     private AccountResponsabileUfficio() { }
 
     /**
+     * Convalida dell'email.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_EMAIL =
+            formDati -> {
+                Notifica notifica = new Notifica();
+                String email = formDati.ottieniDato(
+                        AccountConvalida.EMAIL_PARAMETRO
+                );
+                if (email == null || email.trim().equals("")) {
+                    notifica.aggiungiErrore(
+                            "La mail non è stato indicato"
+                    );
+                } else {
+                    if (email.length()
+                            < RegistrazioneAccountResponsabileUfficio.
+                            MIN_MAIL
+                            || email.length()
+                            > RegistrazioneAccountResponsabileUfficio.
+                            MAX_MAIL) {
+                        notifica.aggiungiErrore("La lunghezza dell'email "
+                                + "deve compresa tra 10 e 64");
+                    }
+                    if (!email.matches(
+                            "[A-Z,a-z,0-9,-,.,_ ]+[@unisa.it]+")) {
+                        notifica.aggiungiErrore("Il formato dell'email "
+                                + "non è stato rispettato");
+                    }
+                }
+                return  notifica;
+            };
+
+    /**
      * Convalida del campus.
      *
      * @since 0.0.1
