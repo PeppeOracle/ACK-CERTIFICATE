@@ -15,7 +15,7 @@
     <br>
     <h1>Crea domanda lingua inglese</h1>
     <br>
-    <form action="/gestione-pratiche/creazione-domanda-lingua-inglese" method="get">
+    <form>
 
         <div class="form-group">
             <label for="inputNumeroCfu">Numero CFU</label>
@@ -44,7 +44,7 @@
 
         <small class="form-text text-muted">Tutti i campi sono obbligatori.</small>
         <br><br>
-        <a href="/gestione-pratiche/creazione-domanda-lingua-inglese" class="btn btn-primary" id="downloadButton"download>Scarica</a>
+        <a href="/gestione-pratiche/creazione-domanda-lingua-inglese" class="btn btn-primary" id="downloadButton" download>Scarica</a>
 
     </form>
 
@@ -59,7 +59,11 @@
 <script>
     $(document).ready(function() {
         $("#downloadButton").click(function() {
-            //todo da fare
+            return this.href
+                + "?cefr=" + $("#inputCefr").val()
+                + "?grade=" + $("#inputGrade").val()
+                + "?enteCertificatore=" + $("#inputEnteCertificatore").val()
+                + "?numeroCfu=" + $("#inputNumeroCfu").val()
         })
     });
 </script>
