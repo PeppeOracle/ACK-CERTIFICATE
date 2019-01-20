@@ -10,6 +10,7 @@
     <%@ include file="../WEB-INF/jspf/headMeta.jspf" %>
     <title>Gestione pratiche responsabile ufficio</title>
     <%@ include file="../WEB-INF/jspf/headLink.jspf" %>
+    <link rel="stylesheet" href="../css/gestionePratiche.css">
 </head>
 <body>
 
@@ -20,8 +21,8 @@
     List<Pratica> pratiche = (List<Pratica>) request.getAttribute("pratiche");
     int filtro = (Integer) request.getAttribute("filtro");
     int pagina = (Integer) request.getAttribute("pagina");
-    session.setAttribute("filtro",filtro);
-    session.setAttribute("pagina",pagina);
+    session.setAttribute("filtro", filtro);
+    session.setAttribute("pagina", pagina);
     int maxPagina = (Integer) request.getAttribute("max_pagina");
 %>
 
@@ -30,10 +31,18 @@
     <br>
     <h1>Gestione pratiche</h1>
     <br>Filtra pratiche:<br><br>
-    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=0&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==0)?"active":""%>">Nessun filtro</button></a>
-    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=1&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==1)?"active":""%>">Pratiche da valutare</button></a>
-    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=2&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==2)?"active":""%>">Pratiche sospese</button></a>
-    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=3&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==3)?"active":""%>">Pratiche chiuse</button></a>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=0&pagina=1">
+        <button type="button" class="btn btn-outline-primary <%=(filtro==0)?"active":""%>">Nessun filtro</button>
+    </a>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=1&pagina=1">
+        <button type="button" class="btn btn-outline-primary <%=(filtro==1)?"active":""%>">Pratiche da valutare</button>
+    </a>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=2&pagina=1">
+        <button type="button" class="btn btn-outline-primary <%=(filtro==2)?"active":""%>">Pratiche sospese</button>
+    </a>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=3&pagina=1">
+        <button type="button" class="btn btn-outline-primary <%=(filtro==3)?"active":""%>">Pratiche chiuse</button>
+    </a>
     <br><br><br>
 
     <table class="table table-striped">
@@ -53,7 +62,7 @@
                 Iterator<?> it = pratiche.iterator();
                 while (it.hasNext()) {
                     Pratica bean = (Pratica) it.next();
-                    String mostraBeanUrl = "/gestione-pratiche/mostra-pratica?tipo=0&pratica="+bean.getId();
+                    String mostraBeanUrl = "/gestione-pratiche/mostra-pratica?tipo=0&pratica=" + bean.getId();
         %>
 
         <tr>
@@ -84,9 +93,20 @@
         %>
         </tbody>
     </table>
-    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina-1%>"><button type="button" class="btn btn-outline-primary" <%=(pagina>1)?"":"disabled"%>>Pagina Precedente</button></a>
-    Pagina <%=pagina%>
-    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina+1%>"><button type="button" class="btn btn-outline-primary" <%=(pagina!=maxPagina)?"":"disabled"%>>Pagina Successiva</button></a>
+
+    <div class="fixed-bottom paginazione">
+        <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina-1%>">
+            <button type="button" class="btn btn-outline-primary" <%=(pagina > 1) ? "" : "disabled"%>>Pagina
+                Precedente
+            </button>
+        </a>
+        Pagina <%=pagina%>
+        <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina+1%>">
+            <button type="button" class="btn btn-outline-primary" <%=(pagina != maxPagina) ? "" : "disabled"%>>Pagina
+                Successiva
+            </button>
+        </a>
+    </div>
 </div>
 
 <!-- Footer -->
