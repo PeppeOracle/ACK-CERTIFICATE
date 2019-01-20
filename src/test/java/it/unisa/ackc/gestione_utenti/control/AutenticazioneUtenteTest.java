@@ -103,7 +103,7 @@ public class AutenticazioneUtenteTest {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("La lunghezza della password deve compresa tra 2 e 8");
 
-        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab1234567");
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab123567");
         autenticazioneUtente.sottomettiForm(formDati);
     }
 
