@@ -45,4 +45,32 @@ public final class CreazioneDomanda {
                 }
                 return  notifica;
             };
+
+
+    /**
+     * Convalida del tipo di domanda.
+     *
+     * @since 0.0.1
+     */
+    public static final CondizioneConvalida VALIDA_AZIONE =
+            formDati -> {
+
+                Notifica notifica = new Notifica();
+                try {
+                    Integer azione = formDati.ottieniDatoIntero(
+                            it.unisa.ackc.gestione_pratiche.control
+                                    .CreazioneDomanda.AZIONE_PARAMETRO
+                    );
+                    if (azione != 0 && azione != 1) {
+                        notifica.aggiungiErrore(
+                                "Azione non supportata"
+                        );
+                    }
+                } catch (NumberFormatException e) {
+                    notifica.aggiungiErrore(
+                            "Il parametro azione deve essere un numero", e
+                    );
+                }
+                return  notifica;
+            };
 }

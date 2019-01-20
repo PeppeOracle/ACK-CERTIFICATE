@@ -15,6 +15,11 @@ import java.util.Map;
  */
 public class CreazioneDomanda extends FormControl {
     /**
+     * Macro del parametro azione.
+     */
+    public static final String AZIONE_PARAMETRO =
+            "azione";
+    /**
      * Macro del parametro tipo_di_domanda.
      */
     public static final String TIPO_DI_DOMANDA_PARAMETRO =
@@ -64,6 +69,10 @@ public class CreazioneDomanda extends FormControl {
         valida(formDati);
         String domanda = formDati.ottieniDato(TIPO_DI_DOMANDA_PARAMETRO);
         String path = pathDomande.get(domanda);
+        getRisposta().aggiungiAttributo(
+                "azione",
+                formDati.ottieniDatoIntero(TIPO_DI_DOMANDA_PARAMETRO)
+        );
         if (path != null) {
             getRisposta().inoltra(path);
         } else {
