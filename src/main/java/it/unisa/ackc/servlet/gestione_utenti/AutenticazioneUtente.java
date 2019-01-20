@@ -17,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
  *
  * @version 1.0.0
  */
-@WebServlet("/gestione-utenti/autenticazione-utente")
+@WebServlet("/gestione-utente/autenticazione-utente")
 public class AutenticazioneUtente extends ServletForm {
     /**
      * Istanza dell'EJB per accedere al database.

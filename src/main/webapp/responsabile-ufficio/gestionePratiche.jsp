@@ -1,8 +1,9 @@
 <%@ page import="it.unisa.ackc.gestione_pratiche.entity.Pratica" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="it.unisa.ackc.gestione_utenti.entity.AccountStudente" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -12,9 +13,11 @@
 </head>
 <body>
 
+<!-- Navbar -->
+<%@ include file="../WEB-INF/jspf/navbarResponsabileUfficio.jspf" %>
+
 <%
-    //   /* **********************************************
-    //  STUB TEST
+
     AccountStudente a1 = new AccountStudente();
     a1.setMatricola("782673");
     a1.setNome("Mario");
@@ -33,18 +36,12 @@
     p2.setTipo(Pratica.Tipo.LINGUA_INGLESE);
     p2.setAccountStudente(a2);
 
-    ArrayList<Pratica> x = new ArrayList<>();
-    x.add(p1);
-    x.add(p2);
-    x.add(p1);
-    //   ****************************** */
-
-    Collection<?> pratiche = x;
+    List<Pratica> pratiche = new ArrayList<>();
+    pratiche.add(p1);
+    pratiche.add(p2);
+    pratiche.add(p1);
 
 %>
-
-<!-- Navbar -->
-<%@ include file="../WEB-INF/jspf/navbarResponsabileUfficio.jspf" %>
 
 <div class="container">
 

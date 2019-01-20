@@ -15,7 +15,7 @@
     <br>
     <h1>Crea domanda attivit&agrave lavorativa</h1>
     <br>
-    <form action="" method="post">
+    <form action="/gestione-pratiche/creazione-domanda-attivita-lavorativa?tipo=<%=request.getAttribute("tipo")%>" method="get">
 
         <div class="form-group">
             <label for="inputNumeroCfu">Numero CFU</label>
@@ -50,7 +50,7 @@
         <div class="form-group">
             <label for="inputPeriodo">Periodo</label>
             <input name="periodo" type="text" class="form-control" id="inputPeriodo"
-                   placeholder="gg/mm/aaaa - gg/mm/aaaa" required>
+                   placeholder="gg-mm-aaaa / gg-mm-aaaa" required>
         </div>
 
         <div class="form-group">

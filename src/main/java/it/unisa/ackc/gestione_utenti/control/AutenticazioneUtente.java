@@ -60,17 +60,17 @@ public class AutenticazioneUtente extends FormControl {
             getSessione().aggiungi("account", account);
             switch (account.getRuolo()) {
                 case AMMINISTRATORE:
-                    getRisposta().inoltra(
+                    getRisposta().redirect(
                             "/admin/registrazioneAccountResponsabileUfficio.jsp"
                     );
                     break;
                 case RESPONSABILE_UFFICIO:
-                    getRisposta().inoltra(
+                    getRisposta().redirect(
                             "/responsabile-ufficio/gestionePratiche.jsp"
                     );
                     break;
                 case STUDENTE:
-                    getRisposta().inoltra(
+                    getRisposta().redirect(
                             "/studente/gestionePratiche.jsp"
                     );
                     break;

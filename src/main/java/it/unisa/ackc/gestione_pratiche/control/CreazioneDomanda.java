@@ -22,13 +22,13 @@ public class CreazioneDomanda extends FormControl {
     /**
      * Macro del valore della path di attività lavorativa.
      */
-    private static final String ATTIVITA_LAVORATIVA =
-            "attivita_lavorativa";
+    private static final String ATTIVITA_LAVORATIVA_JSP =
+            "/studente/creaDomandaAttivitaLavorativa.jsp";
     /**
      * Macro del valore della path di lingua inglese.
      */
-    private static final String LINGUA_INGLESE =
-            "lingua_inglese";
+    private static final String LINGUA_INGLESE_JSP =
+            "/studente/creaDomandaLinguaInglese.jsp";
     /**
      * Mappa contenente i tipi di domanda e i path dei relativi control.
      */
@@ -46,12 +46,12 @@ public class CreazioneDomanda extends FormControl {
         super(aSessione, aRisposta);
         pathDomande = new HashMap<>();
         pathDomande.put(
-                "attivitaLavorativa",
-                "/gestione-pratiche/creazione-domanda-attivita-lavorativa"
+                "ATTIVITA_LAVORATIVA",
+                ATTIVITA_LAVORATIVA_JSP
         );
         pathDomande.put(
-                "linguaInglese",
-                "/gestione-pratiche/creazione-domanda-lingua-inglese"
+                "LINGUA_INGLESE",
+                LINGUA_INGLESE_JSP
         );
     }
 

@@ -15,7 +15,7 @@
     <br>
     <h1>Crea domanda lingua inglese</h1>
     <br>
-    <form action="" method="post">
+    <form action="/gestione-pratiche/creazione-domanda-lingua-inglese?tipo=<%=request.getAttribute("tipo")%>" method="get">
 
         <div class="form-group">
             <label for="inputNumeroCfu">Numero CFU</label>

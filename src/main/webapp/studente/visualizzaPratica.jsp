@@ -12,29 +12,8 @@
 <body>
 
 <%
-
-    Pratica pratica = new Pratica();
-
-/*********************** STUB ******************************/
-    AccountStudente account = new AccountStudente();
-    account.setMatricola("782673");
-    account.setNome("Mario");
-    account.setCognome("Rossi");
-
-    Attestato attestato = new Attestato();
-    attestato.setPath("attestatoMarioRossi8796.pdf");
-
-    Domanda domanda = new Domanda();
-    domanda.setPath("domandaMarioRossi8796.pdf");
-
-    pratica.setTipo(Pratica.Tipo.ATTIVITA_LAVORATIVA);
-    pratica.setMessaggioResponsabileUfficio("Attestazione non riconosciuta.");
-    pratica.setStato(Pratica.Stato.BOCCIATA);
-    pratica.setAttestato(attestato);
-    pratica.setDomanda(domanda);
-    pratica.setAccountStudente(account);
-/***********************************************************/
-
+    Pratica pratica = (Pratica) request.getAttribute("pratica");
+    request.setAttribute("tipoAzione",1);
 %>
 
 <!-- Navbar -->
@@ -104,7 +83,6 @@
     <a href="#">
         <button type="button" class="btn btn-primary" id="modificaButton">Modifica</button>
     </a>
-
 </div>
 
 <!-- Footer -->

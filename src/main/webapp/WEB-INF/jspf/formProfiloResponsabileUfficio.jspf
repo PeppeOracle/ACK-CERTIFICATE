@@ -100,7 +100,7 @@
         <label class="form-check-label" for="privacyCheckbox">Il responsabile ufficio accetta il <a href="#">regolamento
             sulla privacy</a>
         </label>
-        <small id="campiObbligatoriHelp" class="form-text text-muted">I campi contassegnati con * sono
+        <small id="campiObbligatoriHelp" class="form-text text-muted">I campi contrassegnati con * sono
             obbligatori.
         </small>
     </div>

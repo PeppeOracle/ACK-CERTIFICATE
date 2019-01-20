@@ -64,7 +64,13 @@ public class FormDati {
      * @since 0.0.1
      */
     public String[] ottieniDati(final String chiave) {
-        return (String[]) dati.get(chiave);
+        String[] arrayDati = new String[1];
+        if (dati.get(chiave) instanceof String) {
+            arrayDati[0] = (String) dati.get(chiave);
+        } else {
+            arrayDati = (String[]) dati.get(chiave);
+        }
+        return arrayDati;
     }
 
     /**

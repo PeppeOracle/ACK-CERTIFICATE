@@ -84,9 +84,8 @@ public class ModificaProfiloStudente extends FormControl {
         String cognome = formDati.ottieniDato(
                 AccountConvalida.COGNOME_PARAMETRO
         );
-        Account.Sesso sesso = Account.Sesso.valueOf(
-                formDati.ottieniDato(AccountConvalida.SESSO_PARAMETRO)
-        );
+        String sesso =
+                formDati.ottieniDato(AccountConvalida.SESSO_PARAMETRO);
         String matricola = formDati.ottieniDato(MATRICOLA_PARAMETRO);
         Date dataDiNascita = null;
         try {
@@ -115,7 +114,6 @@ public class ModificaProfiloStudente extends FormControl {
         AccountStudente studente = (AccountStudente) ackStorage.findAccountById(
                 account.getId()
         );
-        //DA vedere
         if (email != null) {
             studente.setEmail(email);
         }
@@ -132,7 +130,7 @@ public class ModificaProfiloStudente extends FormControl {
             studente.setCognome(cognome);
         }
         if (sesso != null) {
-            studente.setSesso(sesso);
+            studente.setSesso(Account.Sesso.valueOf(sesso));
         }
         if (matricola != null) {
             studente.setMatricola(matricola);
