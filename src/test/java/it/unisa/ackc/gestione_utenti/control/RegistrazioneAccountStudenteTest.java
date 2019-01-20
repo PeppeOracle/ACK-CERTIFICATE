@@ -110,7 +110,7 @@ public class RegistrazioneAccountStudenteTest {
     @Test
     public void test07() {
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il periodo non è stato indicato");
+        expect.expectMessage("La data di nascita non è stata indicata");
         formDati.aggiungiDato(AccountStudente.DATA_DI_NASCITA_PARAMETRO, "");
 
         registrazioneAccountStudente.sottomettiForm(formDati);
@@ -119,7 +119,7 @@ public class RegistrazioneAccountStudenteTest {
     @Test
     public void test08() {
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il formato del periodo non è stato rispettato");
+        expect.expectMessage("Il formato della data di nascita non è stato rispettato");
         formDati.aggiungiDato(AccountStudente.DATA_DI_NASCITA_PARAMETRO, "22-ww-2015");
 
         registrazioneAccountStudente.sottomettiForm(formDati);

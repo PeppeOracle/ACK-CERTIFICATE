@@ -73,7 +73,7 @@ public class ModificaProfiloStudenteTest {
         ACKCStorageStub storage = new ACKCStorageStub();
 
         expect.expect(Error.class);
-        expect.expectMessage("Il formato del periodo non è stato rispettato");
+        expect.expectMessage("Il formato della data di nascita non è stato rispettato");
         ModificaProfiloStudente modificaProfiloStudente =
                 new ModificaProfiloStudente();
         setField(modificaProfiloStudente,

@@ -41,7 +41,7 @@ public class CreazioneDomandaTest {
         HashMap<String, String[]> values = new HashMap<>();
         values.put(it.unisa.ackc.gestione_pratiche.control
                 .CreazioneDomanda.TIPO_DI_DOMANDA_PARAMETRO,
-                new String[] {"attivitaLavorativa"}
+                new String[] {"LINGUA_INGLESE"}
          );
         when(request.getRequestDispatcher(any(String.class))).thenReturn(rd);
         when(request.getParameterMap()).thenReturn(values);

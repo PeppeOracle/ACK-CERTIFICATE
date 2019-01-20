@@ -21,7 +21,7 @@ public class CreazioneDomandaTest {
         RispostaStub rispostaStub = new RispostaStub();
 
         formDati = new FormDati();
-        formDati.aggiungiDato(CreazioneDomanda.TIPO_DI_DOMANDA_PARAMETRO, "attivitaLavorativa");
+        formDati.aggiungiDato(CreazioneDomanda.TIPO_DI_DOMANDA_PARAMETRO, "LINGUA_INGLESE");
 
         creazioneDomanda = new CreazioneDomanda(sessioneStub, rispostaStub);
     }
@@ -47,7 +47,7 @@ public class CreazioneDomandaTest {
     @Test
     public void test03(){
         expect.expect(IllegalArgumentException.class);
-        expect.expectMessage("Il tipo di domanda specificato non è supportato");
+        expect.expectMessage("Il tipo di domanda indicato non è corretto");
 
         formDati.aggiungiDato(CreazioneDomanda.TIPO_DI_DOMANDA_PARAMETRO, "test");
         creazioneDomanda.sottomettiForm(formDati);

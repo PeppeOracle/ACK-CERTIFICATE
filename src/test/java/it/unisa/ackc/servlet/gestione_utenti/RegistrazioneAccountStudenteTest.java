@@ -102,7 +102,7 @@ public class RegistrazioneAccountStudenteTest {
         values.put(AccountStudente.DATA_DI_NASCITA_PARAMETRO, new String[]{"22/11/1998"});
 
         expect.expect(Error.class);
-        expect.expectMessage("Il formato del periodo non è stato rispettato");
+        expect.expectMessage("Il formato della data di nascita non è stato rispettato");
         RegistrazioneAccountStudente registrazioneAccountStudente =
                 new RegistrazioneAccountStudente();
         setField(registrazioneAccountStudente,

@@ -95,7 +95,7 @@ public class RegistrazioneAccountResponsabileUfficioTest {
         expect.expect(IllegalArgumentException.class);
         expect.expectMessage("La lunghezza della password deve compresa tra 2 e 8");
 
-        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "ab134567");
+        formDati.aggiungiDato(AccountConvalida.PASSWORD_PARAMETRO, "abyagvtacdtycd");
         registrazioneAccount.sottomettiForm(formDati);
     }
 
