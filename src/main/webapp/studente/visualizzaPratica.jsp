@@ -77,6 +77,7 @@
             <button type="button" class="btn btn-danger" id="annullaButton">Annulla modifica</button>
         </a>
         <button type="submit" class="btn btn-success" id="confermaModificaButton">Conferma modifica</button>
+
     </form>
 
     <br>

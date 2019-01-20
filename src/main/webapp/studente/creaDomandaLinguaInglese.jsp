@@ -15,7 +15,7 @@
     <br>
     <h1>Crea domanda lingua inglese</h1>
     <br>
-    <form action="/gestione-pratiche/creazione-domanda-lingua-inglese?tipo=<%=request.getAttribute("tipo")%>" method="get">
+    <form action="/gestione-pratiche/creazione-domanda-lingua-inglese" method="get">
 
         <div class="form-group">
             <label for="inputNumeroCfu">Numero CFU</label>
@@ -44,7 +44,7 @@
 
         <small class="form-text text-muted">Tutti i campi sono obbligatori.</small>
         <br><br>
-        <button type="submit" class="btn btn-primary">Scarica</button>
+        <a href="/gestione-pratiche/creazione-domanda-lingua-inglese" class="btn btn-primary" id="downloadButton"download>Scarica</a>
 
     </form>
 
@@ -56,6 +56,13 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <%@ include file="../WEB-INF/jspf/bootstapScript.jspf" %>
 
+<script>
+    $(document).ready(function() {
+        $("#downloadButton").click(function() {
+            //todo da fare
+        })
+    });
+</script>
 
 </body>
 </html>

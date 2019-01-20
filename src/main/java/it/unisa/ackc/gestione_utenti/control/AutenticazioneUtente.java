@@ -8,7 +8,6 @@ import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-
 /**
  * Si occupa dell'autenticazione di un utente nel sistema.
  *
@@ -66,7 +65,9 @@ public class AutenticazioneUtente extends FormControl {
                     break;
                 case RESPONSABILE_UFFICIO:
                     getRisposta().redirect(
-                            "/responsabile-ufficio/gestionePratiche.jsp"
+                            "/gestione-pratiche/"
+                                    + "visualizza-pratiche-responsabile-ufficio"
+                                    + "?filtro=0&pagina=1"
                     );
                     break;
                 case STUDENTE:

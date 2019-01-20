@@ -17,30 +17,12 @@
 <%@ include file="../WEB-INF/jspf/navbarResponsabileUfficio.jspf" %>
 
 <%
-
-    AccountStudente a1 = new AccountStudente();
-    a1.setMatricola("782673");
-    a1.setNome("Mario");
-    a1.setCognome("Rossi");
-
-    AccountStudente a2 = new AccountStudente();
-    a2.setMatricola("128973");
-    a2.setNome("Salvatore");
-    a2.setCognome("Bianchi");
-
-    Pratica p1 = new Pratica();
-    p1.setTipo(Pratica.Tipo.ATTIVITA_LAVORATIVA);
-    p1.setAccountStudente(a1);
-
-    Pratica p2 = new Pratica();
-    p2.setTipo(Pratica.Tipo.LINGUA_INGLESE);
-    p2.setAccountStudente(a2);
-
-    List<Pratica> pratiche = new ArrayList<>();
-    pratiche.add(p1);
-    pratiche.add(p2);
-    pratiche.add(p1);
-
+    List<Pratica> pratiche = (List<Pratica>) request.getAttribute("pratiche");
+    int filtro = (Integer) request.getAttribute("filtro");
+    int pagina = (Integer) request.getAttribute("pagina");
+    session.setAttribute("filtro",filtro);
+    session.setAttribute("pagina",pagina);
+    int maxPagina = (Integer) request.getAttribute("max_pagina");
 %>
 
 <div class="container">
@@ -48,10 +30,10 @@
     <br>
     <h1>Gestione pratiche</h1>
     <br>Filtra pratiche:<br><br>
-    <button type="button" class="btn btn-outline-primary active">Nessun filtro</button>
-    <button type="button" class="btn btn-outline-primary">Pratiche da valutare</button>
-    <button type="button" class="btn btn-outline-primary">Pratiche sospese</button>
-    <button type="button" class="btn btn-outline-primary">Pratiche chiuse</button>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=0&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==0)?"active":""%>">Nessun filtro</button></a>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=1&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==1)?"active":""%>">Pratiche da valutare</button></a>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=2&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==2)?"active":""%>">Pratiche sospese</button></a>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=3&pagina=1"><button type="button" class="btn btn-outline-primary <%=(filtro==3)?"active":""%>">Pratiche chiuse</button></a>
     <br><br><br>
 
     <table class="table table-striped">
@@ -71,6 +53,7 @@
                 Iterator<?> it = pratiche.iterator();
                 while (it.hasNext()) {
                     Pratica bean = (Pratica) it.next();
+                    String mostraBeanUrl = "/gestione-pratiche/mostra-pratica?tipo=0&pratica="+bean.getId();
         %>
 
         <tr>
@@ -83,7 +66,7 @@
             <td><%=bean.getTipo()%>
             </td>
             <td>
-                <a href="#">
+                <a href="<%=mostraBeanUrl%>">
                     <button>Visualizza</button>
                 </a>
             </td>
@@ -101,7 +84,9 @@
         %>
         </tbody>
     </table>
-
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina-1%>"><button type="button" class="btn btn-outline-primary" <%=(pagina>1)?"":"disabled"%>>Pagina Precedente</button></a>
+    Pagina <%=pagina%>
+    <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina+1%>"><button type="button" class="btn btn-outline-primary" <%=(pagina!=maxPagina)?"":"disabled"%>>Pagina Successiva</button></a>
 </div>
 
 <!-- Footer -->
@@ -109,6 +94,7 @@
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <%@ include file="../WEB-INF/jspf/bootstapScript.jspf" %>
+
 
 </body>
 </html>

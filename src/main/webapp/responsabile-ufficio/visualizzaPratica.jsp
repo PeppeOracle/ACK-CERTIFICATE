@@ -11,6 +11,8 @@
 
 <%
     Pratica pratica = (Pratica) request.getAttribute("pratica");
+    String mostraPraticaUrl = "/gestione-pratiche/mostra-pratica?tipo=1&pratica="+pratica.getId();
+    String gestionePraticheUrl = "/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro="+session.getAttribute("filtro")+"&pagina="+session.getAttribute("pagina");
 %>
 
 <!-- Navbar -->
@@ -74,8 +76,12 @@
     </form>
 
     <br><br>
+    <a href="<%=gestionePraticheUrl%>">
     <button type="button" class="btn btn-danger">Annulla</button>
+    </a>
+    <a href="<%=mostraPraticaUrl%>">
     <button type="button" class="btn btn-success">Valuta pratica</button>
+    </a>
 
 </div>
 

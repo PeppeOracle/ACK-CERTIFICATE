@@ -20,15 +20,18 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
     /**
      * Macro del parametro filtro.
      */
-    public static final String FILTRO_PARAMETRO = "filtro";
+    public static final String FILTRO_PARAMETRO =
+            "filtro";
     /**
      * Macro del parametro pagina.
      */
-    public static final String PAGINA_PARAMETRO = "pagina";
+    public static final String PAGINA_PARAMETRO =
+            "pagina";
     /**
      * Macro della jsp della lista di pratiche.
      */
-    private static final String PRATICHE_JSP = "gestionePratiche.jsp";
+    private static final String PRATICHE_JSP =
+            "/responsabile-ufficio/gestionePratiche.jsp";
     /**
      * Macro del filtro nessun_filtro.
      */
@@ -48,7 +51,7 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
     /**
      * Macro del limite di pratiche in una pagina.
      */
-    public static final int LIMITE_PAGINA = 10;
+    public static final int LIMITE_PAGINA = 6;
     /**
      * Istanza dello storage facade.
      */
@@ -79,13 +82,38 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
         }
         AccountResponsabileUfficio account = (AccountResponsabileUfficio)
                 getSessione().ottieni("account");
-        formDati.aggiungiDato("temp_account", account);
+        formDati.aggiungiDato(
+                "pratiche_sospese",
+                ackStorage
+                        .countPraticheSospeseForResponsabileUfficio(
+                                account
+                        ));
+        formDati.aggiungiDato(
+                "pratiche_da_valutare",
+                ackStorage
+                        .countPraticheDaValutareForResponsabileUfficio(
+                                account
+                        ));
+        formDati.aggiungiDato(
+                "pratiche_chiuse",
+                ackStorage
+                        .countPraticheChiuseForResponsabileUfficio(
+                                account
+                        ));
+        formDati.aggiungiDato(
+                "pratiche_totali",
+                ackStorage
+                        .countAllPraticheForResponsabileUfficio(
+                                account
+                        ));
         valida(formDati);
-        int filtro = formDati.ottieniDatoIntero(FILTRO_PARAMETRO);
-        int pagina = formDati.ottieniDatoIntero(PAGINA_PARAMETRO);
+        String maxPagina;
+        Integer filtro = formDati.ottieniDatoIntero(FILTRO_PARAMETRO);
+        Integer pagina = formDati.ottieniDatoIntero(PAGINA_PARAMETRO);
         List<Pratica> praticheResponsabileUfficio;
         switch (filtro) {
             case PRATICHE_SOSPESE:
+                maxPagina = "pratiche_sospese";
                 praticheResponsabileUfficio =
                         ackStorage.findPraticheSospeseForResponsabileUfficio(
                                 account,
@@ -93,6 +121,7 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
                                 (pagina - 1) * LIMITE_PAGINA);
                 break;
             case PRATICHE_DA_VALUTARE:
+                maxPagina = "pratiche_da_valutare";
                 praticheResponsabileUfficio =
                         ackStorage.findPraticheDaValutareForResponsabileUfficio(
                                 account,
@@ -100,6 +129,7 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
                                 (pagina - 1) * LIMITE_PAGINA);
                 break;
             case PRATICHE_CHIUSE:
+                maxPagina = "pratiche_chiuse";
                 praticheResponsabileUfficio =
                         ackStorage.findPraticheChiuseForResponsabileUfficio(
                                 account,
@@ -108,6 +138,7 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
                 break;
             case NESSUN_FILTRO:
             default:
+                maxPagina = "pratiche_totali";
                 praticheResponsabileUfficio =
                         ackStorage.findAllPraticheForResponsabileUfficio(
                                 account,
@@ -117,6 +148,22 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
         getRisposta().aggiungiAttributo(
                 "pratiche",
                 praticheResponsabileUfficio
+        );
+        getRisposta().aggiungiAttributo(
+                VisualizzaPraticheResponsabileUfficio.FILTRO_PARAMETRO,
+                filtro
+        );
+        getRisposta().aggiungiAttributo(
+                VisualizzaPraticheResponsabileUfficio.PAGINA_PARAMETRO,
+                pagina
+        );
+        getRisposta().aggiungiAttributo(
+                "max_pagina",
+                (formDati
+                        .ottieniDatoIntero(maxPagina)
+                        / it.unisa.ackc.gestione_pratiche.control
+                        .VisualizzaPraticheResponsabileUfficio.
+                        LIMITE_PAGINA) + 1
         );
         getRisposta().inoltra(PRATICHE_JSP);
     }

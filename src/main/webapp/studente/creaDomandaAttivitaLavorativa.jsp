@@ -15,7 +15,7 @@
     <br>
     <h1>Crea domanda attivit&agrave lavorativa</h1>
     <br>
-    <form action="/gestione-pratiche/creazione-domanda-attivita-lavorativa?tipo=<%=request.getAttribute("tipo")%>" method="get">
+    <form action="/gestione-pratiche/creazione-domanda-attivita-lavorativa" method="get">
 
         <div class="form-group">
             <label for="inputNumeroCfu">Numero CFU</label>
@@ -61,7 +61,7 @@
 
         <small class="form-text text-muted">Tutti i campi sono obbligatori.</small>
         <br><br>
-        <button type="submit" class="btn btn-primary">Scarica</button>
+        <a href="/gestione-pratiche/creazione-domanda-lingua-inglese" class="btn btn-primary" download>Scarica</a>
 
     </form>
 

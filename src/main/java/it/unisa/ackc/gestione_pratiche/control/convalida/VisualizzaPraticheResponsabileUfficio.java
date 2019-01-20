@@ -1,14 +1,7 @@
 package it.unisa.ackc.gestione_pratiche.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
-import it.unisa.ackc.storage.ACKStorageFacade;
-import it.unisa.ackc.storage.ejb.ACKStorageFacadeDefault;
-import it.unisa.ackc.gestione_utenti.entity.AccountResponsabileUfficio;
 import it.unisa.ackc.http.Notifica;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 /**
  * Contiene le condizioni di convalida per la visualizzazione delle
@@ -17,12 +10,6 @@ import javax.naming.NamingException;
  * @version 0.1.1
  */
 public final class VisualizzaPraticheResponsabileUfficio {
-    /**
-     * Istanza dello storage facade.
-     */
-    //@Inject
-    private ACKStorageFacade ackStorage;
-
     /**
      * Costruttore di default.
      *
@@ -72,26 +59,13 @@ public final class VisualizzaPraticheResponsabileUfficio {
                                 .VisualizzaPraticheResponsabileUfficio.
                                 PAGINA_PARAMETRO
                 );
-                AccountResponsabileUfficio account =
-                        (AccountResponsabileUfficio)
-                                formDati.ottieni("temp_account");
-                ACKStorageFacade ackStorage = null;
-                try {
-                    Context context = new InitialContext();
-                    ackStorage = new ACKStorageFacadeDefault();
-                } catch (NamingException e) {
-                    notifica.aggiungiErrore(
-                            "Non è stato possibile effettuare l'operazione", e
-                    );
-                }
                 long maxPag;
                 switch (filtro) {
                     case it.unisa.ackc.gestione_pratiche.control
                                     .VisualizzaPraticheResponsabileUfficio.
                             PRATICHE_SOSPESE:
-                        maxPag = ackStorage.
-                                countPraticheSospeseForResponsabileUfficio(
-                                        account)
+                        maxPag = formDati
+                                .ottieniDatoIntero("pratiche_sospese")
                                 / it.unisa.ackc.gestione_pratiche.control
                                 .VisualizzaPraticheResponsabileUfficio.
                                 LIMITE_PAGINA;
@@ -99,9 +73,8 @@ public final class VisualizzaPraticheResponsabileUfficio {
                     case it.unisa.ackc.gestione_pratiche.control
                             .VisualizzaPraticheResponsabileUfficio.
                             PRATICHE_DA_VALUTARE:
-                        maxPag = ackStorage.
-                                countPraticheDaValutareForResponsabileUfficio(
-                                        account)
+                        maxPag = formDati
+                                .ottieniDatoIntero("pratiche_da_valutare")
                                 / it.unisa.ackc.gestione_pratiche.control
                                 .VisualizzaPraticheResponsabileUfficio.
                                 LIMITE_PAGINA;
@@ -109,9 +82,8 @@ public final class VisualizzaPraticheResponsabileUfficio {
                     case it.unisa.ackc.gestione_pratiche.control
                             .VisualizzaPraticheResponsabileUfficio.
                             PRATICHE_CHIUSE:
-                        maxPag = ackStorage.
-                                countPraticheChiuseForResponsabileUfficio(
-                                        account)
+                        maxPag = formDati
+                                .ottieniDatoIntero("pratiche_chiuse")
                                 / it.unisa.ackc.gestione_pratiche.control
                                 .VisualizzaPraticheResponsabileUfficio.
                                 LIMITE_PAGINA;
@@ -120,8 +92,8 @@ public final class VisualizzaPraticheResponsabileUfficio {
                             .VisualizzaPraticheResponsabileUfficio.
                             NESSUN_FILTRO:
                     default:
-                        maxPag = ackStorage.
-                                countAllPraticheForResponsabileUfficio(account)
+                        maxPag = formDati
+                                .ottieniDatoIntero("pratiche_totali")
                                 / it.unisa.ackc.gestione_pratiche.control
                                 .VisualizzaPraticheResponsabileUfficio.
                                 LIMITE_PAGINA;

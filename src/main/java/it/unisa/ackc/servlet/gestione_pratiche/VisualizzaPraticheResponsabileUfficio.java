@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -25,6 +26,21 @@ public class VisualizzaPraticheResponsabileUfficio
      */
     @Inject
     private ACKStorageFacade ackStorage;
+    /**
+     * Interfaccia http esposta per il servizio di
+     * VisualizzaPraticheResponsabileUfficio.
+     *
+     * @param richiesta http ricevuta
+     * @param risposta  http da inviare
+     * @since 1.0.0
+     */
+    @Override
+    public void doPost(
+            final HttpServletRequest richiesta,
+            final HttpServletResponse risposta
+    ) throws IOException {
+        doGet(richiesta, risposta);
+    }
     /**
      * Interfaccia http esposta per il servizio di
      * VisualizzaPraticheResponsabileUfficio.

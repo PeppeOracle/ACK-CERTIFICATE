@@ -31,7 +31,8 @@
             <input name="password" type="password" class="form-control" id="inputLoginPassword"
                    placeholder="Password" required>
         </div>
-
+        <!--<input name="filtro" type="hidden" value=0>
+        <input name="pagina" type="hidden" value=1>-->
         <button type="submit" class="btn btn-primary">Accedi</button>
         <br><br>
         <a href="registrazioneAccountStudente.jsp">Non hai un account? Registrati!</a>

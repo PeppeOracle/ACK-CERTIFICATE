@@ -9,11 +9,11 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item" id="gestioneProfiloNavItem">
-                <a class="nav-link" href="gestioneProfilo.jsp">Gestione profilo</a>
+                <a class="nav-link" href="/studente/gestioneProfilo.jsp">Gestione profilo</a>
             </li>
 
             <li class="nav-item" id="gestionePraticheNavItem">
-                <a class="nav-link" href="gestionePratiche.jsp">Gestione pratiche</a>
+                <a class="nav-link" href="/studente/gestionePratiche.jsp">Gestione pratiche</a>
             </li>
 
         </ul>

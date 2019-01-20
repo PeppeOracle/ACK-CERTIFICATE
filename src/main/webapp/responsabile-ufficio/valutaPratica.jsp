@@ -1,3 +1,4 @@
+<%@ page import="it.unisa.ackc.gestione_pratiche.entity.Pratica" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -6,7 +7,11 @@
     <%@ include file="../WEB-INF/jspf/headLink.jspf" %>
 </head>
 <body>
-
+<%
+    Pratica pratica = (Pratica) request.getAttribute("pratica");
+    String annullaValutazioneUrl = "/gestione-pratiche/mostra-pratica?tipo=0&pratica="+pratica.getId();
+    String confermaValutazioneUrl = "/gestione-pratiche/valuta-pratica?tipo=0&pratica="+pratica.getId();
+%>
 <!-- Navbar -->
 <%@ include file="../WEB-INF/jspf/navbarResponsabileUfficio.jspf" %>
 
@@ -30,8 +35,8 @@
 
         <small class="form-text text-muted">I campi contrassegnati con * sono obbligatori.</small>
         <br><br>
-        <button type="button" class="btn btn-danger">Annulla</button>
-        <button type="submit" class="btn btn-success">Conferma valutazione</button>
+        <a href="<%=annullaValutazioneUrl%>"><button type="button" class="btn btn-danger">Annulla</button></a>
+        <a href="<%=confermaValutazioneUrl%>"><button type="submit" class="btn btn-success">Conferma valutazione</button></a>
     </form>
 
 </div>
