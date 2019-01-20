@@ -54,7 +54,7 @@ public final class AccountConvalida {
     /**
      * Macro della lunghezza massima per password.
      */
-    static final int MAX_PASSWORD = 10;
+    static final int MAX_PASSWORD = 8;
     /**
      * Macro della lunghezza minima per il telefono.
      */

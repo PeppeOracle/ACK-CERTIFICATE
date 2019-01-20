@@ -1,6 +1,7 @@
 package it.unisa.ackc.gestione_pratiche.control.convalida;
 
 import it.unisa.ackc.form.CondizioneConvalida;
+import it.unisa.ackc.gestione_pratiche.entity.Pratica;
 import it.unisa.ackc.http.Notifica;
 
 /**
@@ -32,6 +33,15 @@ public final class CreazioneDomanda {
                     notifica.aggiungiErrore(
                             "Il tipo di domanda non è stato indicato"
                     );
+                } else {
+                    try {
+                        Pratica.Tipo.valueOf(tipoDiDomanda);
+                    } catch (IllegalArgumentException e) {
+                        notifica.aggiungiErrore(
+                                "Il tipo di domanda indicato "
+                                        + "non è corretto"
+                        );
+                    }
                 }
                 return  notifica;
             };

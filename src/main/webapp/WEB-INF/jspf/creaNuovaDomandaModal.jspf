@@ -9,17 +9,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="/gestione-pratiche/creazione-domanda" method="get">
 
                     <div class="form-group">
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="nuovaPratica" id="radioLinguaInglese" value="linguaInglese" required>
+                            <input class="form-check-input" type="radio" name="tipo_di_domanda" id="radioLinguaInglese" value="LINGUA_INGLESE" required>
                             <label class="form-check-label" for="radioLinguaInglese">Lingua inglese</label>
                         </div>
                         <br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="nuovaPratica" id="radioAttivitaLavorativa" value="attivitaLavorativa">
+                            <input class="form-check-input" type="radio" name="tipo_di_domanda" id="radioAttivitaLavorativa" value="ATTIVITA_LAVORATIVA">
                             <label class="form-check-label" for="radioAttivitaLavorativa">Attivit&agrave lavorativa</label>
                         </div>
                     </div>

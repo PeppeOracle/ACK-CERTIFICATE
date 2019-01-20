@@ -134,6 +134,10 @@ public class CreazioneDomandaAttivitaLavorativa extends FormControl {
         );
         nuovaDomanda();
         downloadFile();
+        getRisposta().aggiungiAttributo(
+                "tipoAzione",
+                formDati.ottieniDato("tipoAzione"
+                ));
     }
 
     /**

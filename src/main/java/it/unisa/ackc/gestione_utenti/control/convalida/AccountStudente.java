@@ -4,7 +4,6 @@ import it.unisa.ackc.form.CondizioneConvalida;
 import it.unisa.ackc.gestione_utenti.control.RegistrazioneAccountStudente;
 import it.unisa.ackc.http.Notifica;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -143,20 +142,20 @@ public final class AccountStudente {
     public static final CondizioneConvalida VALIDA_DATA_DI_NASCITA =
             formDati -> {
                 Notifica notifica = new Notifica();
-                DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                 String dataDiNascita = formDati.ottieniDato(
                                 DATA_DI_NASCITA_PARAMETRO
                 );
                 if (dataDiNascita == null || dataDiNascita.trim().equals("")) {
                     notifica.aggiungiErrore(
-                            "Il periodo non è stato indicato"
+                            "La data di nascita non è stata indicata"
                     );
                 } else {
                     try {
                         format.parse(dataDiNascita);
                     } catch (ParseException e) {
                         notifica.aggiungiErrore(
-                                "Il formato del periodo"
+                                "Il formato della data di nascita"
                                         + " non è stato rispettato", e
                         );
                     }

@@ -5,7 +5,6 @@ import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.gestione_utenti.entity.Account;
 import it.unisa.ackc.http.Notifica;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -83,7 +82,9 @@ public final class ModificaProfiloStudente {
                         AccountConvalida.PASSWORD_PARAMETRO
                 );
                 if (password != null) {
-                    if (!password.matches("\\w{2,8}$")) {
+                    if (password.length() < AccountConvalida.MIN_PASSWORD
+                            ||
+                            password.length() > AccountConvalida.MAX_PASSWORD) {
                         notifica.aggiungiErrore("La lunghezza della password "
                                 + "deve compresa tra 2 e 8");
                     }
@@ -169,7 +170,7 @@ public final class ModificaProfiloStudente {
     public static final CondizioneConvalida VALIDA_DATA_DI_NASCITA =
             formDati -> {
                 Notifica notifica = new Notifica();
-                DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                 String dataDiNascita = formDati.ottieniDato(
                         AccountStudente.
                                 DATA_DI_NASCITA_PARAMETRO
@@ -179,7 +180,7 @@ public final class ModificaProfiloStudente {
                         format.parse(dataDiNascita);
                     } catch (ParseException e) {
                         notifica.aggiungiErrore(
-                                "Il formato del periodo"
+                                "Il formato della data di nascita"
                                         + " non è stato rispettato", e
                         );
                     }
@@ -412,7 +413,8 @@ public final class ModificaProfiloStudente {
         Notifica notifica = new Notifica();
         String val = formDati.ottieniDato(nome);
         if (val != null) {
-            if (!val.matches("\\w{1,64}$")) {
+            if ((val.length() > AccountConvalida.MAX_NOME)
+                    || val.trim().equals("")) {
                 notifica.aggiungiErrore("La lunghezza del " + nome
                         + " deve essere compresa tra 1 e 64");
             }

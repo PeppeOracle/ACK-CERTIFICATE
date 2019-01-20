@@ -16,6 +16,7 @@
 
 <%
     List<Pratica> pratiche = ((AccountStudente) session.getAttribute("account")).getPratiche();
+    request.setAttribute("tipoAzione",0);
 %>
 
 <div class="container">
@@ -41,6 +42,7 @@
                 Iterator<?> it = pratiche.iterator();
                 while (it.hasNext()) {
                     Pratica bean = (Pratica) it.next();
+                    String mostraBeanUrl = "/gestione-pratiche/mostra-pratica?tipo=2&pratica="+bean.getId();
         %>
 
         <tr>
@@ -49,9 +51,9 @@
             <td><%=bean.getStato()%>
             </td>
             <td>
-                <a href="#">
-                    <button>Visualizza</button>
-                </a>
+            <a href="<%=mostraBeanUrl%>">
+                <button>Visualizza</button>
+            </a>
             </td>
         </tr>
 
@@ -67,7 +69,6 @@
         %>
         </tbody>
     </table>
-
 </div>
 
 <!-- Modal creazione nuova domanda -->

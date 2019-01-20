@@ -8,7 +8,6 @@ import it.unisa.ackc.storage.ACKStorageFacade;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-
 /**
  * Si occupa di reperire le informazioni relative ad una pratica
  * per un responsabile ufficio.
@@ -25,7 +24,8 @@ public class MostraPratica extends FormControl {
      * Macro della jsp per il responsabile ufficio (visualizzazione).
      */
     private static final String
-            PRATICA_RESPONSABILE_UFFICIO_JSP = "visualizzaPratica.jsp";
+            PRATICA_RESPONSABILE_UFFICIO_JSP =
+            "/responsabile-ufficio/visualizzaPratica.jsp";
     /**
      * Tipo jsp per responsabile ufficio (visualizzazione).
      */
@@ -35,7 +35,8 @@ public class MostraPratica extends FormControl {
      * Macro della jsp per il responsabile ufficio (valutazione).
      */
     private static final String
-            PRATICA_RESPONSABILE_UFFICIO_VALUTA_JSP = "valutaPratica.jsp";
+            PRATICA_RESPONSABILE_UFFICIO_VALUTA_JSP =
+            "/responsabile-ufficio/valutaPratica.jsp";
     /**
      * Tipo jsp per responsabile ufficio (valutazione).
      */
@@ -45,7 +46,8 @@ public class MostraPratica extends FormControl {
      * Macro della jsp per lo studente (visualizzazione).
      */
     private static final String
-            PRATICA_STUDENTE_JSP = "visualizzaPratica.jsp";
+            PRATICA_STUDENTE_JSP =
+            "/studente/visualizzaPratica.jsp";
     /**
      * Tipo jsp per lo studente  (visualizzazione).
      */
@@ -55,7 +57,8 @@ public class MostraPratica extends FormControl {
      * Macro della jsp per lo studente (modifica).
      */
     private static final String
-            PRATICA_STUDENTE_MODIFICA_JSP = "visualizzaPratica.jsp";
+            PRATICA_STUDENTE_MODIFICA_JSP =
+            "/studente/visualizzaPratica.jsp";
     /**
      * Tipo jsp per lo studente  (modifica).
      */
@@ -92,6 +95,7 @@ public class MostraPratica extends FormControl {
         );
         getRisposta().aggiungiAttributo("pratica", pratica);
         int tipo = formDati.ottieniDatoIntero(TIPO_PARAMETRO);
+        getSessione().aggiungi("pratica", pratica);
         getRisposta().inoltra(getJSP(tipo));
     }
 

@@ -10,20 +10,7 @@
 <body>
 
 <%
-    //   /* **********************************************
-    //  STUB TEST
-    AccountStudente a1 = new AccountStudente();
-    a1.setMatricola("782673");
-    a1.setNome("Mario");
-    a1.setCognome("Rossi");
-
-    Pratica p1 = new Pratica();
-    p1.setTipo(Pratica.Tipo.ATTIVITA_LAVORATIVA);
-    p1.setAccountStudente(a1);
-
-    //   ****************************** */
-
-    Pratica praticaBean = p1;
+    Pratica pratica = (Pratica) request.getAttribute("pratica");
 %>
 
 <!-- Navbar -->
@@ -38,7 +25,7 @@
             <label for="staticMatricola" class="col-sm-2 col-form-label">Matricola</label>
             <div class="col-sm-10">
                 <input type="text" readonly class="form-control-plaintext" id="staticMatricola"
-                       value="<%=praticaBean.getAccountStudente().getMatricola()%>">
+                       value="<%=pratica.getAccountStudente().getMatricola()%>">
             </div>
         </div>
 
@@ -46,7 +33,7 @@
             <label for="staticCognome" class="col-sm-2 col-form-label">Cognome</label>
             <div class="col-sm-10">
                 <input type="text" readonly class="form-control-plaintext" id="staticCognome"
-                       value="<%=praticaBean.getAccountStudente().getCognome()%>">
+                       value="<%=pratica.getAccountStudente().getCognome()%>">
             </div>
         </div>
 
@@ -54,7 +41,7 @@
             <label for="staticNome" class="col-sm-2 col-form-label">Nome</label>
             <div class="col-sm-10">
                 <input type="text" readonly class="form-control-plaintext" id="staticNome"
-                       value="<%=praticaBean.getAccountStudente().getNome()%>">
+                       value="<%=pratica.getAccountStudente().getNome()%>">
             </div>
         </div>
 
@@ -62,7 +49,7 @@
             <label for="staticTipologiaPratica" class="col-sm-2 col-form-label">Tipologia pratica</label>
             <div class="col-sm-10">
                 <input type="text" readonly class="form-control-plaintext" id="staticTipologiaPratica"
-                       value="<%=praticaBean.getTipo()%>">
+                       value="<%=pratica.getTipo()%>">
             </div>
         </div>
 

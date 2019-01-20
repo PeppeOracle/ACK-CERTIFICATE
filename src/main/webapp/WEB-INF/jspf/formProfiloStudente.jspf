@@ -22,8 +22,9 @@
     </div>
 
     <div class="form-group">
-        <label for="inputTelefono">Recapito telefonico</label>
-        <input name="telefono" type="tel" class="form-control" id="inputTelefono" placeholder="3338988789">
+        <label for="inputMatricola">Matricola *</label>
+        <input name="matricola" type="text" class="form-control" id="inputMatricola"
+               placeholder="0512112345" required>
     </div>
 
     <div class="form-group">
@@ -85,12 +86,6 @@
     </div>
 
     <div class="form-group">
-        <label for="inputMatricola">Matricola *</label>
-        <input name="matricola" type="text" class="form-control" id="inputMatricola"
-               placeholder="0512112345" required>
-    </div>
-
-    <div class="form-group">
         <label for="inputCorsoLaurea">Corso di laurea *</label>
         <input name="corsoLaurea" type="text" class="form-control" id="inputCorsoLaurea"
                placeholder="Informatica" required>
@@ -108,12 +103,17 @@
                placeholder="2014" required>
     </div>
 
+    <div class="form-group">
+        <label for="inputTelefono">Recapito telefonico</label>
+        <input name="telefono" type="tel" class="form-control" id="inputTelefono" placeholder="3338988789">
+    </div>
+
     <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="privacyCheckbox" aria-describedby="campiObbligatoriHelp"
                required>
         <label class="form-check-label" for="privacyCheckbox">Accetto il <a href="#">regolamento sulla privacy</a>
         </label>
-        <small id="campiObbligatoriHelp" class="form-text text-muted">I campi contassegnati con * sono
+        <small id="campiObbligatoriHelp" class="form-text text-muted">I campi contrassegnati con * sono
             obbligatori.
         </small>
     </div>
