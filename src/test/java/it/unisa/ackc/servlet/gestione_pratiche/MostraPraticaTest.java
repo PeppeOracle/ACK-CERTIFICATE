@@ -13,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -27,6 +28,8 @@ public class MostraPraticaTest {
     private HttpServletResponse response;
     @Mock
     private RequestDispatcher rd;
+    @Mock
+    private HttpSession session;
 
     @Rule
     public ExpectedException expect = ExpectedException.none();
@@ -49,6 +52,7 @@ public class MostraPraticaTest {
                         "" + it.unisa.ackc.gestione_pratiche.control.MostraPratica.PRATICA_RESPONSABILE_UFFICIO
                 });
 
+        when(request.getSession()).thenReturn(session);
         when(request.getParameterMap()).thenReturn(values);
         setField(mostraPratica,
                 mostraPratica.getClass().getDeclaredField("ackStorage"),
