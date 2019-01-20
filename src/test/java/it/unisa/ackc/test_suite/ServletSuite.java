@@ -7,7 +7,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-
         CreazioneDomandaAttivitaLavorativaTest.class,
         CreazioneDomandaLinguaIngleseTest.class,
         CreazioneDomandaTest.class,
@@ -17,8 +16,8 @@ import org.junit.runners.Suite;
         AutenticazioneUtenteTest.class,
         ModificaProfiloStudenteTest.class,
         RegistrazioneAccountResponsabileUfficioTest.class,
-        RegistrazioneAccountStudenteTest.class
-
+        RegistrazioneAccountStudenteTest.class,
+        ModificaPraticaSospesaTest.class
 })
 public class ServletSuite {
 }
