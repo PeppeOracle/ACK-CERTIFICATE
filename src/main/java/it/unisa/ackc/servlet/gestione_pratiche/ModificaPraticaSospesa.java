@@ -4,6 +4,7 @@ import it.unisa.ackc.servlet.ServletForm;
 import it.unisa.ackc.storage.ACKStorageFacade;
 
 import javax.inject.Inject;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,10 @@ import java.lang.reflect.InvocationTargetException;
  * @version 1.0.0
  */
 @WebServlet("/gestione-pratiche/modifica-pratica-sospesa")
+@MultipartConfig(location = "/", fileSizeThreshold =
+        CreazionePratica.FILE_THRESHOLD,
+        maxFileSize = CreazionePratica.MAX_FILE_SIZE, maxRequestSize =
+        CreazionePratica.MAX_REQUEST_SIZE)
 public class ModificaPraticaSospesa
         extends ServletForm {
     /**
@@ -34,7 +39,7 @@ public class ModificaPraticaSospesa
      * @since 1.0.0
      */
     @Override
-    public void doGet(
+    public void doPost(
             final HttpServletRequest richiesta,
             final HttpServletResponse risposta
     ) {

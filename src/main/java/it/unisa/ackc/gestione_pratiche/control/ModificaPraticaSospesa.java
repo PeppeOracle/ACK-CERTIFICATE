@@ -38,7 +38,7 @@ public class ModificaPraticaSospesa extends FormControl {
      * Macro della jsp di successo della modifica.
      */
     private static final String SUCCESSFUL_JSP =
-            "";
+            "/gestione-pratiche/mostra-pratica?tipo=2&pratica=";
     /**
      * Macro del messaggio di successo della modifica.
      */
@@ -108,13 +108,12 @@ public class ModificaPraticaSospesa extends FormControl {
                         + " stato SOSPESA"
             );
         }
-        uploadPath = getRisposta().ottieniUploadPath() + STUDENTI_PATH;
+        uploadPath = STUDENTI_PATH;
         nomeDomanda = formDati.ottieniDato(DOMANDA_PARAMETRO);
         nomeAttestato = formDati.ottieniDato(ATTESTATO_PARAMETRO);
         upload();
         salvaPratica();
-        getRisposta().aggiungiAttributo("successful", SUCCESSFUL_MESSAGE);
-        getRisposta().inoltra(SUCCESSFUL_JSP);
+        getRisposta().redirect(SUCCESSFUL_JSP + pratica.getId());
     }
 
     /**

@@ -79,6 +79,7 @@ public class ModificaPraticaSospesaTest {
         when(request.getContentType()).thenReturn("multipart/form-data");
         when(request.getParameterMap()).thenReturn(values);
         when(request.getServletContext()).thenReturn(servletContext);
+        when(servletContext.getRealPath(any(String.class))).thenReturn("test");
         it.unisa.ackc.gestione_utenti.entity.AccountStudente accountStudente
                 = new it.unisa.ackc.gestione_utenti.entity.AccountStudente();
         when(session.getAttribute("account")).thenReturn(accountStudente);
@@ -103,6 +104,6 @@ public class ModificaPraticaSospesaTest {
                 modificaPratica.getClass().getDeclaredField("ackStorage"),
                 storage
         );
-        modificaPratica.doGet(request, response);
+        modificaPratica.doPost(request, response);
     }
 }

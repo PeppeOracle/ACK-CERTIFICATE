@@ -61,7 +61,7 @@ public class RispostaStub extends Risposta {
     }
 
     @Override
-    public String ottieniUploadPath() {
+    public String ottieniUploadPath(String path) {
         return "myPath";
     }
 }

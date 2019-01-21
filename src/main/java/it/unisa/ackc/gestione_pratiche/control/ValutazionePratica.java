@@ -17,7 +17,8 @@ public class ValutazionePratica extends FormControl {
     /**
      * Macro del parametro stato della pratica.
      */
-    public static final String STATO_PARAMETRO = "statoPratica";
+    public static final String STATO_PARAMETRO =
+            "statoPratica";
     /**
      * Macro del parametro messaggio.
      */
@@ -27,7 +28,7 @@ public class ValutazionePratica extends FormControl {
      * Macro della jsp di successo della valutazione.
      */
     private static final String SUCCESSFUL_JSP =
-            "";
+            "/gestione-pratiche/mostra-pratica?tipo=0&pratica=";
     /**
      * Macro del messaggio di successo della valutazione.
      */
@@ -71,8 +72,7 @@ public class ValutazionePratica extends FormControl {
         pratica.setMessaggioResponsabileUfficio(messaggioPratica);
         pratica.setStato(stato);
         ackStorage.updatePratica(pratica);
-        getRisposta().aggiungiAttributo("successful", SUCCESSFUL_MESSAGE);
-        getRisposta().inoltra(SUCCESSFUL_JSP);
+        getRisposta().redirect(SUCCESSFUL_JSP + pratica.getId());
     }
 
     /**

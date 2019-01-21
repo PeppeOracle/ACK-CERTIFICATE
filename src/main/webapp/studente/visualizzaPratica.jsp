@@ -13,7 +13,6 @@
 
 <%
     Pratica pratica = (Pratica) request.getAttribute("pratica");
-    request.setAttribute("tipoAzione",1);
 %>
 
 <!-- Navbar -->
@@ -28,25 +27,22 @@
         <h5 class="card-header">Stato: <%= pratica.getStato() %>
         </h5>
         <div class="card-body">
-            <p class="card-text"><%= pratica.getMessaggioResponsabileUfficio() %>
+            <p class="card-text"><%= (pratica.getMessaggioResponsabileUfficio()==null || pratica.getMessaggioResponsabileUfficio().trim().equals(""))?"Il responsabile ufficio non ha lasciato nessun messaggio.":pratica.getMessaggioResponsabileUfficio() %>
             </p>
         </div>
     </div>
     <br>
 
-    <form action="" method="post" id="modificaPraticaForm">
-
+    <form action="/gestione-pratiche/modifica-pratica-sospesa" method="post" id="modificaPraticaForm">
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Domanda</h5>
-                        <a href="#"><%= pratica.getDomanda().getPath()%>
-                        </a>
+                        <a href="/gestione-pratiche/download-file?file_name=<%=pratica.getDomanda().getPath()%>"> <h5 class="card-title">Domanda</h5> </a>
                         <div class="form-group" id="areaCaricaDomanda">
                             <br>
                             <label for="inputFileDomanda">Carica nuova domanda</label>
-                            <input name="fileDomanda" type="file" value="file.pdf" class="form-control-file"
+                            <input name="fileDomanda" type="file" class="form-control-file"
                                    id="inputFileDomanda">
                             <br>
                             <a href="#">
@@ -59,9 +55,7 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Attestato</h5>
-                        <a href="#"><%= pratica.getAttestato().getPath()%>
-                        </a>
+                        <a href="/gestione-pratiche/download-file?file_name=<%=pratica.getAttestato().getPath()%>" download> <h5 class="card-title">Attestato</h5> </a>
                         <div class="form-group" id="areaCaricaAttestato">
                             <br>
                             <label for="inputFileAttestato">Carica nuovo attestato</label>
@@ -71,7 +65,7 @@
                 </div>
             </div>
         </div>
-
+        <input type="hidden" value="<%=pratica.getId()%>" name="pratica" />
         <br>
         <a href="#">
             <button type="button" class="btn btn-danger" id="annullaButton">Annulla modifica</button>
@@ -81,7 +75,7 @@
     </form>
 
     <br>
-    <a href="#">
+    <a style="display:<%=(pratica.getStato()==Pratica.Stato.SOSPESA)?"block":"none"%>;" href="#">
         <button type="button" class="btn btn-primary" id="modificaButton">Modifica</button>
     </a>
 </div>

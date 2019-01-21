@@ -5,11 +5,6 @@ import it.unisa.ackc.form.FormDati;
 import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
-import java.io.IOException;
-import java.io.File;
-import java.io.OutputStream;
-import java.io.FileInputStream;
-
 /**
  * Permette il download di un file.
  *
@@ -52,33 +47,7 @@ public class DownloadFile extends FormControl {
     public void sottomettiForm(final FormDati formDati) {
         valida(formDati);
         String fileName = formDati.ottieniDato(FILE_PARAMETRO);
-        getRisposta().impostaTipoContenuto(Risposta.TipoDiContenuto.PDF);
-        getRisposta().impostaHeader(
-                "Content-disposition",
-                "attachment; filename=" + fileName + FILE_ESTENSIONE
-        );
-        File file = new File(getRisposta().ottieniUploadPath()
-                + STUDENTI_PATH + File.separator + fileName + FILE_ESTENSIONE);
-        if (file.exists()) {
-            OutputStream out = getRisposta().getOutput();
-            FileInputStream in;
-            try {
-                in = new FileInputStream(file);
-                byte[] buffer = new byte[BUFFER_SIZE];
-                int length;
-                while ((length = in.read(buffer)) > 0) {
-                    out.write(buffer, 0, length);
-                }
-                in.close();
-                out.flush();
-            } catch (IOException e) {
-                throw new IllegalArgumentException(
-                        "Si è verificato un problema, riprova più tardi"
-                );
-            }
-        } else {
-            throw new IllegalArgumentException("Il file indicato non esiste");
-        }
+        getRisposta().redirect(fileName);
     }
 
     /**

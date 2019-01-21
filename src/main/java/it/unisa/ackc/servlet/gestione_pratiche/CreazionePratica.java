@@ -4,6 +4,7 @@ import it.unisa.ackc.servlet.ServletForm;
 import it.unisa.ackc.storage.ACKStorageFacade;
 
 import javax.inject.Inject;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,24 @@ import java.lang.reflect.InvocationTargetException;
  * @version 1.0.0
  */
 @WebServlet("/gestione-pratiche/creazione-pratica")
+@MultipartConfig(location = "/", fileSizeThreshold =
+        CreazionePratica.FILE_THRESHOLD,
+        maxFileSize = CreazionePratica.MAX_FILE_SIZE, maxRequestSize =
+        CreazionePratica.MAX_REQUEST_SIZE)
 public class CreazionePratica
         extends ServletForm {
+    /**
+     * Macro max file size.
+     */
+    static final int FILE_THRESHOLD = 1024 * 1024;
+    /**
+     * Macro max file size.
+     */
+    static final int MAX_FILE_SIZE = FILE_THRESHOLD * 5;
+    /**
+     * Macro max file size.
+     */
+    static final int MAX_REQUEST_SIZE = MAX_FILE_SIZE * 5;
     /**
      * Istanza dell'EJB per accedere al database.
      */
@@ -34,7 +51,7 @@ public class CreazionePratica
      * @since 1.0.0
      */
     @Override
-    public void doGet(
+    public void doPost(
             final HttpServletRequest richiesta,
             final HttpServletResponse risposta
     ) {

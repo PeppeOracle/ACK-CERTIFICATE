@@ -50,7 +50,7 @@ public class ConsumerFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         Account account = (Account)
                 request.getSession(false).getAttribute("account");
-        if (account.getRuolo().equals(Account.Ruolo.STUDENTE)
+        if (account != null && account.getRuolo().equals(Account.Ruolo.STUDENTE)
                 || account.getRuolo().equals(
                         Account.Ruolo.RESPONSABILE_UFFICIO
         )) {

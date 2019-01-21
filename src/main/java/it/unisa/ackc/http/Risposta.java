@@ -59,9 +59,10 @@ public abstract class Risposta {
     /**
      * Restituisce l'upload path.
      *
+     * @param path da ottenere
      * @return upload path
      */
-    public abstract String ottieniUploadPath();
+    public abstract String ottieniUploadPath(String path);
 
     /**
      * Restituisce l'output.

@@ -53,6 +53,7 @@
             <th scope="col">Cognome</th>
             <th scope="col">Nome</th>
             <th scope="col">Tipo pratica</th>
+            <th scope="col">Stato</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -73,6 +74,8 @@
             <td><%=bean.getAccountStudente().getNome()%>
             </td>
             <td><%=bean.getTipo()%>
+            </td>
+            <td><%=bean.getStato()%>
             </td>
             <td>
                 <a href="<%=mostraBeanUrl%>">
@@ -96,14 +99,14 @@
 
     <div class="fixed-bottom paginazione">
         <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina-1%>">
-            <button type="button" class="btn btn-outline-primary" <%=(pagina > 1) ? "" : "disabled"%>>Pagina
-                Precedente
+            <button type="button" class="btn btn-outline-primary" <%=(pagina > 1) ? "" : "disabled"%>>
+                &lt;
             </button>
         </a>
         Pagina <%=pagina%>
         <a href="/gestione-pratiche/visualizza-pratiche-responsabile-ufficio?filtro=<%=filtro%>&pagina=<%=pagina+1%>">
-            <button type="button" class="btn btn-outline-primary" <%=(pagina != maxPagina) ? "" : "disabled"%>>Pagina
-                Successiva
+            <button type="button" class="btn btn-outline-primary" <%=(pagina != maxPagina) ? "" : "disabled"%>>
+                &gt;
             </button>
         </a>
     </div>

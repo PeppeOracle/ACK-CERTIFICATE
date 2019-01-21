@@ -72,7 +72,9 @@ public class AutenticazioneUtente extends FormControl {
                     break;
                 case STUDENTE:
                     getRisposta().redirect(
-                            "/studente/gestionePratiche.jsp"
+                            "/gestione-pratiche/"
+                                    + "visualizza-pratiche-studente"
+                                    + "?pagina=1"
                     );
                     break;
                 default:

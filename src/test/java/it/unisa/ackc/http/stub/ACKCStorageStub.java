@@ -117,7 +117,7 @@ public class ACKCStorageStub implements ACKStorageFacade {
 
     @Override
     public Account updateAccount(Account account) {
-        return null;
+        return this.account;
     }
 
     @Override

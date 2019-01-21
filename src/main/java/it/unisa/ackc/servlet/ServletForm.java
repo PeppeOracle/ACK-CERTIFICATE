@@ -8,8 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Paths;
 import java.util.Map;
 
 /**
@@ -17,6 +20,11 @@ import java.util.Map;
  * di una form.
  */
 public abstract class   ServletForm extends Servlet<FormControl> {
+    /**
+     * Macro della grandezza del buffer.
+     */
+    private static final int BUFFER_SIZE = 1024;
+
     /**
      * Chiama il metodo sottometttiForm dell'oggetto indicato.
      *
@@ -75,15 +83,38 @@ public abstract class   ServletForm extends Servlet<FormControl> {
                 .indexOf("multipart/form-data") > -1) {
             try {
                 for (Part part : richiesta.getParts()) {
-                    formDati.aggiungiDato(
-                            part.getName(),
-                            part.getSubmittedFileName()
-                    );
+                    if (part.getName().contains("file")) {
+                        formDati.aggiungiDato(part.getName(),
+                                Paths.get(part.getSubmittedFileName())
+                                        .getFileName().toString());
+                    } else {
+                        formDati.aggiungiDato(part.getName(), getValue(part));
+                    }
                 }
             } catch (IOException | ServletException e) {
                 // ignore
             }
         }
         return formDati;
+    }
+
+    /**
+     * Permette di ottenere il valore di un part del form.
+     *
+     * @param part del form
+     * @return valore del part
+     * @throws IOException se ci sono problemi nella lettura
+     */
+    private static String getValue(final Part part) throws IOException {
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(part.getInputStream(), "UTF-8")
+        );
+        StringBuilder value = new StringBuilder();
+        char[] buffer = new char[BUFFER_SIZE];
+        for (int length = reader.read(buffer);
+             length > 0; length = reader.read(buffer)) {
+            value.append(buffer, 0, length);
+        }
+        return value.toString();
     }
 }

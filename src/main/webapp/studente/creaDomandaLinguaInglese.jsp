@@ -7,6 +7,9 @@
 </head>
 <body>
 
+<%
+%>
+
 <!-- Navbar -->
 <%@ include file="../WEB-INF/jspf/navbarStudente.jspf" %>
 
@@ -44,7 +47,10 @@
 
         <small class="form-text text-muted">Tutti i campi sono obbligatori.</small>
         <br><br>
-        <a href="/gestione-pratiche/creazione-domanda-lingua-inglese" class="btn btn-primary" id="downloadButton" download>Scarica</a>
+        <a href="#" class="btn btn-primary" id="downloadButton" download>Scarica</a>
+
+        <br><br>
+        <a href="<%=((Integer)request.getAttribute("azione"))==1?"/gestione-pratiche/mostra-pratica?tipo=2&pratica="+session.getAttribute("pratica"):"/studente/creaPratica.jsp?tipo=LINGUA_INGLESE"%>" style="display:none;" class="btn btn-primary" id="avantiButton">Continua</a>
 
     </form>
 
@@ -58,12 +64,14 @@
 
 <script>
     $(document).ready(function() {
-        $("#downloadButton").click(function() {
-            return this.href
-                + "?cefr=" + $("#inputCefr").val()
-                + "?grade=" + $("#inputGrade").val()
-                + "?enteCertificatore=" + $("#inputEnteCertificatore").val()
-                + "?numeroCfu=" + $("#inputNumeroCfu").val()
+        $("#downloadButton").click(function(event) {
+            event.preventDefault();
+            window.open("/gestione-pratiche/creazione-domanda-lingua-inglese"
+            + "?cefr=" + $("#inputCefr").val()
+            + "&grade=" + $("#inputGrade").val()
+            + "&enteCertificatore=" + $("#inputEnteCertificatore").val()
+            + "&numeroCfu=" + $("#inputNumeroCfu").val(),"download");
+            $("#avantiButton").show();
         })
     });
 </script>

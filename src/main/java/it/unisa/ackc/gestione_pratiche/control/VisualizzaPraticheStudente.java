@@ -19,7 +19,8 @@ public class VisualizzaPraticheStudente extends FormControl {
     /**
      * Macro della jsp della lista di pratiche.
      */
-    private static final String PRATICHE_JSP = "gestionePratiche.jsp";
+    private static final String PRATICHE_JSP =
+            "/studente/gestionePratiche.jsp";
     /**
      * Macro del parametro pagina.
      */
@@ -27,7 +28,7 @@ public class VisualizzaPraticheStudente extends FormControl {
     /**
      * Macro del limite di pratiche in una pagina.
      */
-    public static final int LIMITE_PAGINA = 10;
+    public static final int LIMITE_PAGINA = 6;
     /**
      * Istanza dello storage facade.
      */
@@ -59,7 +60,12 @@ public class VisualizzaPraticheStudente extends FormControl {
         }
         AccountStudente account = (AccountStudente)
                 getSessione().ottieni("account");
-        formDati.aggiungiDato("temp_account", account);
+        formDati.aggiungiDato("max_pagina",
+                ackStorage.countAllPraticheForStudente(account)
+                /
+                it.unisa.ackc.gestione_pratiche.
+                        control.VisualizzaPraticheStudente.
+                        LIMITE_PAGINA);
         valida(formDati);
         int pagina = formDati.ottieniDatoIntero(PAGINA_PARAMETRO);
         List<Pratica> praticheStudente = ackStorage.findAllPraticheForStudente(
@@ -69,6 +75,15 @@ public class VisualizzaPraticheStudente extends FormControl {
         getRisposta().aggiungiAttributo(
                 "pratiche",
                 praticheStudente
+        );
+        getRisposta().aggiungiAttributo(
+                PAGINA_PARAMETRO,
+                pagina
+        );
+        getRisposta().aggiungiAttributo(
+                "max_pagina",
+                ackStorage.countAllPraticheForStudente(account)
+                / LIMITE_PAGINA + 1
         );
         getRisposta().inoltra(PRATICHE_JSP);
     }

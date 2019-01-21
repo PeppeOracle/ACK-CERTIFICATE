@@ -22,6 +22,7 @@ public class CreazioneDomandaTest {
 
         formDati = new FormDati();
         formDati.aggiungiDato(CreazioneDomanda.TIPO_DI_DOMANDA_PARAMETRO, "LINGUA_INGLESE");
+        formDati.aggiungiDato(CreazioneDomanda.AZIONE_PARAMETRO, 0);
 
         creazioneDomanda = new CreazioneDomanda(sessioneStub, rispostaStub);
     }
@@ -55,6 +56,24 @@ public class CreazioneDomandaTest {
 
     @Test
     public void test04(){
+        expect.expect(IllegalArgumentException.class);
+        expect.expectMessage("Il parametro azione deve essere un numero");
+
+        formDati.aggiungiDato(CreazioneDomanda.AZIONE_PARAMETRO, null);
+        creazioneDomanda.sottomettiForm(formDati);
+    }
+
+    @Test
+    public void test05(){
+        expect.expect(IllegalArgumentException.class);
+        expect.expectMessage("Azione non supportata");
+
+        formDati.aggiungiDato(CreazioneDomanda.AZIONE_PARAMETRO, 3);
+        creazioneDomanda.sottomettiForm(formDati);
+    }
+
+    @Test
+    public void test06(){
         creazioneDomanda.sottomettiForm(formDati);
     }
 }

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="gestionePratiche.jsp">
+    <a class="navbar-brand" href="/gestione-pratiche/visualizza-pratiche-studente?pagina=1">
         <img src="../images/ackc-logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Ack Certificate
     </a>
@@ -13,7 +13,7 @@
             </li>
 
             <li class="nav-item" id="gestionePraticheNavItem">
-                <a class="nav-link" href="/studente/gestionePratiche.jsp">Gestione pratiche</a>
+                <a class="nav-link" href="/gestione-pratiche/visualizza-pratiche-studente?pagina=1">Gestione pratiche</a>
             </li>
 
         </ul>

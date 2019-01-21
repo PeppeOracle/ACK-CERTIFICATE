@@ -54,7 +54,9 @@ public class StudenteFilter  implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         Account account = (Account)
                 request.getSession(false).getAttribute("account");
-        if (account.getRuolo().equals(Account.Ruolo.STUDENTE)) {
+        if (account != null
+                &&
+                account.getRuolo().equals(Account.Ruolo.STUDENTE)) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(

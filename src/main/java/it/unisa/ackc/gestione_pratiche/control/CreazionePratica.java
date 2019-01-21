@@ -12,6 +12,7 @@ import it.unisa.ackc.http.Risposta;
 import it.unisa.ackc.http.Sessione;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Si occupa della creazione di una nuova pratica.
@@ -43,12 +44,7 @@ public class CreazionePratica extends FormControl {
      * Macro della jsp di successo della creazione.
      */
     private static final String SUCCESSFUL_JSP =
-            "";
-    /**
-     * Macro del messaggio di successo della creazione.
-     */
-    private static final String SUCCESSFUL_MESSAGE =
-            "";
+            "/gestione-pratiche/mostra-pratica?tipo=2&pratica=";
     /**
      * Macro del path dei file degli studenti.
      */
@@ -111,19 +107,19 @@ public class CreazionePratica extends FormControl {
                 getSessione().ottieni("account");
         messaggio = formDati.ottieniDato(MESSAGGIO_PARAMETRO);
         tipo = formDati.ottieniDato(TIPO_PARAMETRO);
-        uploadPath = getRisposta().ottieniUploadPath() + STUDENTI_PATH;
+        uploadPath = STUDENTI_PATH;
         upload();
-        salvaPratica();
-        getRisposta().aggiungiAttributo("successful", SUCCESSFUL_MESSAGE);
-        getRisposta().inoltra(SUCCESSFUL_JSP);
+        Pratica pratica = salvaPratica();
+        getRisposta().redirect(SUCCESSFUL_JSP + pratica.getId());
     }
 
     /**
      * Salva la pratica.
      *
      * @since 1.1.1
+     * @return pratica salvata
      */
-    private void salvaPratica() {
+    private Pratica salvaPratica() {
         Domanda domanda = (Domanda) getSessione().ottieni("domanda");
         getSessione().rimuovi("domanda");
         domanda.setPath(domandaPath);
@@ -134,8 +130,13 @@ public class CreazionePratica extends FormControl {
                 messaggio,
                 Pratica.Tipo.valueOf(tipo)
         );
-        ((AccountStudente) account).addPratica(pratica);
-        ackStorage.updateAccount(account);
+        AccountStudente accountStudente = (AccountStudente)
+                ackStorage.findAccountById(account.getId());
+        accountStudente.addPratica(pratica);
+        accountStudente = (AccountStudente)
+                ackStorage.updateAccount(accountStudente);
+        List<Pratica> listPratiche = accountStudente.getPratiche();
+        return listPratiche.get(listPratiche.size() - 1);
     }
 
     /**
@@ -148,15 +149,17 @@ public class CreazionePratica extends FormControl {
         if (!file.exists()) {
             file.mkdir();
         }
+        AccountStudente accountStudente = (AccountStudente)
+                ackStorage.findAccountById(account.getId());
         domandaPath = uploadPath
                 + File.separator
-                + account.getId()
-                + "-" + "domanda.pdf";
+                + accountStudente.getMatricola()
+                + "-" + accountStudente.getPratiche().size() + "domanda.pdf";
         getRisposta().scriviFile(DOMANDA_PARAMETRO, domandaPath);
         attestatoPath = uploadPath
                 + File.separator
-                + account.getId()
-                + "-" + "attestato.pdf";
+                + accountStudente.getMatricola()
+                + "-" + accountStudente.getPratiche().size() + "attestato.pdf";
         getRisposta().scriviFile(ATTESTATO_PARAMETRO, attestatoPath);
     }
 

@@ -97,23 +97,26 @@ public class RispostaServlet extends Risposta {
             part = richiesta.getPart(file);
             if (part != null) {
                 part.write(path);
-                return;
+            } else {
+                throw new IllegalArgumentException("File non inviato");
             }
         } catch (ServletException | IOException e) {
             // ignora
+            e.printStackTrace();
         }
-        throw new IllegalArgumentException(
-                "Il file " + file + " non è stato inviato"
-        );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String ottieniUploadPath() {
-        return richiesta.getServletContext().getRealPath("")
-                + File.separator;
+    public String ottieniUploadPath(final String path) {
+        String rPath = richiesta.getServletContext().getRealPath(path);
+        File dir = new File(rPath);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        return rPath;
     }
 
     /**

@@ -8,6 +8,7 @@
     <%@ include file="../WEB-INF/jspf/headMeta.jspf" %>
     <title>Gestione pratiche studente</title>
     <%@ include file="../WEB-INF/jspf/headLink.jspf" %>
+    <link rel="stylesheet" href="../css/gestionePratiche.css">
 </head>
 <body>
 
@@ -15,8 +16,10 @@
 <%@ include file="../WEB-INF/jspf/navbarStudente.jspf" %>
 
 <%
-    List<Pratica> pratiche = ((AccountStudente) session.getAttribute("account")).getPratiche();
-    request.setAttribute("tipoAzione",0);
+    List<Pratica> pratiche = (List<Pratica>) request.getAttribute("pratiche");
+    int pagina = (Integer) request.getAttribute("pagina");
+    session.setAttribute("pagina", pagina);
+    long maxPagina = (Long) request.getAttribute("max_pagina");
 %>
 
 <div class="container">
@@ -69,6 +72,19 @@
         %>
         </tbody>
     </table>
+    <div class="fixed-bottom paginazione">
+        <a href="/gestione-pratiche/visualizza-pratiche-studente?pagina=<%=pagina-1%>">
+            <button type="button" class="btn btn-outline-primary" <%=(pagina > 1) ? "" : "disabled"%>>
+                &lt;
+            </button>
+        </a>
+        Pagina <%=pagina%>
+        <a href="/gestione-pratiche/visualizza-pratiche-studente?&pagina=<%=pagina+1%>">
+            <button type="button" class="btn btn-outline-primary" <%=(pagina != maxPagina) ? "" : "disabled"%>>
+                &gt;
+            </button>
+        </a>
+    </div>
 </div>
 
 <!-- Modal creazione nuova domanda -->

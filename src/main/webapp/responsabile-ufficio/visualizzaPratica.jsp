@@ -56,20 +56,28 @@
         </div>
 
         <div class="form-group row">
-            <label for="staticFileDomanda" class="col-sm-2 col-form-label">Visualizza domanda</label>
+            <label for="staticTipologiaPratica" class="col-sm-2 col-form-label">Stato</label>
             <div class="col-sm-10">
-                <a href="#">
-                    <input type="text" readonly class="form-control-plaintext" id="staticFileDomanda"
-                           value="domanda.pdf"></a>
+                <input type="text" readonly class="form-control-plaintext" id="staticStatoPratica"
+                       value="<%=pratica.getStato()%>">
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="staticFileAttestato" class="col-sm-2 col-form-label">Visualizza attestato</label>
+            <label for="staticFileDomanda" class="col-sm-2 col-form-label">Domanda</label>
             <div class="col-sm-10">
-                <a href="#">
-                    <input type="text" readonly class="form-control-plaintext" id="staticFileAttestato"
-                           value="attestato.pdf"></a>
+                <a href="/gestione-pratiche/download-file?file_name=<%=pratica.getDomanda().getPath()%>" class="form-control-plaintext" id="staticFileDomanda" download>
+                    Download
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="staticFileAttestato" class="col-sm-2 col-form-label">Attestato</label>
+            <div class="col-sm-10">
+                <a href="/gestione-pratiche/download-file?file_name=<%=pratica.getAttestato().getPath()%>" class="form-control-plaintext" id="staticFileAttestato" download>
+                    Download
+                </a>
             </div>
         </div>
 
@@ -77,9 +85,9 @@
 
     <br><br>
     <a href="<%=gestionePraticheUrl%>">
-    <button type="button" class="btn btn-danger">Annulla</button>
+    <button type="button" class="btn btn-danger">Torna indietro</button>
     </a>
-    <a href="<%=mostraPraticaUrl%>">
+    <a style="display:<%=(pratica.getStato()==Pratica.Stato.IN_ATTESA)?"block":"none"%>;" href="<%=mostraPraticaUrl%>">
     <button type="button" class="btn btn-success">Valuta pratica</button>
     </a>
 

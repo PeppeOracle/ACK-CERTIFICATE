@@ -8,11 +8,12 @@
 <body>
 
 <div class="container">
-    <br>Tutto ok !!!
 </div>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <%@ include file="WEB-INF/jspf/bootstapScript.jspf" %>
-
+<script>
+    window.location = "login.jsp";
+</script>
 </body>
 </html>

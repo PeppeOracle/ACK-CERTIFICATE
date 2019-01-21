@@ -1,6 +1,8 @@
 package it.unisa.ackc.servlet.gestione_pratiche;
 
 import it.unisa.ackc.gestione_pratiche.entity.Domanda;
+import it.unisa.ackc.gestione_pratiche.entity.Pratica;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.http.stub.ACKCStorageStub;
 import org.junit.Before;
 import org.junit.Rule;
@@ -92,11 +94,14 @@ public class CreazionePraticaTest {
         when(response.getOutputStream()).thenReturn(servletOutputStream);
 
         CreazionePratica creazionePratica = new CreazionePratica();
+        ACKCStorageStub storage = new ACKCStorageStub();
+        storage.setPratica(new Pratica());
+        storage.setAccount(new AccountStudente());
         setField(creazionePratica,
                 creazionePratica.getClass().getDeclaredField("ackStorage"),
-                new ACKCStorageStub()
+                storage
         );
-        creazionePratica.doGet(request, response);
+        creazionePratica.doPost(request, response);
     }
 
     @Test
@@ -143,6 +148,6 @@ public class CreazionePraticaTest {
                 creazionePratica.getClass().getDeclaredField("ackStorage"),
                 new ACKCStorageStub()
         );
-        creazionePratica.doGet(request, response);
+        creazionePratica.doPost(request, response);
     }
 }

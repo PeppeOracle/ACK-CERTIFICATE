@@ -1,11 +1,14 @@
 package it.unisa.ackc.gestione_pratiche.entity;
 
+import javax.persistence.Entity;
+
 /**
  * Rappresenta la specifica di un attestazione di un'attività lavorativa.
  * Fa parte della pratica {@see it.unisa.ackc.gestione_pratiche.entity.Pratica}
  *
  * @version 0.1.1
  */
+@Entity
 public class DomandaAttivitaLavorativa extends Domanda {
     /**
      * Ente certificatore dell'attività lavorativa.

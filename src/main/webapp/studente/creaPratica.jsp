@@ -15,7 +15,7 @@
     <br>
     <h1>Nuova pratica</h1>
     <br>
-    <form action="" method="post">
+    <form action="/gestione-pratiche/creazione-pratica" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="inputFileDomanda">File domanda</label>
@@ -33,8 +33,8 @@
         </div>
 
         <br><br>
-
-        <button type="submit" class="btn btn-danger">Annulla</button>
+        <input type="hidden" name="tipo" value="<%=request.getParameter("tipo")%>">
+        <button type="reset" class="btn btn-danger">Annulla</button>
         <button type="submit" class="btn btn-success">Conferma</button>
 
     </form>

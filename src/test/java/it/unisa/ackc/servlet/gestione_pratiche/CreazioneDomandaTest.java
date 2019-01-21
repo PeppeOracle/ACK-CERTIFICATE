@@ -43,6 +43,9 @@ public class CreazioneDomandaTest {
                 .CreazioneDomanda.TIPO_DI_DOMANDA_PARAMETRO,
                 new String[] {"LINGUA_INGLESE"}
          );
+        values.put(it.unisa.ackc.gestione_pratiche
+                .control.CreazioneDomanda.AZIONE_PARAMETRO,
+                new String[] {"0"});
         when(request.getRequestDispatcher(any(String.class))).thenReturn(rd);
         when(request.getParameterMap()).thenReturn(values);
 

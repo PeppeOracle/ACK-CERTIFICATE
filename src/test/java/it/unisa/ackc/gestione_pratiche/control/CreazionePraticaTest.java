@@ -1,6 +1,9 @@
 package it.unisa.ackc.gestione_pratiche.control;
 
 import it.unisa.ackc.form.FormDati;
+import it.unisa.ackc.gestione_pratiche.entity.Pratica;
+import it.unisa.ackc.gestione_utenti.entity.Account;
+import it.unisa.ackc.gestione_utenti.entity.AccountStudente;
 import it.unisa.ackc.http.stub.ACKCStorageStub;
 import it.unisa.ackc.http.stub.RispostaStub;
 import it.unisa.ackc.http.stub.SessioneStub;
@@ -24,7 +27,10 @@ public class CreazionePraticaTest {
         rispostaStub = new RispostaStub();
 
         creazionePratica = new CreazionePratica(sessioneStub, rispostaStub);
-        creazionePratica.setAckStorage(new ACKCStorageStub());
+        ACKCStorageStub storage = new ACKCStorageStub();
+        storage.setPratica(new Pratica());
+        storage.setAccount(new AccountStudente());
+        creazionePratica.setAckStorage(storage);
 
         formDati = new FormDati();
         formDati.aggiungiDato(CreazionePratica.MESSAGGIO_PARAMETRO, "Attestato non riconosciuto");

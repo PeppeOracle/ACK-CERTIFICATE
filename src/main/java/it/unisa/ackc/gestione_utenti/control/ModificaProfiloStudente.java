@@ -37,7 +37,8 @@ public class ModificaProfiloStudente extends FormControl {
     /**
      * Macro della jsp di successo della valutazione.
      */
-    private static final String SUCCESSFUL_JSP = "";
+    private static final String SUCCESSFUL_JSP =
+            "/studente/gestioneProfilo.jsp";
     /**
      * Macro del messaggio di successo della valutazione.
      */
@@ -165,8 +166,8 @@ public class ModificaProfiloStudente extends FormControl {
         if (annoDiImmatricolazione != null) {
             studente.setAnnoDiImmatricolazione(annoDiImmatricolazione);
         }
-        ackStorage.updateAccount(studente);
-        getRisposta().aggiungiAttributo("successful", SUCCESSFUL_MESSAGE);
+        account = ackStorage.updateAccount(studente);
+        getSessione().aggiungi("account", account);
         getRisposta().inoltra(SUCCESSFUL_JSP);
     }
 

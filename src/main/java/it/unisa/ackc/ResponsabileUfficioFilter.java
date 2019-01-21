@@ -50,7 +50,9 @@ public class ResponsabileUfficioFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         Account account = (Account)
                 request.getSession(false).getAttribute("account");
-        if (account.getRuolo().equals(Account.Ruolo.RESPONSABILE_UFFICIO)) {
+        if (account != null
+                &&
+                account.getRuolo().equals(Account.Ruolo.RESPONSABILE_UFFICIO)) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(

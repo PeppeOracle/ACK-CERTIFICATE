@@ -49,7 +49,9 @@ public class AmministratoreFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         Account account = (Account)
                 request.getSession(false).getAttribute("account");
-        if (account.getRuolo().equals(Account.Ruolo.AMMINISTRATORE)) {
+        if (account != null
+                &&
+                account.getRuolo().equals(Account.Ruolo.AMMINISTRATORE)) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(

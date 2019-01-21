@@ -150,20 +150,18 @@ public class VisualizzaPraticheResponsabileUfficio extends FormControl {
                 praticheResponsabileUfficio
         );
         getRisposta().aggiungiAttributo(
-                VisualizzaPraticheResponsabileUfficio.FILTRO_PARAMETRO,
+                FILTRO_PARAMETRO,
                 filtro
         );
         getRisposta().aggiungiAttributo(
-                VisualizzaPraticheResponsabileUfficio.PAGINA_PARAMETRO,
+                PAGINA_PARAMETRO,
                 pagina
         );
         getRisposta().aggiungiAttributo(
                 "max_pagina",
                 (formDati
                         .ottieniDatoIntero(maxPagina)
-                        / it.unisa.ackc.gestione_pratiche.control
-                        .VisualizzaPraticheResponsabileUfficio.
-                        LIMITE_PAGINA) + 1
+                        / LIMITE_PAGINA) + 1
         );
         getRisposta().inoltra(PRATICHE_JSP);
     }

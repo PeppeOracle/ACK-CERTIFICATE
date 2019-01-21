@@ -153,7 +153,8 @@ public class CreazioneDomandaLinguaInglese extends FormControl {
         documentMap.put("authority", enteCertificatore);
         if (account.getTipologiaDiLaurea().equalsIgnoreCase("magistrale")) {
             documentMap.put("c1", "X");
-        } else if (account.getTipologiaDiLaurea().equalsIgnoreCase("triennale")) {
+        } else if (
+                account.getTipologiaDiLaurea().equalsIgnoreCase("triennale")) {
             documentMap.put("c2", "X");
         }
         documentMap.put("grade", grade);

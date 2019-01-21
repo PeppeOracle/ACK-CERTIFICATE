@@ -9,8 +9,6 @@
 <body>
 <%
     Pratica pratica = (Pratica) request.getAttribute("pratica");
-    String annullaValutazioneUrl = "/gestione-pratiche/mostra-pratica?tipo=0&pratica="+pratica.getId();
-    String confermaValutazioneUrl = "/gestione-pratiche/valuta-pratica?tipo=0&pratica="+pratica.getId();
 %>
 <!-- Navbar -->
 <%@ include file="../WEB-INF/jspf/navbarResponsabileUfficio.jspf" %>
@@ -18,13 +16,14 @@
 <div class="container">
 
     <br><h1>Valuta pratica</h1><br>
-    <form>
+    <form action="/gestione-pratiche/valutazione-pratica" method="get">
         <div class="form-group">
             <label for="selectStatoPratica">Stato pratica *</label>
             <select class="custom-select" name="statoPratica" id="selectStatoPratica" required>
                 <option selected>Selezionare uno stato</option>
-                <option value="approvata">Approvata</option>
-                <option value="bocciata">Bocciata</option>
+                <option value="APPROVATA">Approvata</option>
+                <option value="BOCCIATA">Bocciata</option>
+                <option value="SOSPESA">Sospesa</option>
             </select>
         </div>
 
@@ -32,11 +31,11 @@
             <label for="textareaMessaggio">Messaggio</label>
             <textarea name="messaggio" class="form-control" id="textareaMessaggio" rows="5"></textarea>
         </div>
-
+        <input name="pratica" value="<%=pratica.getId()%>" type="hidden">
         <small class="form-text text-muted">I campi contrassegnati con * sono obbligatori.</small>
         <br><br>
-        <a href="<%=annullaValutazioneUrl%>"><button type="button" class="btn btn-danger">Annulla</button></a>
-        <a href="<%=confermaValutazioneUrl%>"><button type="submit" class="btn btn-success">Conferma valutazione</button></a>
+        <button type="reset" class="btn btn-danger">Annulla</button>
+        <button type="submit" class="btn btn-success">Conferma valutazione</button>
     </form>
 
 </div>

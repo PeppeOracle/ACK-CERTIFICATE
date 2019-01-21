@@ -70,8 +70,8 @@ public class CreazioneDomanda extends FormControl {
         String domanda = formDati.ottieniDato(TIPO_DI_DOMANDA_PARAMETRO);
         String path = pathDomande.get(domanda);
         getRisposta().aggiungiAttributo(
-                "azione",
-                formDati.ottieniDatoIntero(TIPO_DI_DOMANDA_PARAMETRO)
+                AZIONE_PARAMETRO,
+                formDati.ottieniDatoIntero(AZIONE_PARAMETRO)
         );
         if (path != null) {
             getRisposta().inoltra(path);
